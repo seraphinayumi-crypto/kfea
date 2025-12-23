@@ -1,0 +1,43 @@
+/* 네비게이션 메뉴 간격 개선 */
+
+/* 데스크톱 네비게이션 - 더 균등한 간격 */
+nav.hidden.lg\:flex {
+  gap: 2rem; /* space-x-6 대신 gap 사용 (32px) */
+}
+
+/* 각 메뉴 아이템의 패딩을 균일하게 */
+nav a,
+nav button {
+  padding-left: 1rem !important;  /* px-4 */
+  padding-right: 1rem !important; /* px-4 */
+  padding-top: 0.5rem !important; /* py-2 */
+  padding-bottom: 0.5rem !important; /* py-2 */
+}
+
+/* 드롭다운이 있는 메뉴의 경우 */
+nav .relative.group > button {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* 모바일 메뉴는 그대로 유지 */
+@media (max-width: 1024px) {
+  nav a,
+  nav button {
+    padding: 0.75rem 1rem !important;
+  }
+}
+
+/* 추가: 메뉴 아이템 hover 효과 개선 */
+nav a:hover,
+nav button:hover {
+  background-color: rgba(243, 244, 246, 1); /* gray-100 */
+}
+
+nav a.bg-blue-900 {
+  background-color: rgb(30, 58, 138) !important;
+}
+
+nav a.bg-blue-900:hover {
+  background-color: rgb(29, 78, 216) !important; /* blue-700 */
+}
