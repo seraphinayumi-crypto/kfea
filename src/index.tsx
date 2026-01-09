@@ -722,7 +722,7 @@ app.get('/', (c) => {
               <div class="text-xl text-blue-100">협력 기관</div>
             </div>
             <div class="text-center">
-              <div class="text-5xl font-bold mb-2">3</div>
+              <div class="text-5xl font-bold mb-2">6</div>
               <div class="text-xl text-blue-100">민간자격증</div>
             </div>
             <div class="text-center">
@@ -1113,11 +1113,11 @@ app.get('/organization', (c) => {
                   <div class="space-y-2">
                     <div class="flex items-center space-x-2">
                       <i class="fas fa-user-tie text-blue-500 text-sm"></i>
-                      <p class="text-gray-700">이영희 (교육기획)</p>
+                      <p class="text-gray-700">김대원 (진로/취업 컨설팅)</p>
                     </div>
                     <div class="flex items-center space-x-2">
                       <i class="fas fa-user-tie text-blue-500 text-sm"></i>
-                      <p class="text-gray-700">박지훈 (프로그램개발)</p>
+                      <p class="text-gray-700">강은지 (자기주도학습)</p>
                     </div>
                     <div class="flex items-center space-x-2">
                       <i class="fas fa-user-tie text-blue-500 text-sm"></i>
@@ -1557,10 +1557,555 @@ app.get('/activities', (c) => {
                 <p class="text-xl">수료생</p>
               </div>
               <div>
-                <div class="text-5xl font-bold mb-2">3</div>
+                <div class="text-5xl font-bold mb-2">6</div>
                 <p class="text-xl">민간자격증</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Programs/Certifications page - 민간자격증 과정
+app.get('/programs/certifications', (c) => {
+  return c.html(
+    <Layout title="민간자격증 과정 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">민간자격증 과정</h1>
+            <p class="text-xl text-gray-600">한국미래인재교육협회에서 발급하는 공식 민간자격증</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* 스피치지도사 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-microphone text-3xl"></i>
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold text-center">스피치지도사</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-600 mb-4">
+                  효과적인 의사소통과 발표 능력 향상을 위한 전문 지도사 자격증
+                </p>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">음성 및 발음 교정 기법</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">프레젠테이션 스킬 향상</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">커뮤니케이션 전문가 양성</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 늘봄방과후프로그램강사 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-child text-3xl"></i>
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold text-center">늘봄방과후프로그램강사</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-600 mb-4">
+                  초등학교 방과후 프로그램 전문 강사 자격증
+                </p>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">아동 발달심리 이해</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">방과후 교육 프로그램 설계</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">학급 운영 및 관리 능력</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 취업진로디렉터 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-6 text-white">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-briefcase text-3xl"></i>
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold text-center">취업진로디렉터</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-600 mb-4">
+                  취업 및 진로 지도 전문가 자격증
+                </p>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">진로 상담 및 컨설팅</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">취업 전략 수립 및 지도</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">면접 및 자소서 코칭</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 기후위기대응교육강사 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 p-6 text-white">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-leaf text-3xl"></i>
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold text-center">기후위기대응교육강사</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-600 mb-4">
+                  기후변화 대응 교육 전문 강사 자격증
+                </p>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">기후위기 이해 및 교육</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">환경보호 실천 방법 지도</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">지속가능발전 교육</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 제로웨이스트실천교육강사 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-teal-500 to-teal-600 p-6 text-white">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-recycle text-3xl"></i>
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold text-center">제로웨이스트실천교육강사</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-600 mb-4">
+                  제로웨이스트 실천 교육 전문가 자격증
+                </p>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-teal-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">쓰레기 줄이기 실천 교육</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-teal-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">재활용 및 업사이클링</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-teal-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">친환경 라이프스타일 지도</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 시니어라이프코칭강사 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-amber-500 to-amber-600 p-6 text-white">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-hands-helping text-3xl"></i>
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold text-center">시니어라이프코칭강사</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-600 mb-4">
+                  시니어 대상 라이프 코칭 전문가 자격증
+                </p>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">시니어 심리 이해</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">노후 생활 설계 코칭</p>
+                  </div>
+                  <div class="flex items-start space-x-2">
+                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                    <p class="text-sm text-gray-700">건강한 노년 생활 지원</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 문의 섹션 */}
+          <div class="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-xl p-12 text-white text-center">
+            <h2 class="text-3xl font-bold mb-4">자격증 취득 문의</h2>
+            <p class="text-xl mb-8">전문 자격증 취득으로 새로운 경력을 시작하세요</p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <a href="/contact" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors">
+                문의하기
+              </a>
+              <a href="/programs" class="bg-white/20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/30 transition-colors backdrop-blur-sm">
+                교육과정 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Seoul Branch page - 서울지부
+app.get('/seoul-branch', (c) => {
+  return c.html(
+    <Layout title="서울지부 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">서울지부 (본부)</h1>
+            <p class="text-xl text-gray-600">한국미래인재교육협회 본부</p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8">
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">본부 정보</h2>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-user-tie text-blue-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">본부장</p>
+                      <p class="text-gray-600">김민수</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-map-marker-alt text-blue-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">주소</p>
+                      <p class="text-gray-600">서울특별시 강남구 논현로10길 30 505-62호</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-phone text-blue-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">전화</p>
+                      <p class="text-gray-600">0507-1426-1547</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-envelope text-blue-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">이메일</p>
+                      <p class="text-gray-600">info@kfea.ai.kr</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">전문위원</h2>
+                <div class="space-y-3">
+                  <div class="bg-blue-50 rounded-lg p-4">
+                    <p class="font-semibold text-gray-900">김대원 (진로/취업 컨설팅)</p>
+                    <p class="text-sm text-gray-600">한국기술교육대학교 박사과정 수료</p>
+                  </div>
+                  <div class="bg-blue-50 rounded-lg p-4">
+                    <p class="font-semibold text-gray-900">강은지 (자기주도학습)</p>
+                    <p class="text-sm text-gray-600">페이머스유 이미지메이킹센터 대표</p>
+                  </div>
+                  <div class="bg-blue-50 rounded-lg p-4">
+                    <p class="font-semibold text-gray-900">정수연 (취업지원)</p>
+                  </div>
+                  <div class="bg-blue-50 rounded-lg p-4">
+                    <p class="font-semibold text-gray-900">강동현 (AI교육)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Daegu Branch page - 대구지부
+app.get('/daegu-branch', (c) => {
+  return c.html(
+    <Layout title="대구지부 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대구지부</h1>
+            <p class="text-xl text-gray-600">영남권 교육 거점</p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">지부 정보</h2>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-user-tie text-green-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">지부장</p>
+                      <p class="text-gray-600">최승호</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-phone text-green-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">문의</p>
+                      <p class="text-gray-600">본부 0507-1426-1547</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">담당 기관</h2>
+                <div class="space-y-2">
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-university text-green-600"></i>
+                    <p class="text-gray-700">경북대학교</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-university text-green-600"></i>
+                    <p class="text-gray-700">영남대학교</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-university text-green-600"></i>
+                    <p class="text-gray-700">대구대학교</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-university text-green-600"></i>
+                    <p class="text-gray-700">계명대학교</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Daejeon Branch page - 대전지부
+app.get('/daejeon-branch', (c) => {
+  return c.html(
+    <Layout title="대전지부 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대전지부</h1>
+            <p class="text-xl text-gray-600">충청권 교육 거점</p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">지부 정보</h2>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-user-tie text-purple-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">지부장</p>
+                      <p class="text-gray-600">윤재석</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-map-marker-alt text-purple-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">주소</p>
+                      <p class="text-gray-600">대전광역시 천동로 686</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-phone text-purple-600 text-xl mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">문의</p>
+                      <p class="text-gray-600">본부 0507-1426-1547</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">담당 기관</h2>
+                <div class="space-y-2">
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-university text-purple-600"></i>
+                    <p class="text-gray-700">한국기술교육대학교</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-university text-purple-600"></i>
+                    <p class="text-gray-700">배재대학교</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-university text-purple-600"></i>
+                    <p class="text-gray-700">나사렛대학교</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-building text-purple-600"></i>
+                    <p class="text-gray-700">한국철도공사</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Classroom page - 강의실 (준비 중)
+app.get('/classroom', (c) => {
+  return c.html(
+    <Layout title="강의실 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen flex items-center">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="bg-white rounded-2xl shadow-xl p-12">
+            <i class="fas fa-chalkboard-teacher text-6xl text-blue-600 mb-6"></i>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">온라인 강의실</h1>
+            <p class="text-xl text-gray-600 mb-8">
+              현재 준비 중입니다.<br />
+              곧 더 나은 서비스로 찾아뵙겠습니다.
+            </p>
+            <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">
+              홈으로 돌아가기
+            </a>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Notice Board - 공지사항
+app.get('/boards/notice', (c) => {
+  return c.html(
+    <Layout title="공지사항 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl font-bold text-gray-900 mb-12">공지사항</h1>
+          
+          <div class="space-y-4">
+            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+              <div class="flex items-center mb-2">
+                <span class="bg-red-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">중요</span>
+                <span class="text-gray-500 text-sm">2025.12.08</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">2025년 겨울방학 늘봄방과후 전문강사 특별과정 모집</h3>
+              <p class="text-gray-600">2025학년도 신학기 대비 늘봄방과후 전문강사 양성과정을 개설합니다...</p>
+            </div>
+
+            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+              <div class="flex items-center mb-2">
+                <span class="bg-slate-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">교육</span>
+                <span class="text-gray-500 text-sm">2025.12.05</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">2026학년도 대입 AI 면접 대비 특강 개최</h3>
+              <p class="text-gray-600">최신 AI 면접 트렌드 분석과 실전 연습을 통해 대입 면접을 완벽하게 준비하세요...</p>
+            </div>
+
+            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+              <div class="flex items-center mb-2">
+                <span class="bg-blue-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">신규</span>
+                <span class="text-gray-500 text-sm">2025.12.01</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">온라인 강의실 시스템 업그레이드 완료</h3>
+              <p class="text-gray-600">더욱 편리해진 학습 관리 시스템으로 언제 어디서나 수준 높은 교육을 받으실 수 있습니다...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// News Board - 보도기사
+app.get('/boards/news', (c) => {
+  return c.html(
+    <Layout title="보도기사 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl font-bold text-gray-900 mb-12">보도기사</h1>
+          
+          <div class="bg-white rounded-lg p-12 text-center">
+            <i class="fas fa-newspaper text-5xl text-gray-400 mb-4"></i>
+            <p class="text-xl text-gray-600">준비 중입니다.</p>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// QnA Board - Q&A
+app.get('/boards/qna', (c) => {
+  return c.html(
+    <Layout title="Q&A - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl font-bold text-gray-900 mb-12">Q&A</h1>
+          
+          <div class="bg-white rounded-lg p-12 text-center">
+            <i class="fas fa-question-circle text-5xl text-gray-400 mb-4"></i>
+            <p class="text-xl text-gray-600 mb-4">궁금한 점이 있으신가요?</p>
+            <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              문의하기
+            </a>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Gallery Board - 갤러리
+app.get('/boards/gallery', (c) => {
+  return c.html(
+    <Layout title="갤러리 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl font-bold text-gray-900 mb-12">갤러리</h1>
+          
+          <div class="bg-white rounded-lg p-12 text-center">
+            <i class="fas fa-images text-5xl text-gray-400 mb-4"></i>
+            <p class="text-xl text-gray-600">준비 중입니다.</p>
           </div>
         </div>
       </section>
