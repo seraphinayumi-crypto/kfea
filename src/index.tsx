@@ -836,4 +836,729 @@ app.get('/contact', (c) => {
   )
 })
 
+// About page - 협회 개요
+app.get('/about', (c) => {
+  return c.html(
+    <Layout title="협회 개요 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">협회 개요</h1>
+            <p class="text-xl text-gray-600">미래를 준비하는 인재양성을 위한 전문 교육기관</p>
+          </div>
+
+          <div class="space-y-12">
+            {/* 설립 목적 */}
+            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                <i class="fas fa-lightbulb text-amber-500 mr-4"></i>
+                설립 목적
+              </h2>
+              <p class="text-lg text-gray-700 leading-relaxed">
+                한국미래인재교육협회는 급변하는 교육 환경과 4차 산업혁명 시대에 대응하여, 
+                미래 사회가 요구하는 창의적이고 전문적인 인재 양성을 목표로 설립되었습니다. 
+                늘봄방과후 전문강사 양성, AI 활용 교육, 취업 지원 프로그램 등을 통해 
+                교육의 질적 향상과 사회적 가치 실현에 기여하고 있습니다.
+              </p>
+            </div>
+
+            {/* 비전과 미션 */}
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg p-8 md:p-10 text-white">
+                <div class="flex items-center mb-6">
+                  <i class="fas fa-eye text-4xl mr-4"></i>
+                  <h2 class="text-3xl font-bold">비전</h2>
+                </div>
+                <p class="text-lg leading-relaxed">
+                  미래 교육을 선도하는 대한민국 대표 인재양성 기관으로 성장하여, 
+                  교육 현장과 취업 시장의 가교 역할을 수행하며, 
+                  지속 가능한 교육 생태계 조성에 앞장섭니다.
+                </p>
+              </div>
+
+              <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl shadow-lg p-8 md:p-10 text-white">
+                <div class="flex items-center mb-6">
+                  <i class="fas fa-flag text-4xl mr-4"></i>
+                  <h2 class="text-3xl font-bold">미션</h2>
+                </div>
+                <p class="text-lg leading-relaxed">
+                  전문 교육 프로그램을 통한 실무형 인재 양성, 
+                  산학협력 네트워크 구축을 통한 취업 기회 확대, 
+                  지속적인 교육 혁신으로 사회적 가치 창출을 실현합니다.
+                </p>
+              </div>
+            </div>
+
+            {/* 핵심 가치 */}
+            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">핵심 가치</h2>
+              <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                  <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-rocket text-3xl text-blue-600"></i>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">혁신</h3>
+                  <p class="text-gray-600">
+                    끊임없는 교육 혁신을 통해 미래 교육을 선도합니다
+                  </p>
+                </div>
+
+                <div class="text-center">
+                  <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-handshake text-3xl text-green-600"></i>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">협력</h3>
+                  <p class="text-gray-600">
+                    32개 이상의 협력기관과 함께 상생의 교육 생태계를 만듭니다
+                  </p>
+                </div>
+
+                <div class="text-center">
+                  <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-award text-3xl text-purple-600"></i>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">전문성</h3>
+                  <p class="text-gray-600">
+                    검증된 전문 강사진과 체계적인 커리큘럼으로 최고의 교육을 제공합니다
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 주요 사업 */}
+            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-8">주요 사업</h2>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex items-start space-x-4">
+                  <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-check text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">늘봄방과후 전문강사 양성</h3>
+                    <p class="text-gray-600">초등학교 방과후 과정 전문 강사 교육</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                  <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-check text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">AI 활용 교육</h3>
+                    <p class="text-gray-600">자기소개서, 면접, 교안 제작 등 실무 AI 교육</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                  <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-check text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">취업 지원 프로그램</h3>
+                    <p class="text-gray-600">PSAT, NCS, GSAT 등 공기업 취업 준비</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                  <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-check text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">강사 양성 과정</h3>
+                    <p class="text-gray-600">전문 강사로 성장할 수 있는 체계적 교육</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// President page - 대표 인사말
+app.get('/president', (c) => {
+  return c.html(
+    <Layout title="대표 인사말 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대표 인사말</h1>
+            <p class="text-xl text-gray-600">한국미래인재교육협회를 방문해 주셔서 감사합니다</p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="md:flex">
+              {/* 대표 사진 영역 */}
+              <div class="md:w-2/5 bg-gradient-to-br from-blue-500 to-blue-600 p-12 flex flex-col items-center justify-center text-white">
+                <div class="w-48 h-48 bg-white/20 rounded-full flex items-center justify-center mb-6 backdrop-blur-sm">
+                  <i class="fas fa-user text-8xl text-white/80"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-2">최유미</h2>
+                <p class="text-xl mb-6">대표</p>
+                
+                {/* 학력 */}
+                <div class="w-full space-y-3 text-sm">
+                  <div class="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
+                    <p class="font-semibold mb-1">학력</p>
+                    <p class="text-white/90">대구대학교 대학원 석사</p>
+                    <p class="text-white/90">광운대학교 교육대학원 석사</p>
+                  </div>
+                  
+                  <div class="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
+                    <p class="font-semibold mb-1">주요 경력</p>
+                    <p class="text-white/90">한국미래인재교육협회 대표</p>
+                    <p class="text-white/90">전국 32개 대학 출강</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 인사말 내용 */}
+              <div class="md:w-3/5 p-8 md:p-12">
+                <div class="prose prose-lg max-w-none">
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    안녕하십니까. 한국미래인재교육협회 대표 최유미입니다.
+                  </p>
+
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    우리 협회는 급변하는 교육 환경 속에서 미래를 준비하는 인재 양성을 목표로 
+                    2020년 설립되었습니다. 그동안 전북대, 경북대, 영남대 등 전국 32개 이상의 
+                    교육기관과 협력하여 수많은 전문 인재를 배출해 왔습니다.
+                  </p>
+
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    특히 늘봄방과후 전문강사 양성과정은 초등학교 방과후 교육의 질적 향상에 
+                    크게 기여하고 있으며, AI 활용 교육 프로그램은 4차 산업혁명 시대에 필수적인 
+                    디지털 역량 강화에 앞장서고 있습니다.
+                  </p>
+
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    저희 협회는 단순한 자격증 취득을 넘어, 실무에서 바로 활용할 수 있는 
+                    전문성을 갖춘 인재를 양성하는 데 최선을 다하고 있습니다. 
+                    대학 재학생부터 경력 단절 여성, 퇴직 준비자까지 누구나 새로운 도전을 
+                    시작할 수 있도록 체계적인 교육 프로그램을 제공하고 있습니다.
+                  </p>
+
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    앞으로도 한국미래인재교육협회는 교육 현장과 취업 시장의 가교 역할을 충실히 수행하며, 
+                    지속 가능한 교육 생태계 조성에 앞장서겠습니다.
+                  </p>
+
+                  <p class="text-gray-700 leading-relaxed font-semibold">
+                    여러분의 꿈과 도전을 응원하겠습니다. 감사합니다.
+                  </p>
+
+                  <div class="mt-8 pt-6 border-t border-gray-200">
+                    <p class="text-right text-gray-900 font-bold text-lg">
+                      한국미래인재교육협회 대표 <span class="text-blue-600">최유미</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Organization page - 조직도
+app.get('/organization', (c) => {
+  return c.html(
+    <Layout title="조직도 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">조직도</h1>
+            <p class="text-xl text-gray-600">한국미래인재교육협회 조직 구성</p>
+          </div>
+
+          {/* 대표 */}
+          <div class="flex justify-center mb-12">
+            <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 text-center min-w-[280px]">
+              <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-crown text-3xl"></i>
+              </div>
+              <h2 class="text-2xl font-bold mb-2">대표</h2>
+              <p class="text-xl">최유미</p>
+            </div>
+          </div>
+
+          {/* 연결선 */}
+          <div class="flex justify-center mb-8">
+            <div class="w-1 h-12 bg-gray-300"></div>
+          </div>
+
+          {/* 서울 본부 및 지부 */}
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            {/* 서울 본부 */}
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-building text-2xl text-blue-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">서울 본부</h3>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="border-l-4 border-blue-500 pl-4">
+                  <p class="text-sm text-gray-500 mb-1">본부장</p>
+                  <p class="font-bold text-gray-900">김민수</p>
+                </div>
+
+                <div class="pt-4 border-t border-gray-200">
+                  <p class="text-sm font-bold text-gray-700 mb-3">전문위원</p>
+                  <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                      <i class="fas fa-user-tie text-blue-500 text-sm"></i>
+                      <p class="text-gray-700">이영희 (교육기획)</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <i class="fas fa-user-tie text-blue-500 text-sm"></i>
+                      <p class="text-gray-700">박지훈 (프로그램개발)</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <i class="fas fa-user-tie text-blue-500 text-sm"></i>
+                      <p class="text-gray-700">정수연 (취업지원)</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <i class="fas fa-user-tie text-blue-500 text-sm"></i>
+                      <p class="text-gray-700">강동현 (AI교육)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 대구지부 */}
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-map-marker-alt text-2xl text-green-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">대구지부</h3>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="border-l-4 border-green-500 pl-4">
+                  <p class="text-sm text-gray-500 mb-1">지부장</p>
+                  <p class="font-bold text-gray-900">최승호</p>
+                </div>
+
+                <div class="pt-4 border-t border-gray-200">
+                  <p class="text-sm font-bold text-gray-700 mb-3">담당 지역</p>
+                  <div class="space-y-2 text-sm text-gray-600">
+                    <p>• 경북대학교</p>
+                    <p>• 영남대학교</p>
+                    <p>• 대구대학교</p>
+                    <p>• 계명대학교</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 대전지부 */}
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-map-marker-alt text-2xl text-purple-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">대전지부</h3>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="border-l-4 border-purple-500 pl-4">
+                  <p class="text-sm text-gray-500 mb-1">지부장</p>
+                  <p class="font-bold text-gray-900">윤재석</p>
+                </div>
+
+                <div class="pt-4 border-t border-gray-200">
+                  <p class="text-sm font-bold text-gray-700 mb-3">담당 지역</p>
+                  <div class="space-y-2 text-sm text-gray-600">
+                    <p>• 한국기술교육대학교</p>
+                    <p>• 배재대학교</p>
+                    <p>• 나사렛대학교</p>
+                    <p>• 한국철도공사</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 연락처 */}
+          <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl shadow-xl p-8 text-white text-center">
+            <h3 class="text-2xl font-bold mb-4">협회 연락처</h3>
+            <div class="flex flex-wrap justify-center gap-6 text-lg">
+              <div class="flex items-center space-x-2">
+                <i class="fas fa-phone"></i>
+                <span>0507-1426-1547</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <i class="fas fa-envelope"></i>
+                <span>info@kfea.ai.kr</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>서울특별시 강남구 논현로10길 30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Programs page - 교육과정
+app.get('/programs', (c) => {
+  return c.html(
+    <Layout title="교육과정 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">교육과정</h1>
+            <p class="text-xl text-gray-600">체계적이고 전문적인 교육 프로그램을 만나보세요</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            {/* 늘봄방과후 전문강사 양성 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-8 text-white">
+                <div class="flex items-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-chalkboard-teacher text-3xl"></i>
+                  </div>
+                  <h2 class="text-2xl font-bold">늘봄방과후<br/>전문강사 양성</h2>
+                </div>
+              </div>
+              <div class="p-8">
+                <p class="text-gray-600 mb-6">
+                  초등학교 방과후 교육 전문가로 성장할 수 있는 체계적인 교육과정입니다.
+                </p>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">교육 대상</p>
+                      <p class="text-gray-600 text-sm">대학생, 경력단절 여성, 퇴직 준비자</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">교육 기간</p>
+                      <p class="text-gray-600 text-sm">8주 과정 (주 2회, 총 32시간)</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">주요 내용</p>
+                      <p class="text-gray-600 text-sm">아동 심리, 교수법, 교안 작성, 학급 운영</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">자격증</p>
+                      <p class="text-gray-600 text-sm">방과후 지도사 민간자격증 취득 가능</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* AI 활용 교육 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-8 text-white">
+                <div class="flex items-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-robot text-3xl"></i>
+                  </div>
+                  <h2 class="text-2xl font-bold">AI 활용 교육</h2>
+                </div>
+              </div>
+              <div class="p-8">
+                <p class="text-gray-600 mb-6">
+                  ChatGPT 등 최신 AI 도구를 활용한 실무 중심 교육 프로그램입니다.
+                </p>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">교육 대상</p>
+                      <p class="text-gray-600 text-sm">대학생, 취업 준비생, 직장인</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">교육 기간</p>
+                      <p class="text-gray-600 text-sm">6주 과정 (주 1회, 총 18시간)</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">주요 내용</p>
+                      <p class="text-gray-600 text-sm">자기소개서 작성, 면접 준비, 교안 제작, 업무 자동화</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">활용 도구</p>
+                      <p class="text-gray-600 text-sm">ChatGPT, Midjourney, Notion AI 등</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 취업 지원 프로그램 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-green-500 to-green-600 p-8 text-white">
+                <div class="flex items-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-briefcase text-3xl"></i>
+                  </div>
+                  <h2 class="text-2xl font-bold">취업 지원<br/>프로그램</h2>
+                </div>
+              </div>
+              <div class="p-8">
+                <p class="text-gray-600 mb-6">
+                  공기업 및 대기업 취업을 위한 맞춤형 취업 준비 프로그램입니다.
+                </p>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">교육 대상</p>
+                      <p class="text-gray-600 text-sm">대학생, 취업 준비생</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">교육 기간</p>
+                      <p class="text-gray-600 text-sm">10주 과정 (주 2회, 총 40시간)</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">주요 내용</p>
+                      <p class="text-gray-600 text-sm">PSAT, NCS, GSAT 대비, 면접 코칭, 자기소개서 첨삭</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">특별 혜택</p>
+                      <p class="text-gray-600 text-sm">1:1 멘토링, 모의면접, 취업 컨설팅</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 강사 양성 과정 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-r from-amber-500 to-amber-600 p-8 text-white">
+                <div class="flex items-center mb-4">
+                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-graduation-cap text-3xl"></i>
+                  </div>
+                  <h2 class="text-2xl font-bold">강사 양성 과정</h2>
+                </div>
+              </div>
+              <div class="p-8">
+                <p class="text-gray-600 mb-6">
+                  전문 강사로 성장할 수 있는 체계적인 코칭 프로그램입니다.
+                </p>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">교육 대상</p>
+                      <p class="text-gray-600 text-sm">예비 강사, 현직 강사</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">교육 기간</p>
+                      <p class="text-gray-600 text-sm">12주 과정 (주 1회, 총 36시간)</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">주요 내용</p>
+                      <p class="text-gray-600 text-sm">강의 스킬, 콘텐츠 기획, 학습자 관리, 강사 마케팅</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                    <div>
+                      <p class="font-semibold text-gray-900">수료 후</p>
+                      <p class="text-gray-600 text-sm">협회 네트워크를 통한 강의 기회 제공</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div class="mt-16 text-center">
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-xl p-12 text-white">
+              <h2 class="text-3xl font-bold mb-4">지금 바로 시작하세요!</h2>
+              <p class="text-xl mb-8">체계적인 교육 프로그램으로 새로운 미래를 준비하세요</p>
+              <div class="flex flex-wrap justify-center gap-4">
+                <a href="/contact" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors">
+                  문의하기
+                </a>
+                <a href="/" class="bg-white/20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/30 transition-colors backdrop-blur-sm">
+                  홈으로 돌아가기
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Activities page - 활동 소식
+app.get('/activities', (c) => {
+  return c.html(
+    <Layout title="활동 소식 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">활동 소식</h1>
+            <p class="text-xl text-gray-600">한국미래인재교육협회의 주요 활동을 소개합니다</p>
+          </div>
+
+          <div class="space-y-8">
+            {/* 활동 1 */}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="md:flex">
+                <div class="md:w-1/3 bg-gradient-to-br from-blue-500 to-blue-600 p-12 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <i class="fas fa-university text-6xl mb-4"></i>
+                    <p class="text-2xl font-bold">대학 출강</p>
+                  </div>
+                </div>
+                <div class="md:w-2/3 p-8 md:p-12">
+                  <div class="flex items-center text-gray-500 text-sm mb-3">
+                    <i class="fas fa-calendar mr-2"></i>
+                    <span>2024년 하반기</span>
+                  </div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-4">전북대학교 AI 활용 강사양성 과정</h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    전북대학교 재학생 및 지역 주민을 대상으로 AI 활용 교육 프로그램을 진행하였습니다. 
+                    ChatGPT를 활용한 자기소개서 작성, 면접 준비, 교안 제작 등 실무 중심의 교육으로 
+                    참가자들의 높은 만족도를 얻었습니다.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">#AI교육</span>
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">#강사양성</span>
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">#전북대</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 활동 2 */}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="md:flex">
+                <div class="md:w-1/3 bg-gradient-to-br from-green-500 to-green-600 p-12 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <i class="fas fa-briefcase text-6xl mb-4"></i>
+                    <p class="text-2xl font-bold">취업 지원</p>
+                  </div>
+                </div>
+                <div class="md:w-2/3 p-8 md:p-12">
+                  <div class="flex items-center text-gray-500 text-sm mb-3">
+                    <i class="fas fa-calendar mr-2"></i>
+                    <span>2024년 9월</span>
+                  </div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-4">경북대학교 취업 지원 프로그램</h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    경북대학교 학생들을 대상으로 공기업 및 대기업 취업 준비를 위한 맞춤형 프로그램을 운영하였습니다. 
+                    PSAT, NCS, GSAT 등 각종 적성검사 대비와 함께 1:1 면접 코칭을 제공하여 
+                    실제 취업 성공률을 크게 높였습니다.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">#취업지원</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">#공기업</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">#경북대</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 활동 3 */}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="md:flex">
+                <div class="md:w-1/3 bg-gradient-to-br from-purple-500 to-purple-600 p-12 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <i class="fas fa-train text-6xl mb-4"></i>
+                    <p class="text-2xl font-bold">기업 연수</p>
+                  </div>
+                </div>
+                <div class="md:w-2/3 p-8 md:p-12">
+                  <div class="flex items-center text-gray-500 text-sm mb-3">
+                    <i class="fas fa-calendar mr-2"></i>
+                    <span>2024년 8월</span>
+                  </div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-4">한국철도공사 직무교육</h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    한국철도공사 임직원을 대상으로 AI 활용 및 업무 혁신 교육을 진행하였습니다. 
+                    실무에 바로 적용할 수 있는 AI 도구 활용법과 디지털 전환 전략을 교육하여 
+                    업무 효율성 향상에 기여하였습니다.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">#기업연수</span>
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">#직무교육</span>
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">#코레일</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 협력기관 현황 */}
+          <div class="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-xl p-12 text-white">
+            <h2 class="text-3xl font-bold mb-8 text-center">협력기관 현황</h2>
+            <div class="grid md:grid-cols-4 gap-6 text-center">
+              <div>
+                <div class="text-5xl font-bold mb-2">32+</div>
+                <p class="text-xl">협력 기관</p>
+              </div>
+              <div>
+                <div class="text-5xl font-bold mb-2">100+</div>
+                <p class="text-xl">강의 진행</p>
+              </div>
+              <div>
+                <div class="text-5xl font-bold mb-2">500+</div>
+                <p class="text-xl">수료생</p>
+              </div>
+              <div>
+                <div class="text-5xl font-bold mb-2">3</div>
+                <p class="text-xl">민간자격증</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
 export default app
