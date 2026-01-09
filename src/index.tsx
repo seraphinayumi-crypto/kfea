@@ -1963,90 +1963,150 @@ app.get('/programs/certifications', (c) => {
       <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-10">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">자격증 과정</h1>
-            <p class="text-lg text-gray-600">전문성을 인정받는 다양한 자격증 취득 과정</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">민간자격증 과정</h1>
+            <p class="text-lg text-gray-600">한국미래인재교육협회 등록 민간자격증</p>
           </div>
 
           <div class="grid md:grid-cols-3 gap-6 mb-12">
-            {/* 방과후 지도사 자격증 */}
+            {/* 스피치지도사 */}
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
               <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white">
-                <i class="fas fa-certificate text-4xl mb-4"></i>
-                <h3 class="text-2xl font-bold">방과후 지도사</h3>
+                <i class="fas fa-microphone text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">스피치지도사</h3>
               </div>
               <div class="p-6">
                 <div class="mb-4">
                   <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
-                  <p class="text-gray-700 leading-relaxed">초등학교 방과후 과정 전문강사를 위한 자격증입니다.</p>
+                  <p class="text-gray-700 leading-relaxed">효과적인 의사소통과 발표 능력을 지도하는 전문 자격증입니다.</p>
                 </div>
                 <ul class="space-y-2 text-sm text-gray-600">
                   <li class="flex items-start">
                     <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
-                    <span>교육 기간: 8주 (32시간)</span>
+                    <span>단일 등급</span>
                   </li>
                   <li class="flex items-start">
                     <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
-                    <span>취득 요건: 교육 이수 + 시험 합격</span>
+                    <span>활용: 교육기관, 기업체, 공공기관</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 늘봄방과후프로그램강사 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 text-white">
+                <i class="fas fa-school text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">늘봄방과후프로그램강사</h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
+                  <p class="text-gray-700 leading-relaxed">초등학교 방과후 및 돌봄 프로그램 전문강사 자격증입니다.</p>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                    <span>단일 등급</span>
                   </li>
                   <li class="flex items-start">
-                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                    <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
                     <span>활용: 초등 방과후학교, 돌봄교실</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* AI 활용능력 자격증 */}
+            {/* 취업진로디렉터 */}
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 text-white">
-                <i class="fas fa-robot text-4xl mb-4"></i>
-                <h3 class="text-2xl font-bold">AI 활용능력</h3>
+              <div class="bg-gradient-to-br from-green-500 to-green-600 p-6 text-white">
+                <i class="fas fa-briefcase text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">취업진로디렉터</h3>
               </div>
               <div class="p-6">
                 <div class="mb-4">
                   <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
-                  <p class="text-gray-700 leading-relaxed">ChatGPT 등 AI 도구 활용 전문가 자격증입니다.</p>
+                  <p class="text-gray-700 leading-relaxed">취업 및 진로 상담 전문가 자격증입니다.</p>
                 </div>
                 <ul class="space-y-2 text-sm text-gray-600">
                   <li class="flex items-start">
-                    <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
-                    <span>교육 기간: 6주 (18시간)</span>
+                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                    <span>단일 등급</span>
                   </li>
                   <li class="flex items-start">
-                    <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
-                    <span>취득 요건: 교육 이수 + 실습 과제</span>
-                  </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
-                    <span>활용: 업무 자동화, 콘텐츠 제작</span>
+                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                    <span>활용: 대학, 취업지원센터, 상담기관</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* 전문 강사 자격증 */}
+            {/* 기후위기대응교육강사 */}
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-br from-amber-500 to-amber-600 p-6 text-white">
-                <i class="fas fa-chalkboard-teacher text-4xl mb-4"></i>
-                <h3 class="text-2xl font-bold">전문 강사</h3>
+              <div class="bg-gradient-to-br from-teal-500 to-teal-600 p-6 text-white">
+                <i class="fas fa-globe text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">기후위기대응교육강사</h3>
               </div>
               <div class="p-6">
                 <div class="mb-4">
                   <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
-                  <p class="text-gray-700 leading-relaxed">교육 전문가로 활동하기 위한 자격증입니다.</p>
+                  <p class="text-gray-700 leading-relaxed">기후변화 대응 교육 전문가 자격증입니다.</p>
                 </div>
                 <ul class="space-y-2 text-sm text-gray-600">
                   <li class="flex items-start">
-                    <i class="fas fa-check text-amber-500 mr-2 mt-1"></i>
-                    <span>교육 기간: 12주 (48시간)</span>
+                    <i class="fas fa-check text-teal-500 mr-2 mt-1"></i>
+                    <span>단일 등급</span>
                   </li>
                   <li class="flex items-start">
-                    <i class="fas fa-check text-amber-500 mr-2 mt-1"></i>
-                    <span>취득 요건: 교육 이수 + 모의 강의</span>
+                    <i class="fas fa-check text-teal-500 mr-2 mt-1"></i>
+                    <span>활용: 환경교육기관, 학교, 기업 ESG</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 제로웨이스트실천교육강사 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 p-6 text-white">
+                <i class="fas fa-recycle text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">제로웨이스트실천교육강사</h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
+                  <p class="text-gray-700 leading-relaxed">제로웨이스트 실천 교육 전문가 자격증입니다.</p>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-emerald-500 mr-2 mt-1"></i>
+                    <span>단일 등급</span>
                   </li>
                   <li class="flex items-start">
-                    <i class="fas fa-check text-amber-500 mr-2 mt-1"></i>
-                    <span>활용: 교육기관, 기업 연수</span>
+                    <i class="fas fa-check text-emerald-500 mr-2 mt-1"></i>
+                    <span>활용: 환경교육센터, 지역사회, 기업</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 시니어라이프코칭강사 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-6 text-white">
+                <i class="fas fa-hand-holding-heart text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">시니어라이프코칭강사</h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
+                  <p class="text-gray-700 leading-relaxed">시니어 라이프 코칭 전문가 자격증입니다.</p>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
+                    <span>단일 등급</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
+                    <span>활용: 노인복지관, 평생교육기관</span>
                   </li>
                 </ul>
               </div>
@@ -2056,7 +2116,7 @@ app.get('/programs/certifications', (c) => {
           {/* 신청 안내 */}
           <div class="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto">
             <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">자격증 신청 안내</h2>
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-6">
               <div>
                 <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
                   <i class="fas fa-clipboard-list text-blue-500 mr-2"></i>
@@ -2081,34 +2141,26 @@ app.get('/programs/certifications', (c) => {
                   </li>
                 </ol>
               </div>
-              <div>
+              
+              <div class="bg-blue-50 rounded-lg p-6">
                 <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <i class="fas fa-coins text-green-500 mr-2"></i>
-                  수강료 안내
+                  <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                  상세 정보 안내
                 </h3>
-                <ul class="space-y-3 text-gray-700">
-                  <li class="flex justify-between items-center py-2 border-b">
-                    <span>방과후 지도사</span>
-                    <span class="font-bold text-blue-600">350,000원</span>
-                  </li>
-                  <li class="flex justify-between items-center py-2 border-b">
-                    <span>AI 활용능력</span>
-                    <span class="font-bold text-purple-600">280,000원</span>
-                  </li>
-                  <li class="flex justify-between items-center py-2 border-b">
-                    <span>전문 강사</span>
-                    <span class="font-bold text-amber-600">480,000원</span>
-                  </li>
-                  <li class="text-sm text-gray-500 mt-4">
-                    * 교재비 및 자격증 발급비 별도
-                  </li>
-                </ul>
+                <p class="text-gray-700 leading-relaxed mb-3">
+                  각 자격증별 교육 기간, 교육비, 운영 일정 등 상세 정보는 협의를 통해 결정됩니다.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                  자격증 취득에 관심이 있으신 분은 아래 문의하기 버튼을 통해 연락 주시면 
+                  맞춤형 상담을 제공해 드립니다.
+                </p>
               </div>
             </div>
+            
             <div class="mt-8 text-center">
               <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
                 <i class="fas fa-phone-alt mr-2"></i>
-                수강 신청 문의하기
+                자격증 상담 문의하기
               </a>
             </div>
           </div>
