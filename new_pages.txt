@@ -1,0 +1,154 @@
+// Certifications page - 자격증 과정
+app.get('/programs/certifications', (c) => {
+  const certifications = [
+    { name: '스피치지도사', level: '1급, 2급', icon: 'fa-microphone', color: 'blue' },
+    { name: '기후위기대응교육강사', level: '1급, 2급', icon: 'fa-leaf', color: 'green' },
+    { name: '독서지도사', level: '1급, 2급', icon: 'fa-book-reader', color: 'purple' },
+    { name: '진로지도사', level: '1급, 2급', icon: 'fa-compass', color: 'amber' },
+    { name: '부모교육지도사', level: '1급, 2급', icon: 'fa-users', color: 'pink' },
+    { name: '방과후지도사', level: '1급, 2급', icon: 'fa-school', color: 'indigo' },
+  ]
+
+  return c.html(
+    <Layout title="자격증 과정 - 한국미래인재교육협회">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">민간자격증 과정</h1>
+            <p class="text-base text-gray-600">한국미래인재교육협회에서 발급하는 전문 자격증</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certifications.map((cert, index) => (
+              <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border-l-4 border-{cert.color}-500">
+                <div class={`w-16 h-16 bg-${cert.color}-100 rounded-full flex items-center justify-center mb-4`}>
+                  <i class={`fas ${cert.icon} text-${cert.color}-600 text-2xl`}></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">{cert.name}</h3>
+                <p class="text-sm text-gray-600 mb-4">{cert.level}</p>
+                <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
+                  문의하기
+                </a>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
+            <p class="text-sm text-blue-800">
+              <i class="fas fa-info-circle mr-2"></i>
+              <strong>자격증 문의</strong>: 각 자격증에 대한 자세한 정보는 문의하기를 통해 확인하실 수 있습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Login page
+app.get('/login', (c) => {
+  return c.html(
+    <Layout title="로그인 - 한국미래인재교육협회">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[600px] flex items-center">
+        <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="bg-white rounded-2xl shadow-xl p-8">
+            <div class="text-center mb-6">
+              <h1 class="text-3xl font-bold text-gray-900 mb-2">로그인</h1>
+              <p class="text-sm text-gray-600">한국미래인재교육협회에 오신 것을 환영합니다</p>
+            </div>
+
+            <form id="loginForm" class="space-y-4">
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">이메일</label>
+                <input type="email" id="email" name="email" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+              </div>
+
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">비밀번호</label>
+                <input type="password" id="password" name="password" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+              </div>
+
+              <button type="submit"
+                      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                로그인
+              </button>
+
+              <div class="text-center text-sm text-gray-600">
+                계정이 없으신가요? <a href="/register" class="text-blue-600 hover:text-blue-700 font-medium">회원가입</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <script dangerouslySetInnerHTML={{__html: `
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('로그인 기능은 준비 중입니다.');
+        });
+      `}} />
+    </Layout>
+  )
+})
+
+// Register page
+app.get('/register', (c) => {
+  return c.html(
+    <Layout title="회원가입 - 한국미래인재교육협회">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[600px] flex items-center">
+        <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="bg-white rounded-2xl shadow-xl p-8">
+            <div class="text-center mb-6">
+              <h1 class="text-3xl font-bold text-gray-900 mb-2">회원가입</h1>
+              <p class="text-sm text-gray-600">새로운 계정을 만들어보세요</p>
+            </div>
+
+            <form id="registerForm" class="space-y-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름</label>
+                <input type="text" id="name" name="name" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">이메일</label>
+                <input type="email" id="email" name="email" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+              </div>
+
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">비밀번호</label>
+                <input type="password" id="password" name="password" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+              </div>
+
+              <div>
+                <label for="password_confirm" class="block text-sm font-medium text-gray-700 mb-2">비밀번호 확인</label>
+                <input type="password" id="password_confirm" name="password_confirm" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+              </div>
+
+              <button type="submit"
+                      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                회원가입
+              </button>
+
+              <div class="text-center text-sm text-gray-600">
+                이미 계정이 있으신가요? <a href="/login" class="text-blue-600 hover:text-blue-700 font-medium">로그인</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <script dangerouslySetInnerHTML={{__html: `
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('회원가입 기능은 준비 중입니다.');
+        });
+      `}} />
+    </Layout>
+  )
+})

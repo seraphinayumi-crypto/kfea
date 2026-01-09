@@ -735,18 +735,18 @@ app.get('/', (c) => {
 app.get('/contact', (c) => {
   return c.html(
     <Layout title="문의하기 - 한국미래인재교육협회">
-      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-8">
-            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">문의하기</h1>
+      <section class="py-8 bg-gradient-to-b from-blue-50 to-white min-h-screen flex items-center">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="text-center mb-6">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-3">문의하기</h1>
             <p class="text-base text-gray-600">궁금한 점이 있으시면 언제든지 연락주세요</p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-6">
+          <div class="grid md:grid-cols-2 gap-4">
             {/* 연락처 정보 */}
-            <div class="bg-white rounded-2xl shadow-xl p-8">
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">연락처 정보</h2>
-              <div class="space-y-6">
+            <div class="bg-white rounded-2xl shadow-xl p-5">
+              <h2 class="text-xl font-bold text-gray-900 mb-4">연락처 정보</h2>
+              <div class="space-y-4">
                 <div class="flex items-start space-x-4">
                   <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <i class="fas fa-user text-blue-600 text-xl"></i>
@@ -808,9 +808,9 @@ app.get('/contact', (c) => {
             </div>
 
             {/* 문의 양식 */}
-            <div class="bg-white rounded-2xl shadow-xl p-8">
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">온라인 문의</h2>
-              <form id="contactForm" class="space-y-3">
+            <div class="bg-white rounded-2xl shadow-xl p-5">
+              <h2 class="text-xl font-bold text-gray-900 mb-4">온라인 문의</h2>
+              <form id="contactForm" class="space-y-2">
                 <div>
                   <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름 *</label>
                   <input type="text" id="name" name="name" required
@@ -939,21 +939,21 @@ app.post('/api/contact', async (c) => {
 app.get('/about', (c) => {
   return c.html(
     <Layout title="협회 개요 - 한국미래인재교육협회">
-      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-10">
-            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">협회 개요</h1>
+      <section class="py-8 bg-gradient-to-b from-blue-50 to-white min-h-screen flex items-center">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="text-center mb-6">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-3">협회 개요</h1>
             <p class="text-base text-gray-600">미래를 준비하는 인재양성을 위한 전문 교육기관</p>
           </div>
 
-          <div class="space-y-8">
+          <div class="space-y-4">
             {/* 설립 목적 */}
-            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-              <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center">
+            <div class="bg-white rounded-2xl shadow-lg p-4 md:p-5">
+              <h2 class="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <i class="fas fa-lightbulb text-amber-500 mr-4"></i>
                 설립 목적
               </h2>
-              <p class="text-lg text-gray-700 leading-relaxed">
+              <p class="text-sm text-gray-700 leading-relaxed">
                 한국미래인재교육협회는 급변하는 교육 환경과 4차 산업혁명 시대에 대응하여, 
                 미래 사회가 요구하는 창의적이고 전문적인 인재 양성을 목표로 설립되었습니다. 
                 늘봄방과후 전문강사 양성, AI 활용 교육, 취업 지원 프로그램 등을 통해 
@@ -962,25 +962,25 @@ app.get('/about', (c) => {
             </div>
 
             {/* 비전과 미션 */}
-            <div class="grid md:grid-cols-2 gap-6">
-              <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg p-8 md:p-10 text-white">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg p-4 md:p-5 text-white">
                 <div class="flex items-center mb-6">
-                  <i class="fas fa-eye text-4xl mr-4"></i>
-                  <h2 class="text-3xl font-bold">비전</h2>
+                  <i class="fas fa-eye text-3xl mr-3"></i>
+                  <h2 class="text-xl font-bold">비전</h2>
                 </div>
-                <p class="text-lg leading-relaxed">
+                <p class="text-sm leading-relaxed">
                   미래 교육을 선도하는 대한민국 대표 인재양성 기관으로 성장하여, 
                   교육 현장과 취업 시장의 가교 역할을 수행하며, 
                   지속 가능한 교육 생태계 조성에 앞장섭니다.
                 </p>
               </div>
 
-              <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl shadow-lg p-8 md:p-10 text-white">
+              <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl shadow-lg p-4 md:p-5 text-white">
                 <div class="flex items-center mb-6">
-                  <i class="fas fa-flag text-4xl mr-4"></i>
-                  <h2 class="text-3xl font-bold">미션</h2>
+                  <i class="fas fa-flag text-3xl mr-3"></i>
+                  <h2 class="text-xl font-bold">미션</h2>
                 </div>
-                <p class="text-lg leading-relaxed">
+                <p class="text-sm leading-relaxed">
                   전문 교육 프로그램을 통한 실무형 인재 양성, 
                   산학협력 네트워크 구축을 통한 취업 기회 확대, 
                   지속적인 교육 혁신으로 사회적 가치 창출을 실현합니다.
@@ -989,8 +989,8 @@ app.get('/about', (c) => {
             </div>
 
             {/* 핵심 가치 */}
-            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-              <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">핵심 가치</h2>
+            <div class="bg-white rounded-2xl shadow-lg p-4 md:p-5">
+              <h2 class="text-lg font-bold text-gray-900 mb-3 text-center">핵심 가치</h2>
               <div class="grid md:grid-cols-3 gap-6">
                 <div class="text-center">
                   <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -1025,8 +1025,8 @@ app.get('/about', (c) => {
             </div>
 
             {/* 주요 사업 */}
-            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-              <h2 class="text-3xl font-bold text-gray-900 mb-8">주요 사업</h2>
+            <div class="bg-white rounded-2xl shadow-lg p-4 md:p-5">
+              <h2 class="text-lg font-bold text-gray-900 mb-3">주요 사업</h2>
               <div class="grid md:grid-cols-2 gap-6">
                 <div class="flex items-start space-x-4">
                   <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
@@ -1080,9 +1080,9 @@ app.get('/about', (c) => {
 app.get('/president', (c) => {
   return c.html(
     <Layout title="대표 인사말 - 한국미래인재교육협회">
-      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-10">
+      <section class="py-8 bg-gradient-to-b from-blue-50 to-white min-h-screen flex items-center">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="text-center mb-6">
             <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">대표 인사말</h1>
             <p class="text-base text-gray-600">한국미래인재교육협회를 방문해 주셔서 감사합니다</p>
           </div>
@@ -1090,7 +1090,7 @@ app.get('/president', (c) => {
           <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
             <div class="flex flex-col">
               {/* 대표 정보 영역 */}
-              <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-8 text-white text-center">
+              <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-5 text-white text-center">
                 <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
                   <i class="fas fa-user text-5xl text-white/80"></i>
                 </div>
@@ -1099,32 +1099,32 @@ app.get('/president', (c) => {
               </div>
 
               {/* 인사말 내용 */}
-              <div class="p-6 md:p-8">
-                <div class="prose prose-lg max-w-none">
-                  <p class="text-gray-700 leading-relaxed mb-6">
+              <div class="p-5 md:p-6">
+                <div class="prose max-w-none">
+                  <p class="text-gray-700 leading-relaxed mb-4 text-sm">
                     안녕하십니까. 한국미래인재교육협회 대표 최유미입니다.
                   </p>
 
-                  <p class="text-gray-700 leading-relaxed mb-6">
+                  <p class="text-gray-700 leading-relaxed mb-4 text-sm">
                     우리 협회는 급변하는 교육 환경 속에서 미래를 준비하는 인재 양성을 목표로 
                     2020년 설립되었습니다. 그동안 전북대, 경북대, 영남대 등 전국 32개 이상의 
                     교육기관과 협력하여 수많은 전문 인재를 배출해 왔습니다.
                   </p>
 
-                  <p class="text-gray-700 leading-relaxed mb-6">
+                  <p class="text-gray-700 leading-relaxed mb-4 text-sm">
                     특히 늘봄방과후 전문강사 양성과정은 초등학교 방과후 교육의 질적 향상에 
                     크게 기여하고 있으며, AI 활용 교육 프로그램은 4차 산업혁명 시대에 필수적인 
                     디지털 역량 강화에 앞장서고 있습니다.
                   </p>
 
-                  <p class="text-gray-700 leading-relaxed mb-6">
+                  <p class="text-gray-700 leading-relaxed mb-4 text-sm">
                     저희 협회는 단순한 자격증 취득을 넘어, 실무에서 바로 활용할 수 있는 
                     전문성을 갖춘 인재를 양성하는 데 최선을 다하고 있습니다. 
                     대학 재학생부터 경력 단절 여성, 퇴직 준비자까지 누구나 새로운 도전을 
                     시작할 수 있도록 체계적인 교육 프로그램을 제공하고 있습니다.
                   </p>
 
-                  <p class="text-gray-700 leading-relaxed mb-6">
+                  <p class="text-gray-700 leading-relaxed mb-4 text-sm">
                     앞으로도 한국미래인재교육협회는 교육 현장과 취업 시장의 가교 역할을 충실히 수행하며, 
                     지속 가능한 교육 생태계 조성에 앞장서겠습니다.
                   </p>
@@ -1310,29 +1310,29 @@ app.get('/organization', (c) => {
 app.get('/programs', (c) => {
   return c.html(
     <Layout title="교육과정 - 한국미래인재교육협회">
-      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-10">
-            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">교육과정</h1>
+      <section class="py-8 bg-gradient-to-b from-blue-50 to-white min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="text-center mb-6">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-3">교육과정</h1>
             <p class="text-base text-gray-600">체계적이고 전문적인 교육 프로그램을 만나보세요</p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-6">
+          <div class="grid md:grid-cols-2 gap-4">
             {/* 늘봄방과후 전문강사 양성 */}
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-8 text-white">
-                <div class="flex items-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-chalkboard-teacher text-3xl"></i>
+              <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-5 text-white">
+                <div class="flex items-center mb-3">
+                  <div class="w-14 h-14 bg-white/20 rounded-lg flex items-center justify-center mr-3">
+                    <i class="fas fa-chalkboard-teacher text-2xl"></i>
                   </div>
-                  <h2 class="text-2xl font-bold">늘봄방과후<br/>전문강사 양성</h2>
+                  <h2 class="text-xl font-bold">늘봄방과후<br/>전문강사 양성</h2>
                 </div>
               </div>
-              <div class="p-8">
-                <p class="text-gray-600 mb-6">
+              <div class="p-5">
+                <p class="text-gray-600 mb-4 text-sm">
                   초등학교 방과후 교육 전문가로 성장할 수 있는 체계적인 교육과정입니다.
                 </p>
-                <div class="space-y-3">
+                <div class="space-y-2">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-check-circle text-blue-500 mt-1"></i>
                     <div>
@@ -1367,19 +1367,19 @@ app.get('/programs', (c) => {
 
             {/* AI 활용 교육 */}
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-8 text-white">
-                <div class="flex items-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-robot text-3xl"></i>
+              <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-5 text-white">
+                <div class="flex items-center mb-3">
+                  <div class="w-14 h-14 bg-white/20 rounded-lg flex items-center justify-center mr-3">
+                    <i class="fas fa-robot text-2xl"></i>
                   </div>
-                  <h2 class="text-2xl font-bold">AI 활용 교육</h2>
+                  <h2 class="text-xl font-bold">AI 활용 교육</h2>
                 </div>
               </div>
-              <div class="p-8">
-                <p class="text-gray-600 mb-6">
+              <div class="p-5">
+                <p class="text-gray-600 mb-4 text-sm">
                   ChatGPT 등 최신 AI 도구를 활용한 실무 중심 교육 프로그램입니다.
                 </p>
-                <div class="space-y-3">
+                <div class="space-y-2">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-check-circle text-purple-500 mt-1"></i>
                     <div>
@@ -1414,19 +1414,19 @@ app.get('/programs', (c) => {
 
             {/* 취업 지원 프로그램 */}
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-green-500 to-green-600 p-8 text-white">
-                <div class="flex items-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-briefcase text-3xl"></i>
+              <div class="bg-gradient-to-r from-green-500 to-green-600 p-5 text-white">
+                <div class="flex items-center mb-3">
+                  <div class="w-14 h-14 bg-white/20 rounded-lg flex items-center justify-center mr-3">
+                    <i class="fas fa-briefcase text-2xl"></i>
                   </div>
-                  <h2 class="text-2xl font-bold">취업 지원<br/>프로그램</h2>
+                  <h2 class="text-xl font-bold">취업 지원<br/>프로그램</h2>
                 </div>
               </div>
-              <div class="p-8">
-                <p class="text-gray-600 mb-6">
+              <div class="p-5">
+                <p class="text-gray-600 mb-4 text-sm">
                   공기업 및 대기업 취업을 위한 맞춤형 취업 준비 프로그램입니다.
                 </p>
-                <div class="space-y-3">
+                <div class="space-y-2">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-check-circle text-green-500 mt-1"></i>
                     <div>
@@ -1461,16 +1461,16 @@ app.get('/programs', (c) => {
 
             {/* 강사 양성 과정 */}
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-amber-500 to-amber-600 p-8 text-white">
-                <div class="flex items-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-graduation-cap text-3xl"></i>
+              <div class="bg-gradient-to-r from-amber-500 to-amber-600 p-5 text-white">
+                <div class="flex items-center mb-3">
+                  <div class="w-14 h-14 bg-white/20 rounded-lg flex items-center justify-center mr-3">
+                    <i class="fas fa-graduation-cap text-2xl"></i>
                   </div>
-                  <h2 class="text-2xl font-bold">강사 양성 과정</h2>
+                  <h2 class="text-xl font-bold">강사 양성 과정</h2>
                 </div>
               </div>
-              <div class="p-8">
-                <p class="text-gray-600 mb-6">
+              <div class="p-5">
+                <p class="text-gray-600 mb-4 text-sm">
                   전문 강사로 성장할 수 있는 체계적인 코칭 프로그램입니다.
                 </p>
                 <div class="space-y-3">
@@ -1949,6 +1949,344 @@ app.get('/boards/gallery', (c) => {
           <div class="bg-white rounded-lg p-8 text-center">
             <i class="fas fa-images text-4xl text-gray-400 mb-4"></i>
             <p class="text-base text-gray-600">준비 중입니다.</p>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Certifications page - 자격증 과정
+app.get('/programs/certifications', (c) => {
+  return c.html(
+    <Layout title="자격증 과정 - 한국미래인재교육협회">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">자격증 과정</h1>
+            <p class="text-lg text-gray-600">전문성을 인정받는 다양한 자격증 취득 과정</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6 mb-12">
+            {/* 방과후 지도사 자격증 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white">
+                <i class="fas fa-certificate text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">방과후 지도사</h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
+                  <p class="text-gray-700 leading-relaxed">초등학교 방과후 과정 전문강사를 위한 자격증입니다.</p>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                    <span>교육 기간: 8주 (32시간)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                    <span>취득 요건: 교육 이수 + 시험 합격</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                    <span>활용: 초등 방과후학교, 돌봄교실</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* AI 활용능력 자격증 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 text-white">
+                <i class="fas fa-robot text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">AI 활용능력</h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
+                  <p class="text-gray-700 leading-relaxed">ChatGPT 등 AI 도구 활용 전문가 자격증입니다.</p>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                    <span>교육 기간: 6주 (18시간)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                    <span>취득 요건: 교육 이수 + 실습 과제</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                    <span>활용: 업무 자동화, 콘텐츠 제작</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 전문 강사 자격증 */}
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div class="bg-gradient-to-br from-amber-500 to-amber-600 p-6 text-white">
+                <i class="fas fa-chalkboard-teacher text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold">전문 강사</h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <p class="text-sm text-gray-500 mb-2">민간자격증 | 한국미래인재교육협회</p>
+                  <p class="text-gray-700 leading-relaxed">교육 전문가로 활동하기 위한 자격증입니다.</p>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-amber-500 mr-2 mt-1"></i>
+                    <span>교육 기간: 12주 (48시간)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-amber-500 mr-2 mt-1"></i>
+                    <span>취득 요건: 교육 이수 + 모의 강의</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-amber-500 mr-2 mt-1"></i>
+                    <span>활용: 교육기관, 기업 연수</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* 신청 안내 */}
+          <div class="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">자격증 신청 안내</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                  <i class="fas fa-clipboard-list text-blue-500 mr-2"></i>
+                  신청 절차
+                </h3>
+                <ol class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 text-sm">1</span>
+                    <span>교육 과정 선택 및 수강 신청</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 text-sm">2</span>
+                    <span>정규 교육 과정 이수 (출석률 80% 이상)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 text-sm">3</span>
+                    <span>자격 시험 응시 (필기 또는 실기)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 text-sm">4</span>
+                    <span>합격 후 자격증 발급 신청</span>
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                  <i class="fas fa-coins text-green-500 mr-2"></i>
+                  수강료 안내
+                </h3>
+                <ul class="space-y-3 text-gray-700">
+                  <li class="flex justify-between items-center py-2 border-b">
+                    <span>방과후 지도사</span>
+                    <span class="font-bold text-blue-600">350,000원</span>
+                  </li>
+                  <li class="flex justify-between items-center py-2 border-b">
+                    <span>AI 활용능력</span>
+                    <span class="font-bold text-purple-600">280,000원</span>
+                  </li>
+                  <li class="flex justify-between items-center py-2 border-b">
+                    <span>전문 강사</span>
+                    <span class="font-bold text-amber-600">480,000원</span>
+                  </li>
+                  <li class="text-sm text-gray-500 mt-4">
+                    * 교재비 및 자격증 발급비 별도
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-8 text-center">
+              <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                <i class="fas fa-phone-alt mr-2"></i>
+                수강 신청 문의하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Login page - 로그인
+app.get('/login', (c) => {
+  return c.html(
+    <Layout title="로그인 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen flex items-center">
+        <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="bg-white rounded-2xl shadow-2xl p-8">
+            <div class="text-center mb-8">
+              <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-user-circle text-blue-600 text-4xl"></i>
+              </div>
+              <h1 class="text-3xl font-bold text-gray-900 mb-2">로그인</h1>
+              <p class="text-gray-600">한국미래인재교육협회에 오신 것을 환영합니다</p>
+            </div>
+
+            <form class="space-y-4">
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">이메일</label>
+                <input type="email" id="email" name="email" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                       placeholder="example@email.com" />
+              </div>
+
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">비밀번호</label>
+                <input type="password" id="password" name="password" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                       placeholder="비밀번호를 입력하세요" />
+              </div>
+
+              <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center">
+                  <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                  <span class="ml-2 text-gray-600">로그인 상태 유지</span>
+                </label>
+                <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">비밀번호 찾기</a>
+              </div>
+
+              <button type="submit"
+                      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">
+                로그인
+              </button>
+            </form>
+
+            <div class="mt-6 text-center">
+              <p class="text-gray-600">
+                계정이 없으신가요?
+                <a href="/register" class="text-blue-600 hover:text-blue-700 font-bold ml-2">회원가입</a>
+              </p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <p class="text-center text-sm text-gray-500 mb-4">또는 다른 방법으로 로그인</p>
+              <div class="grid grid-cols-2 gap-4">
+                <button class="flex items-center justify-center bg-white border-2 border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors">
+                  <i class="fab fa-google text-red-500 mr-2"></i>
+                  Google
+                </button>
+                <button class="flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium py-2 px-4 rounded-lg transition-colors">
+                  <i class="fas fa-comment text-gray-900 mr-2"></i>
+                  Kakao
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+})
+
+// Register page - 회원가입
+app.get('/register', (c) => {
+  return c.html(
+    <Layout title="회원가입 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-white rounded-2xl shadow-2xl p-8">
+            <div class="text-center mb-8">
+              <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-user-plus text-blue-600 text-4xl"></i>
+              </div>
+              <h1 class="text-3xl font-bold text-gray-900 mb-2">회원가입</h1>
+              <p class="text-gray-600">한국미래인재교육협회 회원이 되어주세요</p>
+            </div>
+
+            <form class="space-y-4">
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름 *</label>
+                  <input type="text" id="name" name="name" required
+                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                         placeholder="홍길동" />
+                </div>
+
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">전화번호 *</label>
+                  <input type="tel" id="phone" name="phone" required
+                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                         placeholder="010-1234-5678" />
+                </div>
+              </div>
+
+              <div>
+                <label for="reg-email" class="block text-sm font-medium text-gray-700 mb-2">이메일 *</label>
+                <input type="email" id="reg-email" name="email" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                       placeholder="example@email.com" />
+              </div>
+
+              <div>
+                <label for="reg-password" class="block text-sm font-medium text-gray-700 mb-2">비밀번호 *</label>
+                <input type="password" id="reg-password" name="password" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                       placeholder="8자 이상 입력하세요" />
+              </div>
+
+              <div>
+                <label for="password-confirm" class="block text-sm font-medium text-gray-700 mb-2">비밀번호 확인 *</label>
+                <input type="password" id="password-confirm" name="password_confirm" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                       placeholder="비밀번호를 다시 입력하세요" />
+              </div>
+
+              <div>
+                <label for="interest" class="block text-sm font-medium text-gray-700 mb-2">관심 분야</label>
+                <select id="interest" name="interest"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">선택하세요</option>
+                  <option value="after-school">늘봄방과후 전문강사</option>
+                  <option value="ai">AI 활용 교육</option>
+                  <option value="job">취업 지원 프로그램</option>
+                  <option value="instructor">강사 양성 과정</option>
+                </select>
+              </div>
+
+              <div class="space-y-2">
+                <label class="flex items-start">
+                  <input type="checkbox" required class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1" />
+                  <span class="ml-2 text-sm text-gray-600">
+                    <span class="text-blue-600 font-medium">[필수]</span> 이용약관에 동의합니다
+                  </span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" required class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1" />
+                  <span class="ml-2 text-sm text-gray-600">
+                    <span class="text-blue-600 font-medium">[필수]</span> 개인정보 수집 및 이용에 동의합니다
+                  </span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1" />
+                  <span class="ml-2 text-sm text-gray-600">
+                    <span class="text-gray-500">[선택]</span> 마케팅 정보 수신에 동의합니다
+                  </span>
+                </label>
+              </div>
+
+              <button type="submit"
+                      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">
+                회원가입
+              </button>
+            </form>
+
+            <div class="mt-6 text-center">
+              <p class="text-gray-600">
+                이미 계정이 있으신가요?
+                <a href="/login" class="text-blue-600 hover:text-blue-700 font-bold ml-2">로그인</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
