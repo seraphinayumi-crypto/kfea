@@ -150,25 +150,27 @@ const Layout = (props: { children: any; title?: string }) => {
                 {/* Logo */}
                 <div class="flex items-center">
                   <a href="/" class="flex items-center space-x-3 group">
-                    <div class="w-12 h-12 bg-blue-900 rounded-lg flex items-center justify-center group-hover:bg-blue-800 transition-colors duration-200">
-                      <i class="fas fa-graduation-cap text-white text-xl"></i>
-                    </div>
+                    <img 
+                      src="https://www.genspark.ai/api/files/s/W9TVqr7g" 
+                      alt="한국미래인재교육협회 로고" 
+                      class="h-14 w-auto object-contain"
+                    />
                     <div>
-                      <div class="text-xl font-bold text-gray-900">한국미래인재교육협회</div>
-                      <div class="text-xs text-gray-500">Korea Future Education Association</div>
+                      <div class="text-lg font-bold text-gray-900 whitespace-nowrap">한국미래인재교육협회</div>
+                      <div class="text-xs text-gray-500 whitespace-nowrap">Korea Future Education Association</div>
                     </div>
                   </a>
                 </div>
 
                 {/* Desktop Navigation - IMPROVED SPACING */}
-                <nav class="hidden lg:flex items-center space-x-8">
-                  <a href="/" class="px-5 py-2 rounded-lg font-medium transition-all duration-200 bg-blue-900 text-white">
+                <nav class="hidden lg:flex items-center space-x-3">
+                  <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 bg-blue-900 text-white whitespace-nowrap">
                     홈
                   </a>
                   
                   {/* 협회소개 Dropdown */}
                   <div class="relative group">
-                    <button class="px-5 py-2 rounded-lg font-medium transition-all duration-200 flex items-center text-gray-700 hover:bg-gray-100">
+                    <button class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center text-gray-700 hover:bg-gray-100 whitespace-nowrap">
                       협회소개
                     </button>
                     <div class="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block z-10 min-w-56 border border-gray-200">
@@ -195,7 +197,7 @@ const Layout = (props: { children: any; title?: string }) => {
                   
                   {/* 교육과정 Dropdown */}
                   <div class="relative group">
-                    <button class="px-5 py-2 rounded-lg font-medium transition-all duration-200 flex items-center text-gray-700 hover:bg-gray-100">
+                    <button class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center text-gray-700 hover:bg-gray-100 whitespace-nowrap">
                       교육과정
                     </button>
                     <div class="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block z-10 min-w-56 border border-gray-200">
@@ -214,13 +216,13 @@ const Layout = (props: { children: any; title?: string }) => {
                     </div>
                   </div>
                   
-                  <a href="/activities" class="px-5 py-2 rounded-lg font-medium transition-all duration-200 text-gray-700 hover:bg-gray-100">
-                    활동 소식
+                  <a href="/activities" class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-gray-700 hover:bg-gray-100 whitespace-nowrap">
+                    활동소식
                   </a>
                   
                   {/* 지부안내 Dropdown */}
                   <div class="relative group">
-                    <button class="px-5 py-2 font-medium text-gray-700 hover:text-blue-900 flex items-center">
+                    <button class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center text-gray-700 hover:bg-gray-100 whitespace-nowrap">
                       지부안내
                     </button>
                     <div class="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block z-10 min-w-56 border border-gray-200">
@@ -238,7 +240,7 @@ const Layout = (props: { children: any; title?: string }) => {
                   
                   {/* 게시판 Dropdown */}
                   <div class="relative group">
-                    <button class="px-5 py-2 font-medium text-gray-700 hover:text-blue-900 flex items-center">
+                    <button class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center text-gray-700 hover:bg-gray-100 whitespace-nowrap">
                       게시판
                     </button>
                     <div class="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block z-10 min-w-56 border border-gray-200">
@@ -257,13 +259,13 @@ const Layout = (props: { children: any; title?: string }) => {
                     </div>
                   </div>
                   
-                  <a href="/classroom" class="px-5 py-2 font-medium text-gray-700 hover:text-blue-900">
+                  <a href="/classroom" class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-gray-700 hover:bg-gray-100 whitespace-nowrap">
                     강의실
                   </a>
                   
                   {/* 로그인 Dropdown */}
                   <div class="relative group" id="login-menu">
-                    <button class="px-5 py-2 font-medium text-gray-700 hover:text-blue-900 flex items-center" id="login-button">
+                    <button class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center text-gray-700 hover:bg-gray-100 whitespace-nowrap" id="login-button">
                       로그인
                     </button>
                     <div class="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block z-10 min-w-56 border" id="login-dropdown">
@@ -271,7 +273,7 @@ const Layout = (props: { children: any; title?: string }) => {
                     </div>
                   </div>
                   
-                  <a href="/contact" class="px-5 py-2 font-medium text-gray-700 hover:text-blue-900">
+                  <a href="/contact" class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-gray-700 hover:bg-gray-100 whitespace-nowrap">
                     문의하기
                   </a>
                 </nav>
