@@ -1716,79 +1716,160 @@ app.get('/seoul-branch', (c) => {
   return c.html(
     <Layout title="서울 본부 - 한국미래인재교육협회">
       <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-10">
-            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">서울 본부</h1>
-            <p class="text-base text-gray-600">한국미래인재교육협회 본부</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">서울 본부</h1>
+            <p class="text-lg text-gray-600">한국미래인재교육협회 본부</p>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
+          {/* 본부 정보 */}
+          <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-blue-600">본부 정보</h2>
             <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">본부 정보</h2>
-                <div class="space-y-3">
-                  <div class="flex items-start space-x-3">
-                    <i class="fas fa-user-tie text-blue-600 text-xl mt-1"></i>
-                    <div>
-                      <p class="font-semibold text-gray-900">본부 대표</p>
-                      <p class="text-gray-600">최유미</p>
-                    </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-user-tie text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 mb-1">본부 대표</p>
+                  <p class="text-gray-600">최유미</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-phone text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 mb-1">전화</p>
+                  <p class="text-gray-600">0507-1426-1547</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 mb-1">주소</p>
+                  <p class="text-gray-600">서울특별시 강남구 논현로10길 30 505-62호</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 mb-1">이메일</p>
+                  <p class="text-gray-600">info@kfea.ai.kr</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 이사진 */}
+          <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-purple-600">이사진</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 border-2 border-purple-300">
+                <div class="flex items-center mb-3">
+                  <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-user-tie text-white"></i>
                   </div>
-                  <div class="flex items-start space-x-3">
-                    <i class="fas fa-map-marker-alt text-blue-600 text-xl mt-1"></i>
-                    <div>
-                      <p class="font-semibold text-gray-900">주소</p>
-                      <p class="text-gray-600">서울특별시 강남구 논현로10길 30 505-62호</p>
-                    </div>
+                  <div>
+                    <p class="font-bold text-gray-900">윤지원</p>
+                    <p class="text-xs text-purple-700">이사</p>
                   </div>
-                  <div class="flex items-start space-x-3">
-                    <i class="fas fa-phone text-blue-600 text-xl mt-1"></i>
-                    <div>
-                      <p class="font-semibold text-gray-900">전화</p>
-                      <p class="text-gray-600">0507-1426-1547</p>
-                    </div>
+                </div>
+                <p class="text-sm text-gray-700">대전 지역본부 대표</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 border-2 border-purple-300">
+                <div class="flex items-center mb-3">
+                  <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-user-tie text-white"></i>
                   </div>
-                  <div class="flex items-start space-x-3">
-                    <i class="fas fa-envelope text-blue-600 text-xl mt-1"></i>
-                    <div>
-                      <p class="font-semibold text-gray-900">이메일</p>
-                      <p class="text-gray-600">info@kfea.ai.kr</p>
-                    </div>
+                  <div>
+                    <p class="font-bold text-gray-900">강은지</p>
+                    <p class="text-xs text-purple-700">이사</p>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700">자기주도·학습설계 강사</p>
+                <p class="text-xs text-gray-600 mt-1">페이머스유 이미지메이킹센터 대표</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 border-2 border-purple-300">
+                <div class="flex items-center mb-3">
+                  <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-user-tie text-white"></i>
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-900">박상미</p>
+                    <p class="text-xs text-purple-700">이사</p>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">이사진 및 전문위원</h2>
-                <div class="space-y-3">
-                  <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
-                    <p class="font-semibold text-gray-900">윤지원 (이사)</p>
-                    <p class="text-sm text-gray-600">대전 지역본부 대표</p>
+          {/* 감사 */}
+          <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-amber-600">감사</h2>
+            <div class="max-w-md">
+              <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-5 border-2 border-amber-300">
+                <div class="flex items-center mb-3">
+                  <div class="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-balance-scale text-white"></i>
                   </div>
-                  <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
-                    <p class="font-semibold text-gray-900">강은지 (이사)</p>
-                    <p class="text-sm text-gray-600">자기주도·학습설계 강사<br/>페이머스유 이미지메이킹센터 대표</p>
-                  </div>
-                  <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
-                    <p class="font-semibold text-gray-900">박상미 (이사)</p>
-                  </div>
-                  <div class="bg-amber-50 rounded-lg p-4 border-l-4 border-amber-500">
-                    <p class="font-semibold text-gray-900">송영희 (감사)</p>
-                    <p class="text-sm text-gray-600">회계 및 운영 감사</p>
-                  </div>
-                  <div class="bg-blue-50 rounded-lg p-4">
-                    <p class="font-semibold text-gray-900">정수일 (본부 전문위원)</p>
-                    <p class="text-sm text-gray-600">경영시스템, ESG, HR</p>
-                  </div>
-                  <div class="bg-blue-50 rounded-lg p-4">
-                    <p class="font-semibold text-gray-900">김대원 (본부 전문위원)</p>
-                    <p class="text-sm text-gray-600">진로상담, 취업컨설팅</p>
-                  </div>
-                  <div class="bg-blue-50 rounded-lg p-4">
-                    <p class="font-semibold text-gray-900">박남현 (본부 전문위원)</p>
-                    <p class="text-sm text-gray-600">서류·면접코칭, 취업특강</p>
+                  <div>
+                    <p class="font-bold text-gray-900">송영희</p>
+                    <p class="text-xs text-amber-700">감사</p>
                   </div>
                 </div>
+                <p class="text-sm text-gray-700">회계 및 운영 감사</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 본부 전문위원 */}
+          <div class="bg-white rounded-2xl shadow-xl p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-blue-600">본부 전문위원</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border-2 border-blue-300">
+                <div class="flex items-center mb-3">
+                  <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-user-graduate text-white"></i>
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-900">정수일</p>
+                    <p class="text-xs text-blue-700">전문위원</p>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700">경영시스템, ESG, HR</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border-2 border-blue-300">
+                <div class="flex items-center mb-3">
+                  <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-user-graduate text-white"></i>
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-900">김대원</p>
+                    <p class="text-xs text-blue-700">전문위원</p>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700">진로상담, 취업컨설팅</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border-2 border-blue-300">
+                <div class="flex items-center mb-3">
+                  <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-user-graduate text-white"></i>
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-900">박남현</p>
+                    <p class="text-xs text-blue-700">전문위원</p>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700">서류·면접코칭, 취업특강</p>
               </div>
             </div>
           </div>
@@ -1833,25 +1914,25 @@ app.get('/daegu-branch', (c) => {
 
               <div>
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">담당 기관</h2>
-                <div class="space-y-2">
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-university text-green-600"></i>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-university text-green-600 text-lg mt-1"></i>
                     <p class="text-gray-700">경북대학교</p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-university text-green-600"></i>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-university text-green-600 text-lg mt-1"></i>
                     <p class="text-gray-700">영남대학교</p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-university text-green-600"></i>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-university text-green-600 text-lg mt-1"></i>
                     <p class="text-gray-700">대구대학교</p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-university text-green-600"></i>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-university text-green-600 text-lg mt-1"></i>
                     <p class="text-gray-700">계명대학교</p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-ellipsis-h text-green-600"></i>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-ellipsis-h text-green-600 text-lg mt-1"></i>
                     <p class="text-gray-700 font-semibold">그 외 다수</p>
                   </div>
                 </div>
@@ -1906,25 +1987,25 @@ app.get('/daejeon-branch', (c) => {
 
               <div>
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">담당 기관</h2>
-                <div class="space-y-2">
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-university text-purple-600"></i>
+                <div class="space-y-3">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-university text-purple-600 text-lg mt-1"></i>
                     <p class="text-gray-700">한국기술교육대학교</p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-university text-purple-600"></i>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-university text-purple-600 text-lg mt-1"></i>
                     <p class="text-gray-700">배재대학교</p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-university text-purple-600"></i>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-university text-purple-600 text-lg mt-1"></i>
                     <p class="text-gray-700">나사렛대학교</p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-building text-purple-600"></i>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-building text-purple-600 text-lg mt-1"></i>
                     <p class="text-gray-700">한국철도공사</p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <i class="fas fa-ellipsis-h text-purple-600"></i>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-ellipsis-h text-purple-600 text-lg mt-1"></i>
                     <p class="text-gray-700 font-semibold">그 외 다수</p>
                   </div>
                 </div>
