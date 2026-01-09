@@ -1193,24 +1193,17 @@ app.get('/organization', (c) => {
                     <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <i class="fas fa-user-tie text-purple-600"></i>
                     </div>
-                    <p class="font-bold text-gray-900 mb-1">정수일</p>
-                    <p class="text-sm text-gray-600">경영시스템, ESG, HR</p>
+                    <p class="font-bold text-gray-900 mb-1">강은지</p>
+                    <p class="text-sm text-gray-600">자기주도·학습설계 강사</p>
+                    <p class="text-xs text-gray-500 mt-1">페이머스유 이미지메이킹센터 대표</p>
                   </div>
                   
-                  <div class="text-center p-4 bg-purple-50 rounded-xl">
-                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <i class="fas fa-user-tie text-purple-600"></i>
-                    </div>
-                    <p class="font-bold text-gray-900 mb-1">김대원</p>
-                    <p class="text-sm text-gray-600">진로상담, 취업컨설팅</p>
-                  </div>
-                  
-                  <div class="text-center p-4 bg-purple-50 rounded-xl">
-                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <i class="fas fa-user-tie text-purple-600"></i>
-                    </div>
-                    <p class="font-bold text-gray-900 mb-1">박남현</p>
-                    <p class="text-sm text-gray-600">서류·면접코칭, 취업특강</p>
+                  <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                      <i class="fas fa-info-circle text-blue-500 mr-1"></i>
+                      이사는 이사회를 통하여 협회의 주요 사항을 심의·의결하며, 
+                      이사장으로부터 위임받은 사항을 처리합니다.
+                    </p>
                   </div>
                 </div>
               </div>
