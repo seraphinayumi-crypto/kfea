@@ -151,9 +151,9 @@ const Layout = (props: { children: any; title?: string }) => {
                 <div class="flex items-center">
                   <a href="/" class="flex items-center space-x-3 group">
                     <img 
-                      src="https://www.genspark.ai/api/files/s/W9TVqr7g" 
+                      src="https://www.genspark.ai/api/files/s/Jier95KY" 
                       alt="한국미래인재교육협회 로고" 
-                      class="h-14 w-auto object-contain"
+                      class="h-12 w-auto object-contain"
                     />
                     <div>
                       <div class="text-lg font-bold text-gray-900 whitespace-nowrap">한국미래인재교육협회</div>
