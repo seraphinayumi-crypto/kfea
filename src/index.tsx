@@ -403,7 +403,7 @@ const Layout = (props: { children: any; title?: string }) => {
                   <div class="space-y-2">
                     <a href="/about" class="block text-gray-400 hover:text-white transition-colors">협회 소개</a>
                     <a href="/programs" class="block text-gray-400 hover:text-white transition-colors">교육 프로그램</a>
-                    <a href="/activities" class="block text-gray-400 hover:text-white transition-colors">활동 소식</a>
+                    <a href="/activities" class="block text-gray-400 hover:text-white transition-colors">보도기사</a>
                     <a href="/contact" class="block text-gray-400 hover:text-white transition-colors">문의하기</a>
                   </div>
                 </div>
@@ -1530,345 +1530,96 @@ app.get('/programs', (c) => {
   )
 })
 
-// Activities page - 활동 소식
+// Activities page - 보도기사
 app.get('/activities', (c) => {
+  // 모든 검색 결과를 날짜별로 정렬 (최신순)
+  const newsArticles = [
+    // 한국면접관협회 관련 기사
+    { date: '2025-12-31', title: '한국면접관협회, 인문학 기반 면접관 마스터 자격과정 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=194008', source: '한국강사신문' },
+    { date: '2025-12-24', title: '[강사 인터뷰] 이제야 삶이 말이 되었다 이다인 강사를 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193591', source: '한국강사신문' },
+    { date: '2025-10-16', title: '피엑스알랩, AI 기반 성과창출형 면접평가 협력 MOU 체결', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188762', source: '한국강사신문' },
+    { date: '2025-09-15', title: '한국면접관협회, 제23기 전문 면접관 마스터 교육과정 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186927', source: '한국강사신문' },
+    { date: '2025-08-26', title: '한국면접관협회, 면접관의 시선 북토크 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185652', source: '한국강사신문' },
+    { date: '2025-08-08', title: '[기획 인터뷰] 한국면접관협회 권혁근 협회장을 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184382', source: '한국강사신문' },
+    { date: '2025-08-08', title: '한국면접관협회, 면접관 마스터 포럼에서 전문가 인물브랜딩 전략 공개', link: 'https://www.lecturernews.com/news/articleView.html?idxno=182998', source: '한국강사신문' },
+    { date: '2025-08-26', title: '한국면접관협회, 제1회 대한민국 면접관 컨퍼런스 성공리에 마쳐', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185650', source: '한국강사신문' },
+    { date: '2025-08-08', title: '[오늘의 강사] 한국강사에이전시, 면접관교육 분야 권혁근 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185657', source: '한국강사신문' },
+    
+    // 한국미래인재교육협회 관련 기사
+    { date: '2025-12-30', title: '경기도교육청 평생학습관, 2025년 방과후지도사 양성과정 운영', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193971', source: '한국강사신문' },
+    { date: '2025-12-16', title: '순천제일대학교, 최유미 강사 초청 맞춤형 산업-기업 현장실습 특강 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192951', source: '한국강사신문' },
+    { date: '2025-12-15', title: '한국미래인재교육협회-행복한진로심리이야기, NCS 취업역량 강화 교육 실시', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192950', source: '한국강사신문' },
+    { date: '2025-04-17', title: '한국미래인재교육협회 X 세무회계 소명, 종합소득세 신고 지원', link: 'https://www.lecturernews.com/news/articleView.html?idxno=176409', source: '한국강사신문' },
+    { date: '2025-02-22', title: '한국미래인재교육협회, 프리랜서 강사를 위한 맞춤 세무관리 교육', link: 'https://www.lecturernews.com/news/articleView.html?idxno=172944', source: '한국강사신문' },
+    { date: '2024-12-16', title: '한국강사신문 대표가 만난 강사, 한국미래인재교육협회 회장으로 활동 중', link: 'https://www.lecturernews.com/news/articleView.html?idxno=168376', source: '한국강사신문' },
+    
+    // 최유미 대표 관련 기사
+    { date: '2025-09-15', title: '최유미 강사, 나사렛대학교서 취업을 앞당기는 노션 자기소개서 작성법 특강', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186967', source: '한국강사신문' },
+    { date: '2025-08-11', title: '최유미 강사, 실무 중심 늘봄 방과후 강사 양성과정 2기 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184403', source: '한국강사신문' },
+    { date: '2025-08-08', title: '천안·오산까지 결혼이주여성 대상 이중언어강사양성과정 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184400', source: '한국강사신문' },
+    { date: '2025-03-14', title: '[최유미의 커리어 디렉팅] 새로운 도약을 위한 준비, 경력단절 여성을 위한 재취업 전략', link: 'https://www.lecturernews.com/news/articleView.html?idxno=174248', source: '한국강사신문' },
+    { date: '2025-03-14', title: '[최유미의 커리어 디렉팅] 새로운 도약을 위한 준비, 경력단절을 넘어 새로운 커리어를', link: 'https://www.lecturernews.com/news/articleView.html?idxno=175561', source: '한국강사신문' },
+    { date: '2025-02-06', title: '[오늘의 강사] 한국강사에이전시, 강사양성 분야 최유미 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=171702', source: '한국강사신문' },
+    
+    // 강은지 전문위원 관련 기사
+    { date: '2025-11-28', title: '[주간강사] 한국강사에이전시가 김기연, 정진, 윤선동, 강은지 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=191647', source: '한국강사신문' },
+    { date: '2025-10-24', title: '[강은지의 이미지메이킹 인사이트] 첫인상이 당신의 미래를 결정한다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=189268', source: '한국강사신문' },
+    { date: '2025-10-15', title: '[오늘의 강사] 한국강사에이전시, 이미지메이킹 분야 강은지 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188684', source: '한국강사신문' },
+    { date: '2025-10-02', title: '[강사 인터뷰] 페이머스유 이미지메이킹센터 강은지 대표를 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188067', source: '한국강사신문' },
+    { date: '2025-06-13', title: '색이 나를 설명한다, 퍼스널컬러에서 강의 동선까지 강은지 강사의 강의 철학', link: 'https://www.lecturernews.com/news/articleView.html?idxno=180382', source: '한국강사신문' },
+  ].sort((a, b) => b.date.localeCompare(a.date)) // 최신순 정렬
+
   return c.html(
-    <Layout title="활동 소식 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+    <Layout title="보도기사 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">활동 소식</h1>
-            <p class="text-xl text-gray-600">한국미래인재교육협회의 주요 활동을 소개합니다</p>
+          <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">보도기사</h1>
+            <p class="text-xl text-gray-600">한국강사신문에 소개된 협회 소식</p>
           </div>
-
-          <div class="space-y-8">
-            {/* 활동 1 */}
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div class="md:flex">
-                <div class="md:w-1/3 bg-gradient-to-br from-blue-500 to-blue-600 p-12 flex items-center justify-center">
-                  <div class="text-center text-white">
-                    <i class="fas fa-university text-6xl mb-4"></i>
-                    <p class="text-2xl font-bold">대학 출강</p>
-                  </div>
-                </div>
-                <div class="md:w-2/3 p-8 md:p-12">
-                  <div class="flex items-center text-gray-500 text-sm mb-3">
-                    <i class="fas fa-calendar mr-2"></i>
-                    <span>2024년 하반기</span>
-                  </div>
-                  <h3 class="text-2xl font-bold text-gray-900 mb-4">전북대학교 AI 활용 강사양성 과정</h3>
-                  <p class="text-gray-600 mb-4 leading-relaxed">
-                    전북대학교 재학생 및 지역 주민을 대상으로 AI 활용 교육 프로그램을 진행하였습니다. 
-                    ChatGPT를 활용한 자기소개서 작성, 면접 준비, 교안 제작 등 실무 중심의 교육으로 
-                    참가자들의 높은 만족도를 얻었습니다.
-                  </p>
-                  <div class="flex flex-wrap gap-2">
-                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">#AI교육</span>
-                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">#강사양성</span>
-                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">#전북대</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 활동 2 */}
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div class="md:flex">
-                <div class="md:w-1/3 bg-gradient-to-br from-green-500 to-green-600 p-12 flex items-center justify-center">
-                  <div class="text-center text-white">
-                    <i class="fas fa-briefcase text-6xl mb-4"></i>
-                    <p class="text-2xl font-bold">취업 지원</p>
-                  </div>
-                </div>
-                <div class="md:w-2/3 p-8 md:p-12">
-                  <div class="flex items-center text-gray-500 text-sm mb-3">
-                    <i class="fas fa-calendar mr-2"></i>
-                    <span>2024년 9월</span>
-                  </div>
-                  <h3 class="text-2xl font-bold text-gray-900 mb-4">경북대학교 취업 지원 프로그램</h3>
-                  <p class="text-gray-600 mb-4 leading-relaxed">
-                    경북대학교 학생들을 대상으로 공기업 및 대기업 취업 준비를 위한 맞춤형 프로그램을 운영하였습니다. 
-                    PSAT, NCS, GSAT 등 각종 적성검사 대비와 함께 1:1 면접 코칭을 제공하여 
-                    실제 취업 성공률을 크게 높였습니다.
-                  </p>
-                  <div class="flex flex-wrap gap-2">
-                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">#취업지원</span>
-                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">#공기업</span>
-                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">#경북대</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 활동 3 */}
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div class="md:flex">
-                <div class="md:w-1/3 bg-gradient-to-br from-purple-500 to-purple-600 p-12 flex items-center justify-center">
-                  <div class="text-center text-white">
-                    <i class="fas fa-train text-6xl mb-4"></i>
-                    <p class="text-2xl font-bold">기업 연수</p>
-                  </div>
-                </div>
-                <div class="md:w-2/3 p-8 md:p-12">
-                  <div class="flex items-center text-gray-500 text-sm mb-3">
-                    <i class="fas fa-calendar mr-2"></i>
-                    <span>2024년 8월</span>
-                  </div>
-                  <h3 class="text-2xl font-bold text-gray-900 mb-4">한국철도공사 직무교육</h3>
-                  <p class="text-gray-600 mb-4 leading-relaxed">
-                    한국철도공사 임직원을 대상으로 AI 활용 및 업무 혁신 교육을 진행하였습니다. 
-                    실무에 바로 적용할 수 있는 AI 도구 활용법과 디지털 전환 전략을 교육하여 
-                    업무 효율성 향상에 기여하였습니다.
-                  </p>
-                  <div class="flex flex-wrap gap-2">
-                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">#기업연수</span>
-                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">#직무교육</span>
-                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">#코레일</span>
-                  </div>
-                </div>
-              </div>
+          
+          <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8 rounded">
+            <div class="flex items-center">
+              <i class="fas fa-info-circle text-blue-600 mr-3"></i>
+              <p class="text-sm text-blue-800">
+                <strong>총 {newsArticles.length}건</strong>의 기사가 검색되었습니다. 
+                클릭하시면 한국강사신문 기사 페이지로 이동합니다.
+              </p>
             </div>
           </div>
 
-          {/* 협력기관 현황 */}
-          <div class="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-xl p-12 text-white">
-            <h2 class="text-3xl font-bold mb-8 text-center">협력기관 현황</h2>
-            <div class="grid md:grid-cols-4 gap-6 text-center">
-              <div>
-                <div class="text-5xl font-bold mb-2">32+</div>
-                <p class="text-xl">협력 기관</p>
-              </div>
-              <div>
-                <div class="text-5xl font-bold mb-2">100+</div>
-                <p class="text-xl">강의 진행</p>
-              </div>
-              <div>
-                <div class="text-5xl font-bold mb-2">500+</div>
-                <p class="text-xl">수료생</p>
-              </div>
-              <div>
-                <div class="text-5xl font-bold mb-2">6</div>
-                <p class="text-xl">민간자격증</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </Layout>
-  )
-})
-
-// Programs/Certifications page - 민간자격증 과정
-app.get('/programs/certifications', (c) => {
-  return c.html(
-    <Layout title="민간자격증 과정 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">민간자격증 과정</h1>
-            <p class="text-xl text-gray-600">한국미래인재교육협회에서 발급하는 공식 민간자격증</p>
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {/* 스피치지도사 */}
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
-                <div class="flex items-center justify-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-microphone text-3xl"></i>
+          <div class="space-y-4">
+            {newsArticles.map((article, index) => (
+              <a href={article.link} target="_blank" rel="noopener noreferrer"
+                 class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all p-6 border-l-4 border-blue-500 hover:border-blue-600">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-2">
+                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-3">
+                        <i class="fas fa-newspaper mr-1"></i>
+                        {article.source}
+                      </span>
+                      <span class="text-sm text-gray-500">{article.date}</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+                      {article.title}
+                    </h3>
+                  </div>
+                  <div class="ml-4 flex-shrink-0">
+                    <i class="fas fa-external-link-alt text-gray-400 text-xl"></i>
                   </div>
                 </div>
-                <h3 class="text-2xl font-bold text-center">스피치지도사</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-600 mb-4">
-                  효과적인 의사소통과 발표 능력 향상을 위한 전문 지도사 자격증
-                </p>
-                <div class="space-y-3">
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">음성 및 발음 교정 기법</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">프레젠테이션 스킬 향상</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-blue-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">커뮤니케이션 전문가 양성</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 늘봄방과후프로그램강사 */}
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white">
-                <div class="flex items-center justify-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-child text-3xl"></i>
-                  </div>
-                </div>
-                <h3 class="text-2xl font-bold text-center">늘봄방과후프로그램강사</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-600 mb-4">
-                  초등학교 방과후 프로그램 전문 강사 자격증
-                </p>
-                <div class="space-y-3">
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">아동 발달심리 이해</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">방과후 교육 프로그램 설계</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">학급 운영 및 관리 능력</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 취업진로디렉터 */}
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-6 text-white">
-                <div class="flex items-center justify-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-briefcase text-3xl"></i>
-                  </div>
-                </div>
-                <h3 class="text-2xl font-bold text-center">취업진로디렉터</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-600 mb-4">
-                  취업 및 진로 지도 전문가 자격증
-                </p>
-                <div class="space-y-3">
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">진로 상담 및 컨설팅</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">취업 전략 수립 및 지도</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">면접 및 자소서 코칭</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 기후위기대응교육강사 */}
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 p-6 text-white">
-                <div class="flex items-center justify-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-leaf text-3xl"></i>
-                  </div>
-                </div>
-                <h3 class="text-2xl font-bold text-center">기후위기대응교육강사</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-600 mb-4">
-                  기후변화 대응 교육 전문 강사 자격증
-                </p>
-                <div class="space-y-3">
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">기후위기 이해 및 교육</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">환경보호 실천 방법 지도</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">지속가능발전 교육</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 제로웨이스트실천교육강사 */}
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-teal-500 to-teal-600 p-6 text-white">
-                <div class="flex items-center justify-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-recycle text-3xl"></i>
-                  </div>
-                </div>
-                <h3 class="text-2xl font-bold text-center">제로웨이스트실천교육강사</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-600 mb-4">
-                  제로웨이스트 실천 교육 전문가 자격증
-                </p>
-                <div class="space-y-3">
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-teal-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">쓰레기 줄이기 실천 교육</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-teal-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">재활용 및 업사이클링</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-teal-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">친환경 라이프스타일 지도</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 시니어라이프코칭강사 */}
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div class="bg-gradient-to-r from-amber-500 to-amber-600 p-6 text-white">
-                <div class="flex items-center justify-center mb-4">
-                  <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-hands-helping text-3xl"></i>
-                  </div>
-                </div>
-                <h3 class="text-2xl font-bold text-center">시니어라이프코칭강사</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-600 mb-4">
-                  시니어 대상 라이프 코칭 전문가 자격증
-                </p>
-                <div class="space-y-3">
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">시니어 심리 이해</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">노후 생활 설계 코칭</p>
-                  </div>
-                  <div class="flex items-start space-x-2">
-                    <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                    <p class="text-sm text-gray-700">건강한 노년 생활 지원</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 문의 섹션 */}
-          <div class="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-xl p-12 text-white text-center">
-            <h2 class="text-3xl font-bold mb-4">자격증 취득 문의</h2>
-            <p class="text-xl mb-8">전문 자격증 취득으로 새로운 경력을 시작하세요</p>
-            <div class="flex flex-wrap justify-center gap-4">
-              <a href="/contact" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors">
-                문의하기
               </a>
-              <a href="/programs" class="bg-white/20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/30 transition-colors backdrop-blur-sm">
-                교육과정 보기
-              </a>
-            </div>
+            ))}
+          </div>
+
+          <div class="mt-12 text-center">
+            <a href="https://www.lecturernews.com" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+              <i class="fas fa-newspaper"></i>
+              <span>한국강사신문 방문하기</span>
+              <i class="fas fa-external-link-alt text-sm"></i>
+            </a>
           </div>
         </div>
       </section>
@@ -2146,96 +1897,21 @@ app.get('/boards/notice', (c) => {
   )
 })
 
-// News Board - 보도기사 (한국강사신문)
-app.get('/boards/news', (c) => {
-  // 모든 검색 결과를 날짜별로 정렬 (최신순)
-  const newsArticles = [
-    // 한국면접관협회 관련 기사
-    { date: '2025-12-31', title: '한국면접관협회, 인문학 기반 면접관 마스터 자격과정 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=194008', source: '한국강사신문' },
-    { date: '2025-12-24', title: '[강사 인터뷰] 이제야 삶이 말이 되었다 이다인 강사를 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193591', source: '한국강사신문' },
-    { date: '2025-10-16', title: '피엑스알랩, AI 기반 성과창출형 면접평가 협력 MOU 체결', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188762', source: '한국강사신문' },
-    { date: '2025-09-15', title: '한국면접관협회, 제23기 전문 면접관 마스터 교육과정 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186927', source: '한국강사신문' },
-    { date: '2025-08-26', title: '한국면접관협회, 면접관의 시선 북토크 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185652', source: '한국강사신문' },
-    { date: '2025-08-08', title: '[기획 인터뷰] 한국면접관협회 권혁근 협회장을 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184382', source: '한국강사신문' },
-    { date: '2025-08-08', title: '한국면접관협회, 면접관 마스터 포럼에서 전문가 인물브랜딩 전략 공개', link: 'https://www.lecturernews.com/news/articleView.html?idxno=182998', source: '한국강사신문' },
-    { date: '2025-08-26', title: '한국면접관협회, 제1회 대한민국 면접관 컨퍼런스 성공리에 마쳐', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185650', source: '한국강사신문' },
-    { date: '2025-08-08', title: '[오늘의 강사] 한국강사에이전시, 면접관교육 분야 권혁근 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185657', source: '한국강사신문' },
-    
-    // 한국미래인재교육협회 관련 기사
-    { date: '2025-12-30', title: '경기도교육청 평생학습관, 2025년 방과후지도사 양성과정 운영', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193971', source: '한국강사신문' },
-    { date: '2025-12-16', title: '순천제일대학교, 최유미 강사 초청 맞춤형 산업-기업 현장실습 특강 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192951', source: '한국강사신문' },
-    { date: '2025-12-15', title: '한국미래인재교육협회-행복한진로심리이야기, NCS 취업역량 강화 교육 실시', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192950', source: '한국강사신문' },
-    { date: '2025-04-17', title: '한국미래인재교육협회 X 세무회계 소명, 종합소득세 신고 지원', link: 'https://www.lecturernews.com/news/articleView.html?idxno=176409', source: '한국강사신문' },
-    { date: '2025-02-22', title: '한국미래인재교육협회, 프리랜서 강사를 위한 맞춤 세무관리 교육', link: 'https://www.lecturernews.com/news/articleView.html?idxno=172944', source: '한국강사신문' },
-    { date: '2024-12-16', title: '한국강사신문 대표가 만난 강사, 한국미래인재교육협회 회장으로 활동 중', link: 'https://www.lecturernews.com/news/articleView.html?idxno=168376', source: '한국강사신문' },
-    
-    // 최유미 대표 관련 기사
-    { date: '2025-09-15', title: '최유미 강사, 나사렛대학교서 취업을 앞당기는 노션 자기소개서 작성법 특강', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186967', source: '한국강사신문' },
-    { date: '2025-08-11', title: '최유미 강사, 실무 중심 늘봄 방과후 강사 양성과정 2기 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184403', source: '한국강사신문' },
-    { date: '2025-08-08', title: '천안·오산까지 결혼이주여성 대상 이중언어강사양성과정 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184400', source: '한국강사신문' },
-    { date: '2025-03-14', title: '[최유미의 커리어 디렉팅] 새로운 도약을 위한 준비, 경력단절 여성을 위한 재취업 전략', link: 'https://www.lecturernews.com/news/articleView.html?idxno=174248', source: '한국강사신문' },
-    { date: '2025-03-14', title: '[최유미의 커리어 디렉팅] 새로운 도약을 위한 준비, 경력단절을 넘어 새로운 커리어를', link: 'https://www.lecturernews.com/news/articleView.html?idxno=175561', source: '한국강사신문' },
-    { date: '2025-02-06', title: '[오늘의 강사] 한국강사에이전시, 강사양성 분야 최유미 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=171702', source: '한국강사신문' },
-    
-    // 강은지 전문위원 관련 기사
-    { date: '2025-11-28', title: '[주간강사] 한국강사에이전시가 김기연, 정진, 윤선동, 강은지 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=191647', source: '한국강사신문' },
-    { date: '2025-10-24', title: '[강은지의 이미지메이킹 인사이트] 첫인상이 당신의 미래를 결정한다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=189268', source: '한국강사신문' },
-    { date: '2025-10-15', title: '[오늘의 강사] 한국강사에이전시, 이미지메이킹 분야 강은지 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188684', source: '한국강사신문' },
-    { date: '2025-10-02', title: '[강사 인터뷰] 페이머스유 이미지메이킹센터 강은지 대표를 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188067', source: '한국강사신문' },
-    { date: '2025-06-13', title: '색이 나를 설명한다, 퍼스널컬러에서 강의 동선까지 강은지 강사의 강의 철학', link: 'https://www.lecturernews.com/news/articleView.html?idxno=180382', source: '한국강사신문' },
-  ].sort((a, b) => b.date.localeCompare(a.date)) // 최신순 정렬
-
+// Resources Board - 자료실
+app.get('/boards/resources', (c) => {
   return c.html(
-    <Layout title="보도기사 - 한국미래인재교육협회">
+    <Layout title="자료실 - 한국미래인재교육협회">
       <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">보도기사</h1>
-            <p class="text-xl text-gray-600">한국강사신문에 소개된 협회 소식</p>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">자료실</h1>
+            <p class="text-xl text-gray-600">교육 자료 및 참고 문서를 제공합니다</p>
           </div>
           
-          <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8 rounded">
-            <div class="flex items-center">
-              <i class="fas fa-info-circle text-blue-600 mr-3"></i>
-              <p class="text-sm text-blue-800">
-                <strong>총 {newsArticles.length}건</strong>의 기사가 검색되었습니다. 
-                클릭하시면 한국강사신문 기사 페이지로 이동합니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            {newsArticles.map((article, index) => (
-              <a href={article.link} target="_blank" rel="noopener noreferrer"
-                 class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all p-6 border-l-4 border-blue-500 hover:border-blue-600">
-                <div class="flex items-start justify-between">
-                  <div class="flex-1">
-                    <div class="flex items-center mb-2">
-                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-3">
-                        <i class="fas fa-newspaper mr-1"></i>
-                        {article.source}
-                      </span>
-                      <span class="text-sm text-gray-500">{article.date}</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
-                      {article.title}
-                    </h3>
-                  </div>
-                  <div class="ml-4 flex-shrink-0">
-                    <i class="fas fa-external-link-alt text-gray-400 text-xl"></i>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          <div class="mt-12 text-center">
-            <a href="https://www.lecturernews.com" target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-              <i class="fas fa-newspaper"></i>
-              <span>한국강사신문 방문하기</span>
-              <i class="fas fa-external-link-alt text-sm"></i>
-            </a>
+          <div class="bg-white rounded-lg p-12 text-center">
+            <i class="fas fa-folder-open text-5xl text-gray-400 mb-4"></i>
+            <p class="text-xl text-gray-600 mb-4">준비 중입니다.</p>
+            <p class="text-sm text-gray-500">교육 자료 및 관련 문서를 순차적으로 업로드할 예정입니다.</p>
           </div>
         </div>
       </section>
