@@ -556,35 +556,10 @@ app.get('/', (c) => {
       <section class="relative min-h-[600px] overflow-hidden">
         <div class="absolute inset-0">
           <img 
-            src="https://sspark.genspark.ai/cfimages?u1=ZvZIHCIL5oCRMBloZCGcSI12wH6HQo%2BQy3E262NN63PSeDjYijUyQvw4%2BP0b%2F5wv1ohHZIw0tv0Gdh9eGxNZv52UUilUEEWoXMUfwsI0w%2FxGwBCp7BjtaCbkdNaHOn3hRwWS9wHtRMJgzJtzWNkJLJureNKCns8VrcnM%2FTzUykJ0G5eHaS2t7Z5M93BWoJ27adqhIv0Y4rRTw1stExK5UzkwIhB1gBBI%2Bxr5sbw%3D&u2=pMvOfrBWuG9ugY%2Fh&width=2560" 
-            alt="Professional Business Team Collaboration" 
+            src="https://www.genspark.ai/api/files/s/8w5VdVoL" 
+            alt="한국미래인재교육협회" 
             class="w-full h-full object-cover" 
           />
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-900/70 to-blue-900/60"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-24 md:py-32">
-          <div>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 text-white drop-shadow-lg">
-              한국미래인재교육협회
-            </h1>
-            <p class="text-xl md:text-3xl mb-6 text-white font-semibold drop-shadow">
-              미래 사회를 이끌어갈 창의적이고 전문적인 인재 양성
-            </p>
-            <p class="text-lg md:text-xl mb-10 text-white/90 drop-shadow">
-              4차 산업혁명 시대에 맞춘 체계적이고 전문적인 교육 프로그램
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="/programs" class="group relative bg-white hover:bg-gray-100 text-blue-900 px-10 py-4 rounded-lg font-bold text-lg transition-colors duration-200 shadow-lg inline-flex items-center">
-                <span>교육과정 보기</span>
-                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="/contact" class="group relative bg-transparent hover:bg-white/10 text-white px-10 py-4 rounded-lg font-bold text-lg transition-colors duration-200 border-2 border-white inline-flex items-center backdrop-blur-sm">
-                <i class="fas fa-phone mr-2"></i>
-                <span>상담 신청</span>
-              </a>
-            </div>
-          </div>
         </div>
       </section>
 
