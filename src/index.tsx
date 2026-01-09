@@ -227,7 +227,7 @@ const Layout = (props: { children: any; title?: string }) => {
                     </button>
                     <div class="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block z-10 min-w-56 border border-gray-200">
                       <a href="/seoul-branch" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>서울지부
+                        <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>서울 본부
                       </a>
                       <a href="/daegu-branch" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>대구 지역본부
@@ -326,7 +326,7 @@ const Layout = (props: { children: any; title?: string }) => {
                 <div class="border-t pt-2">
                   <div class="px-4 py-2 text-sm font-semibold text-gray-500">지부안내</div>
                   <a href="/seoul-branch" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100">
-                    <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>서울지부
+                    <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>서울 본부
                   </a>
                   <a href="/daegu-branch" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100">
                     <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>대구 지역본부
@@ -1711,14 +1711,14 @@ app.get('/activities', (c) => {
   )
 })
 
-// Seoul Branch page - 서울지부
+// Seoul Branch page - 서울 본부
 app.get('/seoul-branch', (c) => {
   return c.html(
-    <Layout title="서울지부 - 한국미래인재교육협회">
+    <Layout title="서울 본부 - 한국미래인재교육협회">
       <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-10">
-            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">서울지부 (본부)</h1>
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">서울 본부</h1>
             <p class="text-base text-gray-600">한국미래인재교육협회 본부</p>
           </div>
 
@@ -1730,8 +1730,8 @@ app.get('/seoul-branch', (c) => {
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-user-tie text-blue-600 text-xl mt-1"></i>
                     <div>
-                      <p class="font-semibold text-gray-900">본부장</p>
-                      <p class="text-gray-600">김민수</p>
+                      <p class="font-semibold text-gray-900">본부 대표</p>
+                      <p class="text-gray-600">최유미</p>
                     </div>
                   </div>
                   <div class="flex items-start space-x-3">
@@ -1759,21 +1759,34 @@ app.get('/seoul-branch', (c) => {
               </div>
 
               <div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">전문위원</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">이사진 및 전문위원</h2>
                 <div class="space-y-3">
-                  <div class="bg-blue-50 rounded-lg p-4">
-                    <p class="font-semibold text-gray-900">김대원 (진로/취업 컨설팅)</p>
-                    <p class="text-sm text-gray-600">한국기술교육대학교 박사과정 수료</p>
+                  <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+                    <p class="font-semibold text-gray-900">윤지원 (이사)</p>
+                    <p class="text-sm text-gray-600">대전 지역본부 대표</p>
+                  </div>
+                  <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+                    <p class="font-semibold text-gray-900">강은지 (이사)</p>
+                    <p class="text-sm text-gray-600">자기주도·학습설계 강사<br/>페이머스유 이미지메이킹센터 대표</p>
+                  </div>
+                  <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+                    <p class="font-semibold text-gray-900">박상미 (이사)</p>
+                  </div>
+                  <div class="bg-amber-50 rounded-lg p-4 border-l-4 border-amber-500">
+                    <p class="font-semibold text-gray-900">송영희 (감사)</p>
+                    <p class="text-sm text-gray-600">회계 및 운영 감사</p>
                   </div>
                   <div class="bg-blue-50 rounded-lg p-4">
-                    <p class="font-semibold text-gray-900">강은지 (자기주도학습)</p>
-                    <p class="text-sm text-gray-600">페이머스유 이미지메이킹센터 대표</p>
+                    <p class="font-semibold text-gray-900">정수일 (본부 전문위원)</p>
+                    <p class="text-sm text-gray-600">경영시스템, ESG, HR</p>
                   </div>
                   <div class="bg-blue-50 rounded-lg p-4">
-                    <p class="font-semibold text-gray-900">정수연 (취업지원)</p>
+                    <p class="font-semibold text-gray-900">김대원 (본부 전문위원)</p>
+                    <p class="text-sm text-gray-600">진로상담, 취업컨설팅</p>
                   </div>
                   <div class="bg-blue-50 rounded-lg p-4">
-                    <p class="font-semibold text-gray-900">강동현 (AI교육)</p>
+                    <p class="font-semibold text-gray-900">박남현 (본부 전문위원)</p>
+                    <p class="text-sm text-gray-600">서류·면접코칭, 취업특강</p>
                   </div>
                 </div>
               </div>
@@ -1836,6 +1849,10 @@ app.get('/daegu-branch', (c) => {
                   <div class="flex items-center space-x-2">
                     <i class="fas fa-university text-green-600"></i>
                     <p class="text-gray-700">계명대학교</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-ellipsis-h text-green-600"></i>
+                    <p class="text-gray-700 font-semibold">그 외 다수</p>
                   </div>
                 </div>
               </div>
@@ -1905,6 +1922,10 @@ app.get('/daejeon-branch', (c) => {
                   <div class="flex items-center space-x-2">
                     <i class="fas fa-building text-purple-600"></i>
                     <p class="text-gray-700">한국철도공사</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-ellipsis-h text-purple-600"></i>
+                    <p class="text-gray-700 font-semibold">그 외 다수</p>
                   </div>
                 </div>
               </div>
