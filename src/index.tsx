@@ -228,10 +228,10 @@ const Layout = (props: { children: any; title?: string }) => {
                         <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>서울지부
                       </a>
                       <a href="/daegu-branch" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>대구지부
+                        <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>대구 지역본부
                       </a>
                       <a href="/daejeon-branch" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        <i class="fas fa-map-marker-alt mr-2 text-yellow-500"></i>대전지부
+                        <i class="fas fa-map-marker-alt mr-2 text-yellow-500"></i>대전 지역본부
                       </a>
                     </div>
                   </div>
@@ -327,10 +327,10 @@ const Layout = (props: { children: any; title?: string }) => {
                     <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>서울지부
                   </a>
                   <a href="/daegu-branch" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100">
-                    <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>대구지부
+                    <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>대구 지역본부
                   </a>
                   <a href="/daejeon-branch" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100">
-                    <i class="fas fa-map-marker-alt mr-2 text-yellow-500"></i>대전지부
+                    <i class="fas fa-map-marker-alt mr-2 text-yellow-500"></i>대전 지역본부
                   </a>
                 </div>
 
@@ -985,33 +985,18 @@ app.get('/president', (c) => {
           </div>
 
           <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div class="md:flex">
-              {/* 대표 사진 영역 */}
-              <div class="md:w-2/5 bg-gradient-to-br from-blue-500 to-blue-600 p-12 flex flex-col items-center justify-center text-white">
-                <div class="w-48 h-48 bg-white/20 rounded-full flex items-center justify-center mb-6 backdrop-blur-sm">
-                  <i class="fas fa-user text-8xl text-white/80"></i>
+            <div class="flex flex-col">
+              {/* 대표 정보 영역 */}
+              <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-8 text-white text-center">
+                <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                  <i class="fas fa-user text-6xl text-white/80"></i>
                 </div>
                 <h2 class="text-3xl font-bold mb-2">최유미</h2>
-                <p class="text-xl mb-6">대표</p>
-                
-                {/* 학력 */}
-                <div class="w-full space-y-3 text-sm">
-                  <div class="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
-                    <p class="font-semibold mb-1">학력</p>
-                    <p class="text-white/90">대구대학교 대학원 석사</p>
-                    <p class="text-white/90">광운대학교 교육대학원 석사</p>
-                  </div>
-                  
-                  <div class="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
-                    <p class="font-semibold mb-1">주요 경력</p>
-                    <p class="text-white/90">한국미래인재교육협회 대표</p>
-                    <p class="text-white/90">전국 32개 대학 출강</p>
-                  </div>
-                </div>
+                <p class="text-xl">한국미래인재교육협회 대표</p>
               </div>
 
               {/* 인사말 내용 */}
-              <div class="md:w-3/5 p-8 md:p-12">
+              <div class="p-8 md:p-12">
                 <div class="prose prose-lg max-w-none">
                   <p class="text-gray-700 leading-relaxed mb-6">
                     안녕하십니까. 한국미래인재교육협회 대표 최유미입니다.
@@ -1087,64 +1072,68 @@ app.get('/organization', (c) => {
             <div class="w-1 h-12 bg-gray-300"></div>
           </div>
 
-          {/* 서울 본부 및 지부 */}
-          <div class="grid md:grid-cols-3 gap-8 mb-12">
-            {/* 서울 본부 */}
-            <div class="bg-white rounded-2xl shadow-lg p-8">
+          {/* 본부 전문위원 */}
+          <div class="flex justify-center mb-12">
+            <div class="bg-white rounded-2xl shadow-lg p-8 max-w-3xl w-full">
               <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i class="fas fa-building text-2xl text-blue-600"></i>
+                  <i class="fas fa-users text-2xl text-blue-600"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900">서울 본부</h3>
+                <h3 class="text-2xl font-bold text-gray-900">본부 전문위원</h3>
               </div>
               
-              <div class="space-y-4">
-                <div class="border-l-4 border-blue-500 pl-4">
-                  <p class="text-sm text-gray-500 mb-1">본부장</p>
-                  <p class="font-bold text-gray-900">김민수</p>
-                </div>
-
-                <div class="pt-4 border-t border-gray-200">
-                  <p class="text-sm font-bold text-gray-700 mb-3">전문위원</p>
-                  <div class="space-y-2">
-                    <div class="flex items-center space-x-2">
-                      <i class="fas fa-user-tie text-blue-500 text-sm"></i>
-                      <p class="text-gray-700">김대원 (진로/취업 컨설팅)</p>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <i class="fas fa-user-tie text-blue-500 text-sm"></i>
-                      <p class="text-gray-700">강은지 (자기주도학습)</p>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <i class="fas fa-user-tie text-blue-500 text-sm"></i>
-                      <p class="text-gray-700">정수연 (취업지원)</p>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <i class="fas fa-user-tie text-blue-500 text-sm"></i>
-                      <p class="text-gray-700">강동현 (AI교육)</p>
-                    </div>
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center p-4 bg-blue-50 rounded-xl">
+                  <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-user-tie text-blue-600"></i>
                   </div>
+                  <p class="font-bold text-gray-900 mb-1">정수일</p>
+                  <p class="text-sm text-gray-600">경영시스템<br/>ESG, HR</p>
+                </div>
+                
+                <div class="text-center p-4 bg-blue-50 rounded-xl">
+                  <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-user-tie text-blue-600"></i>
+                  </div>
+                  <p class="font-bold text-gray-900 mb-1">김대원</p>
+                  <p class="text-sm text-gray-600">진로상담<br/>취업컨설팅</p>
+                </div>
+                
+                <div class="text-center p-4 bg-blue-50 rounded-xl">
+                  <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-user-tie text-blue-600"></i>
+                  </div>
+                  <p class="font-bold text-gray-900 mb-1">박남현</p>
+                  <p class="text-sm text-gray-600">서류·면접코칭<br/>취업특강</p>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* 대구지부 */}
+          {/* 연결선 */}
+          <div class="flex justify-center mb-8">
+            <div class="w-1 h-12 bg-gray-300"></div>
+          </div>
+
+          {/* 지역본부 */}
+          <div class="grid md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
+            {/* 대구 지역본부 */}
             <div class="bg-white rounded-2xl shadow-lg p-8">
               <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <i class="fas fa-map-marker-alt text-2xl text-green-600"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900">대구지부</h3>
+                <h3 class="text-2xl font-bold text-gray-900">대구 지역본부</h3>
               </div>
               
               <div class="space-y-4">
                 <div class="border-l-4 border-green-500 pl-4">
-                  <p class="text-sm text-gray-500 mb-1">지부장</p>
-                  <p class="font-bold text-gray-900">최승호</p>
+                  <p class="text-sm text-gray-500 mb-1">대표</p>
+                  <p class="font-bold text-gray-900">김대원</p>
                 </div>
 
                 <div class="pt-4 border-t border-gray-200">
-                  <p class="text-sm font-bold text-gray-700 mb-3">담당 지역</p>
+                  <p class="text-sm font-bold text-gray-700 mb-3">담당 기관</p>
                   <div class="space-y-2 text-sm text-gray-600">
                     <p>• 경북대학교</p>
                     <p>• 영남대학교</p>
@@ -1155,23 +1144,23 @@ app.get('/organization', (c) => {
               </div>
             </div>
 
-            {/* 대전지부 */}
+            {/* 대전 지역본부 */}
             <div class="bg-white rounded-2xl shadow-lg p-8">
               <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <i class="fas fa-map-marker-alt text-2xl text-purple-600"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900">대전지부</h3>
+                <h3 class="text-2xl font-bold text-gray-900">대전 지역본부</h3>
               </div>
               
               <div class="space-y-4">
                 <div class="border-l-4 border-purple-500 pl-4">
-                  <p class="text-sm text-gray-500 mb-1">지부장</p>
-                  <p class="font-bold text-gray-900">윤재석</p>
+                  <p class="text-sm text-gray-500 mb-1">대표</p>
+                  <p class="font-bold text-gray-900">윤지원</p>
                 </div>
 
                 <div class="pt-4 border-t border-gray-200">
-                  <p class="text-sm font-bold text-gray-700 mb-3">담당 지역</p>
+                  <p class="text-sm font-bold text-gray-700 mb-3">담당 기관</p>
                   <div class="space-y-2 text-sm text-gray-600">
                     <p>• 한국기술교육대학교</p>
                     <p>• 배재대학교</p>
@@ -1856,27 +1845,27 @@ app.get('/seoul-branch', (c) => {
   )
 })
 
-// Daegu Branch page - 대구지부
+// Daegu Branch page - 대구 지역본부
 app.get('/daegu-branch', (c) => {
   return c.html(
-    <Layout title="대구지부 - 한국미래인재교육협회">
+    <Layout title="대구 지역본부 - 한국미래인재교육협회">
       <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대구지부</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대구 지역본부</h1>
             <p class="text-xl text-gray-600">영남권 교육 거점</p>
           </div>
 
           <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
             <div class="grid md:grid-cols-2 gap-8">
               <div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">지부 정보</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">본부 정보</h2>
                 <div class="space-y-4">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-user-tie text-green-600 text-xl mt-1"></i>
                     <div>
-                      <p class="font-semibold text-gray-900">지부장</p>
-                      <p class="text-gray-600">최승호</p>
+                      <p class="font-semibold text-gray-900">대표</p>
+                      <p class="text-gray-600">김대원</p>
                     </div>
                   </div>
                   <div class="flex items-start space-x-3">
@@ -1918,27 +1907,27 @@ app.get('/daegu-branch', (c) => {
   )
 })
 
-// Daejeon Branch page - 대전지부
+// Daejeon Branch page - 대전 지역본부
 app.get('/daejeon-branch', (c) => {
   return c.html(
-    <Layout title="대전지부 - 한국미래인재교육협회">
+    <Layout title="대전 지역본부 - 한국미래인재교육협회">
       <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대전지부</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대전 지역본부</h1>
             <p class="text-xl text-gray-600">충청권 교육 거점</p>
           </div>
 
           <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
             <div class="grid md:grid-cols-2 gap-8">
               <div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">지부 정보</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">본부 정보</h2>
                 <div class="space-y-4">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-user-tie text-purple-600 text-xl mt-1"></i>
                     <div>
-                      <p class="font-semibold text-gray-900">지부장</p>
-                      <p class="text-gray-600">윤재석</p>
+                      <p class="font-semibold text-gray-900">대표</p>
+                      <p class="text-gray-600">윤지원</p>
                     </div>
                   </div>
                   <div class="flex items-start space-x-3">
