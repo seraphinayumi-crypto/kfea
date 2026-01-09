@@ -1156,17 +1156,93 @@ app.get('/organization', (c) => {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-10">
             <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">조직도</h1>
-            <p class="text-base text-gray-600">한국미래인재교육협회 조직 구성</p>
+            <p class="text-base text-gray-600">한국미래인재교육협회 조직 구성 (정관 기준)</p>
           </div>
 
-          {/* 대표 */}
+          {/* 대표(이사장) */}
           <div class="flex justify-center mb-8">
             <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 text-center min-w-[280px]">
               <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-crown text-3xl"></i>
               </div>
-              <h2 class="text-2xl font-bold mb-2">대표</h2>
+              <h2 class="text-2xl font-bold mb-2">대표 (이사장)</h2>
               <p class="text-xl">최유미</p>
+            </div>
+          </div>
+
+          {/* 연결선 */}
+          <div class="flex justify-center mb-8">
+            <div class="w-1 h-12 bg-gray-300"></div>
+          </div>
+
+          {/* 이사 및 감사 */}
+          <div class="max-w-5xl mx-auto mb-8">
+            <div class="grid md:grid-cols-2 gap-6">
+              {/* 이사 */}
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="text-center mb-6">
+                  <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-users text-2xl text-purple-600"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-gray-900">이사</h3>
+                  <p class="text-sm text-gray-500 mt-2">정관 제8조: 2인 이상 10인 이하</p>
+                </div>
+                
+                <div class="space-y-3">
+                  <div class="text-center p-4 bg-purple-50 rounded-xl">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-user-tie text-purple-600"></i>
+                    </div>
+                    <p class="font-bold text-gray-900 mb-1">정수일</p>
+                    <p class="text-sm text-gray-600">경영시스템, ESG, HR</p>
+                  </div>
+                  
+                  <div class="text-center p-4 bg-purple-50 rounded-xl">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-user-tie text-purple-600"></i>
+                    </div>
+                    <p class="font-bold text-gray-900 mb-1">김대원</p>
+                    <p class="text-sm text-gray-600">진로상담, 취업컨설팅</p>
+                  </div>
+                  
+                  <div class="text-center p-4 bg-purple-50 rounded-xl">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-user-tie text-purple-600"></i>
+                    </div>
+                    <p class="font-bold text-gray-900 mb-1">박남현</p>
+                    <p class="text-sm text-gray-600">서류·면접코칭, 취업특강</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 감사 */}
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="text-center mb-6">
+                  <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-balance-scale text-2xl text-amber-600"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-gray-900">감사</h3>
+                  <p class="text-sm text-gray-500 mt-2">정관 제8조: 1인</p>
+                </div>
+                
+                <div class="space-y-3">
+                  <div class="text-center p-4 bg-amber-50 rounded-xl">
+                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-user-check text-amber-600"></i>
+                    </div>
+                    <p class="font-bold text-gray-900 mb-1">미정</p>
+                    <p class="text-sm text-gray-600">회계 및 운영 감사</p>
+                  </div>
+                  
+                  <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                      <i class="fas fa-info-circle text-blue-500 mr-1"></i>
+                      감사는 일반회계 및 운영에 대해 감사하며 부정 또는 부당한 점이 있을 경우 
+                      이사회에 시정을 요구합니다.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1180,9 +1256,10 @@ app.get('/organization', (c) => {
             <div class="bg-white rounded-2xl shadow-lg p-8 max-w-3xl w-full">
               <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i class="fas fa-users text-2xl text-blue-600"></i>
+                  <i class="fas fa-user-graduate text-2xl text-blue-600"></i>
                 </div>
                 <h3 class="text-2xl font-bold text-gray-900">본부 전문위원</h3>
+                <p class="text-sm text-gray-500 mt-2">각 분야별 전문 자문위원</p>
               </div>
               
               <div class="grid md:grid-cols-3 gap-6">
