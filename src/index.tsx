@@ -1193,9 +1193,25 @@ app.get('/organization', (c) => {
                     <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <i class="fas fa-user-tie text-purple-600"></i>
                     </div>
+                    <p class="font-bold text-gray-900 mb-1">윤지원</p>
+                    <p class="text-sm text-gray-600">대전 지역본부 대표</p>
+                  </div>
+                  
+                  <div class="text-center p-4 bg-purple-50 rounded-xl">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-user-tie text-purple-600"></i>
+                    </div>
                     <p class="font-bold text-gray-900 mb-1">강은지</p>
                     <p class="text-sm text-gray-600">자기주도·학습설계 강사</p>
                     <p class="text-xs text-gray-500 mt-1">페이머스유 이미지메이킹센터 대표</p>
+                  </div>
+                  
+                  <div class="text-center p-4 bg-purple-50 rounded-xl">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-user-tie text-purple-600"></i>
+                    </div>
+                    <p class="font-bold text-gray-900 mb-1">박상미</p>
+                    <p class="text-sm text-gray-600">이사</p>
                   </div>
                   
                   <div class="mt-6 p-4 bg-gray-50 rounded-lg">
@@ -1223,7 +1239,7 @@ app.get('/organization', (c) => {
                     <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <i class="fas fa-user-check text-amber-600"></i>
                     </div>
-                    <p class="font-bold text-gray-900 mb-1">미정</p>
+                    <p class="font-bold text-gray-900 mb-1">송영희</p>
                     <p class="text-sm text-gray-600">회계 및 운영 감사</p>
                   </div>
                   
