@@ -247,8 +247,8 @@ const Layout = (props: { children: any; title?: string }) => {
                       <a href="/boards/notice" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         <i class="fas fa-bullhorn mr-2 text-blue-700"></i>공지사항
                       </a>
-                      <a href="/boards/news" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        <i class="fas fa-newspaper mr-2 text-blue-700"></i>보도기사
+                      <a href="/boards/resources" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-folder-open mr-2 text-blue-700"></i>자료실
                       </a>
                       <a href="/boards/qna" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         <i class="fas fa-question-circle mr-2 text-blue-700"></i>Q&A
@@ -341,8 +341,8 @@ const Layout = (props: { children: any; title?: string }) => {
                   <a href="/boards/notice" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100">
                     <i class="fas fa-bullhorn mr-2"></i>공지사항
                   </a>
-                  <a href="/boards/news" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100">
-                    <i class="fas fa-newspaper mr-2"></i>보도기사
+                  <a href="/boards/resources" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100">
+                    <i class="fas fa-folder-open mr-2"></i>자료실
                   </a>
                   <a href="/boards/qna" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100">
                     <i class="fas fa-question-circle mr-2"></i>Q&A
@@ -402,7 +402,7 @@ const Layout = (props: { children: any; title?: string }) => {
                   <div class="space-y-2">
                     <a href="/about" class="block text-gray-400 hover:text-white transition-colors">협회 소개</a>
                     <a href="/programs" class="block text-gray-400 hover:text-white transition-colors">교육 프로그램</a>
-                    <a href="/activities" class="block text-gray-400 hover:text-white transition-colors">보도기사</a>
+                    <a href="/activities" class="block text-gray-400 hover:text-white transition-colors">활동소식</a>
                     <a href="/contact" class="block text-gray-400 hover:text-white transition-colors">문의하기</a>
                   </div>
                 </div>
@@ -1614,7 +1614,7 @@ app.get('/programs', (c) => {
   )
 })
 
-// Activities page - 보도기사
+// Activities page - 활동소식
 app.get('/activities', (c) => {
   // 모든 검색 결과를 날짜별로 정렬 (최신순)
   const newsArticles = [
@@ -1654,12 +1654,12 @@ app.get('/activities', (c) => {
   ].sort((a, b) => b.date.localeCompare(a.date)) // 최신순 정렬
 
   return c.html(
-    <Layout title="보도기사 - 한국미래인재교육협회">
+    <Layout title="활동소식 - 한국미래인재교육협회">
       <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-4">보도기사</h1>
-            <p class="text-base text-gray-600">한국강사신문에 소개된 협회 소식</p>
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">활동소식</h1>
+            <p class="text-base text-gray-600">한국강사신문에 소개된 협회 활동 소식</p>
           </div>
           
           <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8 rounded">
