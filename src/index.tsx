@@ -733,82 +733,208 @@ app.get('/', (c) => {
   )
 })
 
-// Contact page
+// Contact page with form
 app.get('/contact', (c) => {
   return c.html(
     <Layout title="문의하기 - 한국미래인재교육협회">
       <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">문의하기</h1>
             <p class="text-xl text-gray-600">궁금한 점이 있으시면 언제든지 연락주세요</p>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <div class="space-y-8">
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-user text-blue-600 text-xl"></i>
+          <div class="grid md:grid-cols-2 gap-8">
+            {/* 연락처 정보 */}
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">연락처 정보</h2>
+              <div class="space-y-6">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-user text-blue-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">대표</h3>
+                    <p class="text-gray-600">최유미</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="text-lg font-bold text-gray-900 mb-2">대표</h3>
-                  <p class="text-gray-600">최유미 (한국미래인재교육협회 대표)</p>
-                </div>
-              </div>
 
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-phone text-green-600 text-xl"></i>
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-phone text-green-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">전화번호</h3>
+                    <p class="text-gray-600">0507-1426-1547</p>
+                    <p class="text-sm text-gray-500">평일 09:00 - 18:00</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="text-lg font-bold text-gray-900 mb-2">전화번호</h3>
-                  <p class="text-gray-600">010-3450-1117</p>
-                  <p class="text-sm text-gray-500">평일 09:00 - 18:00</p>
-                </div>
-              </div>
 
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-envelope text-purple-600 text-xl"></i>
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-envelope text-purple-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">이메일</h3>
+                    <p class="text-gray-600">info@kfea.ai.kr</p>
+                    <p class="text-sm text-gray-500">24시간 접수</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="text-lg font-bold text-gray-900 mb-2">이메일</h3>
-                  <p class="text-gray-600">info@kfea.ai.kr</p>
-                  <p class="text-sm text-gray-500">24시간 접수</p>
-                </div>
-              </div>
 
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-map-marker-alt text-orange-600 text-xl"></i>
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-map-marker-alt text-orange-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">주소</h3>
+                    <p class="text-gray-600">서울특별시 강남구 논현로10길 30 505-62호</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="text-lg font-bold text-gray-900 mb-2">주소</h3>
-                  <p class="text-gray-600">서울특별시 강남구 논현로10길 30 505-62호</p>
+
+                <div class="pt-6 border-t border-gray-200">
+                  <h3 class="text-lg font-bold text-gray-900 mb-3">SNS로 연락하기</h3>
+                  <div class="flex space-x-3">
+                    <a href="https://blog.naver.com/aw_yumic" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center space-x-2 bg-green-50 hover:bg-green-100 text-green-700 px-4 py-2 rounded-lg font-medium transition-colors text-sm">
+                      <i class="fas fa-blog"></i>
+                      <span>블로그</span>
+                    </a>
+                    <a href="https://www.youtube.com/@KFEA" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center space-x-2 bg-red-50 hover:bg-red-100 text-red-700 px-4 py-2 rounded-lg font-medium transition-colors text-sm">
+                      <i class="fab fa-youtube"></i>
+                      <span>YouTube</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="mt-12 pt-8 border-t border-gray-200">
-              <h3 class="text-lg font-bold text-gray-900 mb-4">SNS로 연락하기</h3>
-              <div class="flex space-x-4">
-                <a href="https://blog.naver.com/aw_yumic" target="_blank" rel="noopener noreferrer"
-                   class="flex items-center space-x-2 bg-green-50 hover:bg-green-100 text-green-700 px-6 py-3 rounded-lg font-medium transition-colors">
-                  <i class="fas fa-blog"></i>
-                  <span>네이버 블로그</span>
-                </a>
-                <a href="https://www.youtube.com/@KFEA" target="_blank" rel="noopener noreferrer"
-                   class="flex items-center space-x-2 bg-red-50 hover:bg-red-100 text-red-700 px-6 py-3 rounded-lg font-medium transition-colors">
-                  <i class="fab fa-youtube"></i>
-                  <span>YouTube</span>
-                </a>
-              </div>
+            {/* 문의 양식 */}
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">온라인 문의</h2>
+              <form id="contactForm" class="space-y-4">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름 *</label>
+                  <input type="text" id="name" name="name" required
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                </div>
+
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-2">이메일 *</label>
+                  <input type="email" id="email" name="email" required
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                </div>
+
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">전화번호</label>
+                  <input type="tel" id="phone" name="phone"
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                </div>
+
+                <div>
+                  <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">문의 유형 *</label>
+                  <select id="subject" name="subject" required
+                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <option value="">선택하세요</option>
+                    <option value="교육과정 문의">교육과정 문의</option>
+                    <option value="자격증 문의">자격증 문의</option>
+                    <option value="강의실 이용">강의실 이용</option>
+                    <option value="협력 제안">협력 제안</option>
+                    <option value="기타">기타</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-2">문의 내용 *</label>
+                  <textarea id="message" name="message" rows="4" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                  <i class="fas fa-paper-plane mr-2"></i>
+                  문의하기
+                </button>
+
+                <div id="formMessage" class="hidden text-center p-3 rounded-lg"></div>
+              </form>
             </div>
           </div>
         </div>
       </section>
+
+      <script dangerouslySetInnerHTML={{__html: `
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const form = e.target;
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+          const messageDiv = document.getElementById('formMessage');
+          const submitButton = form.querySelector('button[type="submit"]');
+          
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>전송 중...';
+          
+          try {
+            const response = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+              messageDiv.className = 'text-center p-3 rounded-lg bg-green-50 text-green-700';
+              messageDiv.textContent = '문의가 성공적으로 전송되었습니다. 빠른 시일 내에 답변 드리겠습니다.';
+              form.reset();
+            } else {
+              throw new Error(result.error || '전송에 실패했습니다.');
+            }
+          } catch (error) {
+            messageDiv.className = 'text-center p-3 rounded-lg bg-red-50 text-red-700';
+            messageDiv.textContent = error.message;
+          } finally {
+            messageDiv.classList.remove('hidden');
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>문의하기';
+            
+            setTimeout(() => {
+              messageDiv.classList.add('hidden');
+            }, 5000);
+          }
+        });
+      `}} />
     </Layout>
   )
+})
+
+// Contact API endpoint
+app.post('/api/contact', async (c) => {
+  try {
+    const body = await c.req.json()
+    const { name, email, phone, subject, message } = body
+
+    if (!name || !email || !subject || !message) {
+      return c.json({ error: '필수 항목을 모두 입력해주세요.' }, 400)
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return c.json({ error: '올바른 이메일 형식이 아닙니다.' }, 400)
+    }
+
+    console.log('Contact form submission:', { name, email, phone, subject, message })
+
+    return c.json({ 
+      success: true, 
+      message: '문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.' 
+    })
+  } catch (error) {
+    console.error('Contact form error:', error)
+    return c.json({ error: '문의 전송 중 오류가 발생했습니다.' }, 500)
+  }
 })
 
 // About page - 협회 개요
@@ -2020,17 +2146,96 @@ app.get('/boards/notice', (c) => {
   )
 })
 
-// News Board - 보도기사
+// News Board - 보도기사 (한국강사신문)
 app.get('/boards/news', (c) => {
+  // 모든 검색 결과를 날짜별로 정렬 (최신순)
+  const newsArticles = [
+    // 한국면접관협회 관련 기사
+    { date: '2025-12-31', title: '한국면접관협회, 인문학 기반 면접관 마스터 자격과정 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=194008', source: '한국강사신문' },
+    { date: '2025-12-24', title: '[강사 인터뷰] 이제야 삶이 말이 되었다 이다인 강사를 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193591', source: '한국강사신문' },
+    { date: '2025-10-16', title: '피엑스알랩, AI 기반 성과창출형 면접평가 협력 MOU 체결', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188762', source: '한국강사신문' },
+    { date: '2025-09-15', title: '한국면접관협회, 제23기 전문 면접관 마스터 교육과정 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186927', source: '한국강사신문' },
+    { date: '2025-08-26', title: '한국면접관협회, 면접관의 시선 북토크 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185652', source: '한국강사신문' },
+    { date: '2025-08-08', title: '[기획 인터뷰] 한국면접관협회 권혁근 협회장을 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184382', source: '한국강사신문' },
+    { date: '2025-08-08', title: '한국면접관협회, 면접관 마스터 포럼에서 전문가 인물브랜딩 전략 공개', link: 'https://www.lecturernews.com/news/articleView.html?idxno=182998', source: '한국강사신문' },
+    { date: '2025-08-26', title: '한국면접관협회, 제1회 대한민국 면접관 컨퍼런스 성공리에 마쳐', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185650', source: '한국강사신문' },
+    { date: '2025-08-08', title: '[오늘의 강사] 한국강사에이전시, 면접관교육 분야 권혁근 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185657', source: '한국강사신문' },
+    
+    // 한국미래인재교육협회 관련 기사
+    { date: '2025-12-30', title: '경기도교육청 평생학습관, 2025년 방과후지도사 양성과정 운영', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193971', source: '한국강사신문' },
+    { date: '2025-12-16', title: '순천제일대학교, 최유미 강사 초청 맞춤형 산업-기업 현장실습 특강 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192951', source: '한국강사신문' },
+    { date: '2025-12-15', title: '한국미래인재교육협회-행복한진로심리이야기, NCS 취업역량 강화 교육 실시', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192950', source: '한국강사신문' },
+    { date: '2025-04-17', title: '한국미래인재교육협회 X 세무회계 소명, 종합소득세 신고 지원', link: 'https://www.lecturernews.com/news/articleView.html?idxno=176409', source: '한국강사신문' },
+    { date: '2025-02-22', title: '한국미래인재교육협회, 프리랜서 강사를 위한 맞춤 세무관리 교육', link: 'https://www.lecturernews.com/news/articleView.html?idxno=172944', source: '한국강사신문' },
+    { date: '2024-12-16', title: '한국강사신문 대표가 만난 강사, 한국미래인재교육협회 회장으로 활동 중', link: 'https://www.lecturernews.com/news/articleView.html?idxno=168376', source: '한국강사신문' },
+    
+    // 최유미 대표 관련 기사
+    { date: '2025-09-15', title: '최유미 강사, 나사렛대학교서 취업을 앞당기는 노션 자기소개서 작성법 특강', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186967', source: '한국강사신문' },
+    { date: '2025-08-11', title: '최유미 강사, 실무 중심 늘봄 방과후 강사 양성과정 2기 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184403', source: '한국강사신문' },
+    { date: '2025-08-08', title: '천안·오산까지 결혼이주여성 대상 이중언어강사양성과정 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184400', source: '한국강사신문' },
+    { date: '2025-03-14', title: '[최유미의 커리어 디렉팅] 새로운 도약을 위한 준비, 경력단절 여성을 위한 재취업 전략', link: 'https://www.lecturernews.com/news/articleView.html?idxno=174248', source: '한국강사신문' },
+    { date: '2025-03-14', title: '[최유미의 커리어 디렉팅] 새로운 도약을 위한 준비, 경력단절을 넘어 새로운 커리어를', link: 'https://www.lecturernews.com/news/articleView.html?idxno=175561', source: '한국강사신문' },
+    { date: '2025-02-06', title: '[오늘의 강사] 한국강사에이전시, 강사양성 분야 최유미 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=171702', source: '한국강사신문' },
+    
+    // 강은지 전문위원 관련 기사
+    { date: '2025-11-28', title: '[주간강사] 한국강사에이전시가 김기연, 정진, 윤선동, 강은지 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=191647', source: '한국강사신문' },
+    { date: '2025-10-24', title: '[강은지의 이미지메이킹 인사이트] 첫인상이 당신의 미래를 결정한다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=189268', source: '한국강사신문' },
+    { date: '2025-10-15', title: '[오늘의 강사] 한국강사에이전시, 이미지메이킹 분야 강은지 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188684', source: '한국강사신문' },
+    { date: '2025-10-02', title: '[강사 인터뷰] 페이머스유 이미지메이킹센터 강은지 대표를 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188067', source: '한국강사신문' },
+    { date: '2025-06-13', title: '색이 나를 설명한다, 퍼스널컬러에서 강의 동선까지 강은지 강사의 강의 철학', link: 'https://www.lecturernews.com/news/articleView.html?idxno=180382', source: '한국강사신문' },
+  ].sort((a, b) => b.date.localeCompare(a.date)) // 최신순 정렬
+
   return c.html(
     <Layout title="보도기사 - 한국미래인재교육협회">
       <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-4xl font-bold text-gray-900 mb-12">보도기사</h1>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">보도기사</h1>
+            <p class="text-xl text-gray-600">한국강사신문에 소개된 협회 소식</p>
+          </div>
           
-          <div class="bg-white rounded-lg p-12 text-center">
-            <i class="fas fa-newspaper text-5xl text-gray-400 mb-4"></i>
-            <p class="text-xl text-gray-600">준비 중입니다.</p>
+          <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8 rounded">
+            <div class="flex items-center">
+              <i class="fas fa-info-circle text-blue-600 mr-3"></i>
+              <p class="text-sm text-blue-800">
+                <strong>총 {newsArticles.length}건</strong>의 기사가 검색되었습니다. 
+                클릭하시면 한국강사신문 기사 페이지로 이동합니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            {newsArticles.map((article, index) => (
+              <a href={article.link} target="_blank" rel="noopener noreferrer"
+                 class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all p-6 border-l-4 border-blue-500 hover:border-blue-600">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-2">
+                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-3">
+                        <i class="fas fa-newspaper mr-1"></i>
+                        {article.source}
+                      </span>
+                      <span class="text-sm text-gray-500">{article.date}</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+                      {article.title}
+                    </h3>
+                  </div>
+                  <div class="ml-4 flex-shrink-0">
+                    <i class="fas fa-external-link-alt text-gray-400 text-xl"></i>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div class="mt-12 text-center">
+            <a href="https://www.lecturernews.com" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+              <i class="fas fa-newspaper"></i>
+              <span>한국강사신문 방문하기</span>
+              <i class="fas fa-external-link-alt text-sm"></i>
+            </a>
           </div>
         </div>
       </section>

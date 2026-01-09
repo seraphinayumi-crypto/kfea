@@ -1,0 +1,203 @@
+// Contact page with form
+app.get('/contact', (c) => {
+  return c.html(
+    <Layout title="문의하기 - 한국미래인재교육협회">
+      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">문의하기</h1>
+            <p class="text-xl text-gray-600">궁금한 점이 있으시면 언제든지 연락주세요</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            {/* 연락처 정보 */}
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">연락처 정보</h2>
+              <div class="space-y-6">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-user text-blue-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">대표</h3>
+                    <p class="text-gray-600">최유미</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-phone text-green-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">전화번호</h3>
+                    <p class="text-gray-600">0507-1426-1547</p>
+                    <p class="text-sm text-gray-500">평일 09:00 - 18:00</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-envelope text-purple-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">이메일</h3>
+                    <p class="text-gray-600">info@kfea.ai.kr</p>
+                    <p class="text-sm text-gray-500">24시간 접수</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-map-marker-alt text-orange-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">주소</h3>
+                    <p class="text-gray-600">서울특별시 강남구 논현로10길 30 505-62호</p>
+                  </div>
+                </div>
+
+                <div class="pt-6 border-t border-gray-200">
+                  <h3 class="text-lg font-bold text-gray-900 mb-3">SNS로 연락하기</h3>
+                  <div class="flex space-x-3">
+                    <a href="https://blog.naver.com/aw_yumic" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center space-x-2 bg-green-50 hover:bg-green-100 text-green-700 px-4 py-2 rounded-lg font-medium transition-colors text-sm">
+                      <i class="fas fa-blog"></i>
+                      <span>블로그</span>
+                    </a>
+                    <a href="https://www.youtube.com/@KFEA" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center space-x-2 bg-red-50 hover:bg-red-100 text-red-700 px-4 py-2 rounded-lg font-medium transition-colors text-sm">
+                      <i class="fab fa-youtube"></i>
+                      <span>YouTube</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 문의 양식 */}
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">온라인 문의</h2>
+              <form id="contactForm" class="space-y-4">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름 *</label>
+                  <input type="text" id="name" name="name" required
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                </div>
+
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-2">이메일 *</label>
+                  <input type="email" id="email" name="email" required
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                </div>
+
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">전화번호</label>
+                  <input type="tel" id="phone" name="phone"
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                </div>
+
+                <div>
+                  <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">문의 유형 *</label>
+                  <select id="subject" name="subject" required
+                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <option value="">선택하세요</option>
+                    <option value="교육과정 문의">교육과정 문의</option>
+                    <option value="자격증 문의">자격증 문의</option>
+                    <option value="강의실 이용">강의실 이용</option>
+                    <option value="협력 제안">협력 제안</option>
+                    <option value="기타">기타</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-2">문의 내용 *</label>
+                  <textarea id="message" name="message" rows="4" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                  <i class="fas fa-paper-plane mr-2"></i>
+                  문의하기
+                </button>
+
+                <div id="formMessage" class="hidden text-center p-3 rounded-lg"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script dangerouslySetInnerHTML={{__html: `
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const form = e.target;
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+          const messageDiv = document.getElementById('formMessage');
+          const submitButton = form.querySelector('button[type="submit"]');
+          
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>전송 중...';
+          
+          try {
+            const response = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+              messageDiv.className = 'text-center p-3 rounded-lg bg-green-50 text-green-700';
+              messageDiv.textContent = '문의가 성공적으로 전송되었습니다. 빠른 시일 내에 답변 드리겠습니다.';
+              form.reset();
+            } else {
+              throw new Error(result.error || '전송에 실패했습니다.');
+            }
+          } catch (error) {
+            messageDiv.className = 'text-center p-3 rounded-lg bg-red-50 text-red-700';
+            messageDiv.textContent = error.message;
+          } finally {
+            messageDiv.classList.remove('hidden');
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>문의하기';
+            
+            setTimeout(() => {
+              messageDiv.classList.add('hidden');
+            }, 5000);
+          }
+        });
+      `}} />
+    </Layout>
+  )
+})
+
+// Contact API endpoint
+app.post('/api/contact', async (c) => {
+  try {
+    const body = await c.req.json()
+    const { name, email, phone, subject, message } = body
+
+    if (!name || !email || !subject || !message) {
+      return c.json({ error: '필수 항목을 모두 입력해주세요.' }, 400)
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return c.json({ error: '올바른 이메일 형식이 아닙니다.' }, 400)
+    }
+
+    console.log('Contact form submission:', { name, email, phone, subject, message })
+
+    return c.json({ 
+      success: true, 
+      message: '문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.' 
+    })
+  } catch (error) {
+    console.error('Contact form error:', error)
+    return c.json({ error: '문의 전송 중 오류가 발생했습니다.' }, 500)
+  }
+})
