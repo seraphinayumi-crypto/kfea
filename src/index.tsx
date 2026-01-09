@@ -418,7 +418,7 @@ const Layout = (props: { children: any; title?: string }) => {
                        class="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center transition-colors">
                       <i class="fab fa-youtube text-lg"></i>
                     </a>
-                    <a href="https://www.instagram.com/seraphina_ym" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.instagram.com/edu_awesome.wave/" target="_blank" rel="noopener noreferrer"
                        class="w-10 h-10 bg-pink-600 hover:bg-pink-700 rounded-lg flex items-center justify-center transition-colors">
                       <i class="fab fa-instagram text-lg"></i>
                     </a>
@@ -822,7 +822,7 @@ app.get('/contact', (c) => {
                   <i class="fas fa-blog"></i>
                   <span>네이버 블로그</span>
                 </a>
-                <a href="https://www.instagram.com/seraphina_ym" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/edu_awesome.wave/" target="_blank" rel="noopener noreferrer"
                    class="flex items-center space-x-2 bg-pink-50 hover:bg-pink-100 text-pink-700 px-6 py-3 rounded-lg font-medium transition-colors">
                   <i class="fab fa-instagram"></i>
                   <span>인스타그램</span>
@@ -1181,6 +1181,13 @@ app.get('/organization', (c) => {
                     <p>• 배재대학교</p>
                     <p>• 나사렛대학교</p>
                     <p>• 한국철도공사</p>
+                  </div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-200">
+                  <p class="text-sm font-bold text-gray-700 mb-3">주소</p>
+                  <div class="text-sm text-gray-600">
+                    <p>대전광역시 천동로 686</p>
                   </div>
                 </div>
               </div>
