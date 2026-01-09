@@ -141,7 +141,7 @@ const Layout = (props: { children: any; title?: string }) => {
           `
         }} />
       </head>
-      <body class="min-h-screen bg-gray-50">
+      <body class="min-h-[400px] bg-gray-50">
         <div>
           {/* Header with improved navigation spacing */}
           <header class="bg-white/80 backdrop-blur-lg shadow-sm border-b border-gray-200/50 sticky top-0 z-50">
@@ -156,7 +156,7 @@ const Layout = (props: { children: any; title?: string }) => {
                       class="h-12 w-auto object-contain"
                     />
                     <div>
-                      <div class="text-lg font-bold text-gray-900 whitespace-nowrap">한국미래인재교육협회</div>
+                      <div class="text-base font-bold text-gray-900 whitespace-nowrap">한국미래인재교육협회</div>
                       <div class="text-xs text-gray-500 whitespace-nowrap">Korea Future Education Association</div>
                     </div>
                   </a>
@@ -371,9 +371,8 @@ const Layout = (props: { children: any; title?: string }) => {
           <main>{props.children}</main>
           
           {/* Footer */}
-          <footer class="bg-gray-900 text-white py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="grid md:grid-cols-3 gap-8">
+          <footer class="bg-gray-900 text-white py-8"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="grid md:grid-cols-3 gap-6">
                 {/* 협회 정보 */}
                 <div>
                   <h3 class="text-xl font-bold mb-4">한국미래인재교육협회</h3>
@@ -553,32 +552,31 @@ app.get('/', (c) => {
   return c.html(
     <Layout>
       {/* Hero Section */}
-      <section class="relative min-h-[700px] md:min-h-[800px] overflow-hidden bg-gradient-to-br from-orange-100 via-teal-100 to-blue-100">
+      <section class="relative min-h-[500px] md:min-h-[450px] overflow-hidden bg-gradient-to-br from-orange-100 via-teal-100 to-blue-100">
         <div class="absolute inset-0 flex items-center justify-center">
           <img 
             src="https://www.genspark.ai/api/files/s/F1FQTlAq?cache_control=3600" 
             alt="한국미래인재교육협회" 
-            class="w-full h-full object-cover"
-            loading="eager"
+            class="w-full h-full object-cover" loading="eager"
             fetchpriority="high"
           />
         </div>
       </section>
 
       {/* Programs Section */}
-      <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+      <section class="py-10 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
+          <div class="text-center mb-8">
             <div class="inline-block mb-4">
               <span class="bg-blue-100 text-blue-800 px-6 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider">
                 Our Programs
               </span>
             </div>
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">교육 프로그램</h2>
+            <h2 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">교육 프로그램</h2>
             <p class="text-lg text-gray-600">다양한 분야의 전문 교육과정을 만나보세요</p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <a href="/programs" class="group bg-white rounded-2xl p-10 border-2 border-gray-200 hover:border-blue-500 transition-all duration-300 hover:shadow-2xl">
               <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <i class="fas fa-book-open text-white text-3xl"></i>
@@ -607,11 +605,11 @@ app.get('/', (c) => {
       </section>
 
       {/* Notices Section */}
-      <section class="py-20 bg-slate-50">
+      <section class="py-12 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between items-center mb-12">
+          <div class="flex justify-between items-center mb-8">
             <div>
-              <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">공지사항</h2>
+              <h2 class="text-3xl md:text-3xl font-bold text-gray-900 mb-2">공지사항</h2>
               <p class="text-gray-600">최신 소식을 확인하세요</p>
             </div>
             <a href="/notice" class="inline-flex items-center bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
@@ -620,7 +618,7 @@ app.get('/', (c) => {
             </a>
           </div>
 
-          <div class="grid md:grid-cols-3 gap-8">
+          <div class="grid md:grid-cols-3 gap-6">
             <div class="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-lg">
               <div class="flex items-center mb-4">
                 <span class="bg-red-600 text-white px-4 py-1.5 text-xs font-semibold rounded-lg mr-3">중요</span>
@@ -658,11 +656,11 @@ app.get('/', (c) => {
       </section>
 
       {/* Partner Organizations Section - 32 institutions */}
-      <section class="py-16 bg-gray-100">
+      <section class="py-10 bg-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold mb-4">주요 출강 및 협력 기관</h2>
-            <p class="text-xl text-gray-600">신뢰할 수 있는 기관들과 함께합니다</p>
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold mb-4">주요 출강 및 협력 기관</h2>
+            <p class="text-base text-gray-600">신뢰할 수 있는 기관들과 함께합니다</p>
           </div>
 
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 items-center">
@@ -684,28 +682,28 @@ app.get('/', (c) => {
       </section>
 
       {/* Statistics Section */}
-      <section class="py-20 bg-blue-900 text-white">
+      <section class="py-12 bg-blue-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">협회 통계 및 성과</h2>
+          <div class="text-center mb-8">
+            <h2 class="text-3xl md:text-3xl font-bold mb-4">협회 통계 및 성과</h2>
             <p class="text-xl text-blue-100">숫자로 보는 한국미래인재교육협회</p>
           </div>
 
-          <div class="grid md:grid-cols-4 gap-8">
+          <div class="grid md:grid-cols-4 gap-6">
             <div class="text-center">
-              <div class="text-5xl font-bold mb-2">32+</div>
+              <div class="text-3xl font-bold mb-2">32+</div>
               <div class="text-xl text-blue-100">협력 기관</div>
             </div>
             <div class="text-center">
-              <div class="text-5xl font-bold mb-2">6</div>
+              <div class="text-3xl font-bold mb-2">6</div>
               <div class="text-xl text-blue-100">민간자격증</div>
             </div>
             <div class="text-center">
-              <div class="text-5xl font-bold mb-2">100+</div>
+              <div class="text-3xl font-bold mb-2">100+</div>
               <div class="text-xl text-blue-100">강의 진행</div>
             </div>
             <div class="text-center">
-              <div class="text-5xl font-bold mb-2">500+</div>
+              <div class="text-3xl font-bold mb-2">500+</div>
               <div class="text-xl text-blue-100">수료생</div>
             </div>
           </div>
@@ -713,9 +711,9 @@ app.get('/', (c) => {
       </section>
 
       {/* CTA Section */}
-      <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <section class="py-12 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">지금 시작하세요</h2>
+          <h2 class="text-3xl md:text-3xl font-bold mb-6">지금 시작하세요</h2>
           <p class="text-xl mb-10 text-blue-100">
             한국미래인재교육협회와 함께 미래를 준비하는 전문가가 되어보세요
           </p>
@@ -737,14 +735,14 @@ app.get('/', (c) => {
 app.get('/contact', (c) => {
   return c.html(
     <Layout title="문의하기 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">문의하기</h1>
-            <p class="text-xl text-gray-600">궁금한 점이 있으시면 언제든지 연락주세요</p>
+          <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">문의하기</h1>
+            <p class="text-base text-gray-600">궁금한 점이 있으시면 언제든지 연락주세요</p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-8">
+          <div class="grid md:grid-cols-2 gap-6">
             {/* 연락처 정보 */}
             <div class="bg-white rounded-2xl shadow-xl p-8">
               <h2 class="text-2xl font-bold text-gray-900 mb-6">연락처 정보</h2>
@@ -754,7 +752,7 @@ app.get('/contact', (c) => {
                     <i class="fas fa-user text-blue-600 text-xl"></i>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">대표</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-1">대표</h3>
                     <p class="text-gray-600">최유미</p>
                   </div>
                 </div>
@@ -764,7 +762,7 @@ app.get('/contact', (c) => {
                     <i class="fas fa-phone text-green-600 text-xl"></i>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">전화번호</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-1">전화번호</h3>
                     <p class="text-gray-600">0507-1426-1547</p>
                     <p class="text-sm text-gray-500">평일 09:00 - 18:00</p>
                   </div>
@@ -775,7 +773,7 @@ app.get('/contact', (c) => {
                     <i class="fas fa-envelope text-purple-600 text-xl"></i>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">이메일</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-1">이메일</h3>
                     <p class="text-gray-600">info@kfea.ai.kr</p>
                     <p class="text-sm text-gray-500">24시간 접수</p>
                   </div>
@@ -786,13 +784,13 @@ app.get('/contact', (c) => {
                     <i class="fas fa-map-marker-alt text-orange-600 text-xl"></i>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">주소</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-1">주소</h3>
                     <p class="text-gray-600">서울특별시 강남구 논현로10길 30 505-62호</p>
                   </div>
                 </div>
 
                 <div class="pt-6 border-t border-gray-200">
-                  <h3 class="text-lg font-bold text-gray-900 mb-3">SNS로 연락하기</h3>
+                  <h3 class="text-base font-bold text-gray-900 mb-3">SNS로 연락하기</h3>
                   <div class="flex space-x-3">
                     <a href="https://blog.naver.com/aw_yumic" target="_blank" rel="noopener noreferrer"
                        class="flex items-center space-x-2 bg-green-50 hover:bg-green-100 text-green-700 px-4 py-2 rounded-lg font-medium transition-colors text-sm">
@@ -812,7 +810,7 @@ app.get('/contact', (c) => {
             {/* 문의 양식 */}
             <div class="bg-white rounded-2xl shadow-xl p-8">
               <h2 class="text-2xl font-bold text-gray-900 mb-6">온라인 문의</h2>
-              <form id="contactForm" class="space-y-4">
+              <form id="contactForm" class="space-y-3">
                 <div>
                   <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름 *</label>
                   <input type="text" id="name" name="name" required
@@ -941,17 +939,17 @@ app.post('/api/contact', async (c) => {
 app.get('/about', (c) => {
   return c.html(
     <Layout title="협회 개요 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">협회 개요</h1>
-            <p class="text-xl text-gray-600">미래를 준비하는 인재양성을 위한 전문 교육기관</p>
+          <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">협회 개요</h1>
+            <p class="text-base text-gray-600">미래를 준비하는 인재양성을 위한 전문 교육기관</p>
           </div>
 
-          <div class="space-y-12">
+          <div class="space-y-8">
             {/* 설립 목적 */}
-            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+              <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center">
                 <i class="fas fa-lightbulb text-amber-500 mr-4"></i>
                 설립 목적
               </h2>
@@ -964,7 +962,7 @@ app.get('/about', (c) => {
             </div>
 
             {/* 비전과 미션 */}
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-6">
               <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg p-8 md:p-10 text-white">
                 <div class="flex items-center mb-6">
                   <i class="fas fa-eye text-4xl mr-4"></i>
@@ -991,9 +989,9 @@ app.get('/about', (c) => {
             </div>
 
             {/* 핵심 가치 */}
-            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
               <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">핵심 가치</h2>
-              <div class="grid md:grid-cols-3 gap-8">
+              <div class="grid md:grid-cols-3 gap-6">
                 <div class="text-center">
                   <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-rocket text-3xl text-blue-600"></i>
@@ -1027,7 +1025,7 @@ app.get('/about', (c) => {
             </div>
 
             {/* 주요 사업 */}
-            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
               <h2 class="text-3xl font-bold text-gray-900 mb-8">주요 사업</h2>
               <div class="grid md:grid-cols-2 gap-6">
                 <div class="flex items-start space-x-4">
@@ -1035,7 +1033,7 @@ app.get('/about', (c) => {
                     <i class="fas fa-check text-white"></i>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">늘봄방과후 전문강사 양성</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-2">늘봄방과후 전문강사 양성</h3>
                     <p class="text-gray-600">초등학교 방과후 과정 전문 강사 교육</p>
                   </div>
                 </div>
@@ -1045,7 +1043,7 @@ app.get('/about', (c) => {
                     <i class="fas fa-check text-white"></i>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">AI 활용 교육</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-2">AI 활용 교육</h3>
                     <p class="text-gray-600">자기소개서, 면접, 교안 제작 등 실무 AI 교육</p>
                   </div>
                 </div>
@@ -1055,7 +1053,7 @@ app.get('/about', (c) => {
                     <i class="fas fa-check text-white"></i>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">취업 지원 프로그램</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-2">취업 지원 프로그램</h3>
                     <p class="text-gray-600">PSAT, NCS, GSAT 등 공기업 취업 준비</p>
                   </div>
                 </div>
@@ -1065,7 +1063,7 @@ app.get('/about', (c) => {
                     <i class="fas fa-check text-white"></i>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">강사 양성 과정</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-2">강사 양성 과정</h3>
                     <p class="text-gray-600">전문 강사로 성장할 수 있는 체계적 교육</p>
                   </div>
                 </div>
@@ -1082,11 +1080,11 @@ app.get('/about', (c) => {
 app.get('/president', (c) => {
   return c.html(
     <Layout title="대표 인사말 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대표 인사말</h1>
-            <p class="text-xl text-gray-600">한국미래인재교육협회를 방문해 주셔서 감사합니다</p>
+          <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">대표 인사말</h1>
+            <p class="text-base text-gray-600">한국미래인재교육협회를 방문해 주셔서 감사합니다</p>
           </div>
 
           <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -1094,14 +1092,14 @@ app.get('/president', (c) => {
               {/* 대표 정보 영역 */}
               <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-8 text-white text-center">
                 <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
-                  <i class="fas fa-user text-6xl text-white/80"></i>
+                  <i class="fas fa-user text-5xl text-white/80"></i>
                 </div>
                 <h2 class="text-3xl font-bold mb-2">최유미</h2>
                 <p class="text-xl">한국미래인재교육협회 대표</p>
               </div>
 
               {/* 인사말 내용 */}
-              <div class="p-8 md:p-12">
+              <div class="p-6 md:p-8">
                 <div class="prose prose-lg max-w-none">
                   <p class="text-gray-700 leading-relaxed mb-6">
                     안녕하십니까. 한국미래인재교육협회 대표 최유미입니다.
@@ -1154,15 +1152,15 @@ app.get('/president', (c) => {
 app.get('/organization', (c) => {
   return c.html(
     <Layout title="조직도 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">조직도</h1>
-            <p class="text-xl text-gray-600">한국미래인재교육협회 조직 구성</p>
+          <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">조직도</h1>
+            <p class="text-base text-gray-600">한국미래인재교육협회 조직 구성</p>
           </div>
 
           {/* 대표 */}
-          <div class="flex justify-center mb-12">
+          <div class="flex justify-center mb-8">
             <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 text-center min-w-[280px]">
               <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-crown text-3xl"></i>
@@ -1178,7 +1176,7 @@ app.get('/organization', (c) => {
           </div>
 
           {/* 본부 전문위원 */}
-          <div class="flex justify-center mb-12">
+          <div class="flex justify-center mb-8">
             <div class="bg-white rounded-2xl shadow-lg p-8 max-w-3xl w-full">
               <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -1221,7 +1219,7 @@ app.get('/organization', (c) => {
           </div>
 
           {/* 지역본부 */}
-          <div class="grid md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-6 mb-8 max-w-5xl mx-auto">
             {/* 대구 지역본부 */}
             <div class="bg-white rounded-2xl shadow-lg p-8">
               <div class="text-center mb-6">
@@ -1231,7 +1229,7 @@ app.get('/organization', (c) => {
                 <h3 class="text-2xl font-bold text-gray-900">대구 지역본부</h3>
               </div>
               
-              <div class="space-y-4">
+              <div class="space-y-3">
                 <div class="border-l-4 border-green-500 pl-4">
                   <p class="text-sm text-gray-500 mb-1">대표</p>
                   <p class="font-bold text-gray-900">김대원</p>
@@ -1258,7 +1256,7 @@ app.get('/organization', (c) => {
                 <h3 class="text-2xl font-bold text-gray-900">대전 지역본부</h3>
               </div>
               
-              <div class="space-y-4">
+              <div class="space-y-3">
                 <div class="border-l-4 border-purple-500 pl-4">
                   <p class="text-sm text-gray-500 mb-1">대표</p>
                   <p class="font-bold text-gray-900">윤지원</p>
@@ -1312,14 +1310,14 @@ app.get('/organization', (c) => {
 app.get('/programs', (c) => {
   return c.html(
     <Layout title="교육과정 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">교육과정</h1>
-            <p class="text-xl text-gray-600">체계적이고 전문적인 교육 프로그램을 만나보세요</p>
+          <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">교육과정</h1>
+            <p class="text-base text-gray-600">체계적이고 전문적인 교육 프로그램을 만나보세요</p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-8">
+          <div class="grid md:grid-cols-2 gap-6">
             {/* 늘봄방과후 전문강사 양성 */}
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
               <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-8 text-white">
@@ -1334,7 +1332,7 @@ app.get('/programs', (c) => {
                 <p class="text-gray-600 mb-6">
                   초등학교 방과후 교육 전문가로 성장할 수 있는 체계적인 교육과정입니다.
                 </p>
-                <div class="space-y-4">
+                <div class="space-y-3">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-check-circle text-blue-500 mt-1"></i>
                     <div>
@@ -1381,7 +1379,7 @@ app.get('/programs', (c) => {
                 <p class="text-gray-600 mb-6">
                   ChatGPT 등 최신 AI 도구를 활용한 실무 중심 교육 프로그램입니다.
                 </p>
-                <div class="space-y-4">
+                <div class="space-y-3">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-check-circle text-purple-500 mt-1"></i>
                     <div>
@@ -1428,7 +1426,7 @@ app.get('/programs', (c) => {
                 <p class="text-gray-600 mb-6">
                   공기업 및 대기업 취업을 위한 맞춤형 취업 준비 프로그램입니다.
                 </p>
-                <div class="space-y-4">
+                <div class="space-y-3">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-check-circle text-green-500 mt-1"></i>
                     <div>
@@ -1475,7 +1473,7 @@ app.get('/programs', (c) => {
                 <p class="text-gray-600 mb-6">
                   전문 강사로 성장할 수 있는 체계적인 코칭 프로그램입니다.
                 </p>
-                <div class="space-y-4">
+                <div class="space-y-3">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-check-circle text-amber-500 mt-1"></i>
                     <div>
@@ -1511,7 +1509,7 @@ app.get('/programs', (c) => {
 
           {/* CTA */}
           <div class="mt-16 text-center">
-            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-xl p-12 text-white">
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-xl p-8 text-white">
               <h2 class="text-3xl font-bold mb-4">지금 바로 시작하세요!</h2>
               <p class="text-xl mb-8">체계적인 교육 프로그램으로 새로운 미래를 준비하세요</p>
               <div class="flex flex-wrap justify-center gap-4">
@@ -1571,11 +1569,11 @@ app.get('/activities', (c) => {
 
   return c.html(
     <Layout title="보도기사 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">보도기사</h1>
-            <p class="text-xl text-gray-600">한국강사신문에 소개된 협회 소식</p>
+          <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">보도기사</h1>
+            <p class="text-base text-gray-600">한국강사신문에 소개된 협회 소식</p>
           </div>
           
           <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8 rounded">
@@ -1588,10 +1586,10 @@ app.get('/activities', (c) => {
             </div>
           </div>
 
-          <div class="space-y-4">
+          <div class="space-y-3">
             {newsArticles.map((article, index) => (
               <a href={article.link} target="_blank" rel="noopener noreferrer"
-                 class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all p-6 border-l-4 border-blue-500 hover:border-blue-600">
+                 class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all p-4 border-l-4 border-blue-500 hover:border-blue-600">
                 <div class="flex items-start justify-between">
                   <div class="flex-1">
                     <div class="flex items-center mb-2">
@@ -1601,7 +1599,7 @@ app.get('/activities', (c) => {
                       </span>
                       <span class="text-sm text-gray-500">{article.date}</span>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+                    <h3 class="text-base font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
                       {article.title}
                     </h3>
                   </div>
@@ -1631,18 +1629,18 @@ app.get('/activities', (c) => {
 app.get('/seoul-branch', (c) => {
   return c.html(
     <Layout title="서울지부 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">서울지부 (본부)</h1>
-            <p class="text-xl text-gray-600">한국미래인재교육협회 본부</p>
+          <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">서울지부 (본부)</h1>
+            <p class="text-base text-gray-600">한국미래인재교육협회 본부</p>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8">
-            <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
+            <div class="grid md:grid-cols-2 gap-6">
               <div>
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">본부 정보</h2>
-                <div class="space-y-4">
+                <div class="space-y-3">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-user-tie text-blue-600 text-xl mt-1"></i>
                     <div>
@@ -1705,18 +1703,18 @@ app.get('/seoul-branch', (c) => {
 app.get('/daegu-branch', (c) => {
   return c.html(
     <Layout title="대구 지역본부 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대구 지역본부</h1>
-            <p class="text-xl text-gray-600">영남권 교육 거점</p>
+          <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">대구 지역본부</h1>
+            <p class="text-base text-gray-600">영남권 교육 거점</p>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+            <div class="grid md:grid-cols-2 gap-6">
               <div>
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">본부 정보</h2>
-                <div class="space-y-4">
+                <div class="space-y-3">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-user-tie text-green-600 text-xl mt-1"></i>
                     <div>
@@ -1767,18 +1765,18 @@ app.get('/daegu-branch', (c) => {
 app.get('/daejeon-branch', (c) => {
   return c.html(
     <Layout title="대전 지역본부 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">대전 지역본부</h1>
-            <p class="text-xl text-gray-600">충청권 교육 거점</p>
+          <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">대전 지역본부</h1>
+            <p class="text-base text-gray-600">충청권 교육 거점</p>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+            <div class="grid md:grid-cols-2 gap-6">
               <div>
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">본부 정보</h2>
-                <div class="space-y-4">
+                <div class="space-y-3">
                   <div class="flex items-start space-x-3">
                     <i class="fas fa-user-tie text-purple-600 text-xl mt-1"></i>
                     <div>
@@ -1836,12 +1834,12 @@ app.get('/daejeon-branch', (c) => {
 app.get('/classroom', (c) => {
   return c.html(
     <Layout title="강의실 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen flex items-center">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px] flex items-center">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div class="bg-white rounded-2xl shadow-xl p-12">
-            <i class="fas fa-chalkboard-teacher text-6xl text-blue-600 mb-6"></i>
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">온라인 강의실</h1>
-            <p class="text-xl text-gray-600 mb-8">
+          <div class="bg-white rounded-2xl shadow-xl p-8">
+            <i class="fas fa-chalkboard-teacher text-5xl text-blue-600 mb-6"></i>
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">온라인 강의실</h1>
+            <p class="text-base text-gray-600 mb-8">
               현재 준비 중입니다.<br />
               곧 더 나은 서비스로 찾아뵙겠습니다.
             </p>
@@ -1859,11 +1857,11 @@ app.get('/classroom', (c) => {
 app.get('/boards/notice', (c) => {
   return c.html(
     <Layout title="공지사항 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-4xl font-bold text-gray-900 mb-12">공지사항</h1>
+          <h1 class="text-3xl font-bold text-gray-900 mb-8">공지사항</h1>
           
-          <div class="space-y-4">
+          <div class="space-y-3">
             <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
               <div class="flex items-center mb-2">
                 <span class="bg-red-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">중요</span>
@@ -1901,16 +1899,16 @@ app.get('/boards/notice', (c) => {
 app.get('/boards/resources', (c) => {
   return c.html(
     <Layout title="자료실 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">자료실</h1>
-            <p class="text-xl text-gray-600">교육 자료 및 참고 문서를 제공합니다</p>
+          <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">자료실</h1>
+            <p class="text-base text-gray-600">교육 자료 및 참고 문서를 제공합니다</p>
           </div>
           
-          <div class="bg-white rounded-lg p-12 text-center">
-            <i class="fas fa-folder-open text-5xl text-gray-400 mb-4"></i>
-            <p class="text-xl text-gray-600 mb-4">준비 중입니다.</p>
+          <div class="bg-white rounded-lg p-8 text-center">
+            <i class="fas fa-folder-open text-4xl text-gray-400 mb-4"></i>
+            <p class="text-base text-gray-600 mb-4">준비 중입니다.</p>
             <p class="text-sm text-gray-500">교육 자료 및 관련 문서를 순차적으로 업로드할 예정입니다.</p>
           </div>
         </div>
@@ -1923,13 +1921,13 @@ app.get('/boards/resources', (c) => {
 app.get('/boards/qna', (c) => {
   return c.html(
     <Layout title="Q&A - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-4xl font-bold text-gray-900 mb-12">Q&A</h1>
+          <h1 class="text-3xl font-bold text-gray-900 mb-8">Q&A</h1>
           
-          <div class="bg-white rounded-lg p-12 text-center">
-            <i class="fas fa-question-circle text-5xl text-gray-400 mb-4"></i>
-            <p class="text-xl text-gray-600 mb-4">궁금한 점이 있으신가요?</p>
+          <div class="bg-white rounded-lg p-8 text-center">
+            <i class="fas fa-question-circle text-4xl text-gray-400 mb-4"></i>
+            <p class="text-base text-gray-600 mb-4">궁금한 점이 있으신가요?</p>
             <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
               문의하기
             </a>
@@ -1944,13 +1942,13 @@ app.get('/boards/qna', (c) => {
 app.get('/boards/gallery', (c) => {
   return c.html(
     <Layout title="갤러리 - 한국미래인재교육협회">
-      <section class="py-20 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-4xl font-bold text-gray-900 mb-12">갤러리</h1>
+          <h1 class="text-3xl font-bold text-gray-900 mb-8">갤러리</h1>
           
-          <div class="bg-white rounded-lg p-12 text-center">
-            <i class="fas fa-images text-5xl text-gray-400 mb-4"></i>
-            <p class="text-xl text-gray-600">준비 중입니다.</p>
+          <div class="bg-white rounded-lg p-8 text-center">
+            <i class="fas fa-images text-4xl text-gray-400 mb-4"></i>
+            <p class="text-base text-gray-600">준비 중입니다.</p>
           </div>
         </div>
       </section>
