@@ -556,10 +556,11 @@ app.get('/', (c) => {
       <section class="relative min-h-[700px] md:min-h-[800px] overflow-hidden bg-gradient-to-br from-orange-100 via-teal-100 to-blue-100">
         <div class="absolute inset-0 flex items-center justify-center">
           <img 
-            src="https://www.genspark.ai/api/files/s/8w5VdVoL" 
+            src="https://www.genspark.ai/api/files/s/F1FQTlAq?cache_control=3600" 
             alt="한국미래인재교육협회" 
-            class="w-full h-full object-contain max-w-7xl mx-auto"
-            style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+            class="w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
           />
         </div>
       </section>
