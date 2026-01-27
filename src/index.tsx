@@ -1,7 +1,20 @@
 import { Hono } from 'hono'
 import { serveStatic } from 'hono/cloudflare-workers'
+import { sign, verify } from 'hono/jwt'
+import { cors } from 'hono/cors'
 
-const app = new Hono()
+// D1 타입 정의
+type Bindings = {
+  DB: D1Database
+}
+
+// JWT Secret (실제 배포시에는 환경변수로 관리)
+const JWT_SECRET = 'kfea-secret-2026-change-in-production'
+
+const app = new Hono<{ Bindings: Bindings }>()
+
+// CORS 설정 (관리자 API용)
+app.use('/admin/api/*', cors())
 
 // Serve static files
 app.use('/static/*', serveStatic({ root: './public' }))
@@ -2620,10 +2633,11 @@ app.get('/admin/login', (c) => {
               
               if (data.success) {
                 localStorage.setItem('admin_token', data.token);
+                localStorage.setItem('admin_user', JSON.stringify(data.admin));
                 window.location.href = '/admin/dashboard';
               } else {
                 errorDiv.classList.remove('hidden');
-                errorDiv.querySelector('p').textContent = data.message || '로그인에 실패했습니다.';
+                errorDiv.querySelector('p').textContent = data.error || '로그인에 실패했습니다.';
               }
             } catch (error) {
               errorDiv.classList.remove('hidden');
@@ -2634,31 +2648,6 @@ app.get('/admin/login', (c) => {
       </body>
     </html>
   )
-})
-
-// 관리자 로그인 API
-app.post('/admin/api/login', async (c) => {
-  const { username, password } = await c.req.json()
-  
-  // 임시 관리자 계정 (나중에 환경변수나 D1로 변경)
-  const ADMIN_USERNAME = 'admin'
-  const ADMIN_PASSWORD = 'kfea2026!@'
-  
-  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-    // 간단한 토큰 생성 (실제로는 JWT 사용 권장)
-    const token = Buffer.from(`${username}:${Date.now()}`).toString('base64')
-    
-    return c.json({
-      success: true,
-      token: token,
-      message: '로그인 성공'
-    })
-  }
-  
-  return c.json({
-    success: false,
-    message: '아이디 또는 비밀번호가 올바르지 않습니다.'
-  }, 401)
 })
 
 // 관리자 대시보드
@@ -2901,45 +2890,19 @@ app.get('/admin/activities', (c) => {
               </form>
             </div>
 
-            {/* 기사 목록 안내 */}
-            <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-6">
-              <p class="text-sm text-blue-800">
-                <i class="fas fa-info-circle mr-2"></i>
-                현재 활동소식 기사는 <strong>src/index.tsx</strong> 파일에 하드코딩되어 있습니다. 
-                데이터베이스 연동 후 동적 관리가 가능합니다.
+            {/* 기사 추가 안내 */}
+            <div class="bg-green-50 border-l-4 border-green-600 p-4 mb-6">
+              <p class="text-sm text-green-800">
+                <i class="fas fa-check-circle mr-2"></i>
+                D1 데이터베이스 연동 완료! 활동소식을 자유롭게 추가, 수정, 삭제할 수 있습니다.
               </p>
             </div>
 
-            {/* 임시 기사 목록 */}
-            <div class="space-y-3">
-              <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                <div class="flex justify-between items-start">
-                  <div class="flex-1">
-                    <div class="flex items-center mb-2">
-                      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">한국강사신문</span>
-                      <span class="text-sm text-gray-500">2025-12-31</span>
-                    </div>
-                    <h3 class="font-medium text-gray-900 mb-1">한국면접관협회, 인문학 기반 면접관 마스터 자격과정 개최</h3>
-                    <a href="https://www.lecturernews.com/news/articleView.html?idxno=194008" target="_blank" 
-                       class="text-sm text-blue-600 hover:underline">
-                      <i class="fas fa-external-link-alt mr-1"></i>기사 보기
-                    </a>
-                  </div>
-                  <div class="ml-4 flex space-x-2">
-                    <button class="text-gray-400 hover:text-blue-600 p-2">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="text-gray-400 hover:text-red-600 p-2">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              
+            {/* 기사 목록 */}
+            <div id="articles-list" class="space-y-3">
               <div class="text-center py-8 text-gray-500">
-                <i class="fas fa-database text-4xl mb-4"></i>
-                <p>데이터베이스 연동 후 전체 기사 목록을 표시합니다.</p>
-                <p class="text-sm mt-2">현재: 31건의 기사</p>
+                <i class="fas fa-spinner fa-spin text-4xl mb-4"></i>
+                <p>기사 목록을 불러오는 중...</p>
               </div>
             </div>
           </div>
@@ -2949,30 +2912,338 @@ app.get('/admin/activities', (c) => {
           const token = localStorage.getItem('admin_token');
           if (!token) window.location.href = '/admin/login';
           
+          let articles = [];
+          let editingId = null;
+          
+          // 페이지 로드시 기사 목록 불러오기
+          loadArticles();
+          
           function logout() {
             if (confirm('로그아웃 하시겠습니까?')) {
               localStorage.removeItem('admin_token');
+              localStorage.removeItem('admin_user');
               window.location.href = '/admin/login';
             }
           }
           
           function showAddForm() {
+            editingId = null;
             document.getElementById('add-form').classList.remove('hidden');
+            document.getElementById('article-form').reset();
           }
           
           function hideAddForm() {
+            editingId = null;
             document.getElementById('add-form').classList.add('hidden');
             document.getElementById('article-form').reset();
           }
           
-          document.getElementById('article-form').addEventListener('submit', (e) => {
+          // 기사 목록 불러오기
+          async function loadArticles() {
+            try {
+              const response = await fetch('/admin/api/activities', {
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              });
+              
+              if (!response.ok) {
+                throw new Error('Failed to load articles');
+              }
+              
+              const data = await response.json();
+              articles = data.data || [];
+              renderArticles();
+            } catch (error) {
+              console.error('Load error:', error);
+              document.getElementById('articles-list').innerHTML = 
+                '<div class="text-center py-8 text-red-500"><i class="fas fa-exclamation-circle text-4xl mb-4"></i><p>기사 목록을 불러오는데 실패했습니다.</p></div>';
+            }
+          }
+          
+          // 기사 목록 렌더링
+          function renderArticles() {
+            const listDiv = document.getElementById('articles-list');
+            
+            if (articles.length === 0) {
+              listDiv.innerHTML = '<div class="text-center py-8 text-gray-500"><i class="fas fa-inbox text-4xl mb-4"></i><p>등록된 기사가 없습니다.</p></div>';
+              return;
+            }
+            
+            listDiv.innerHTML = articles.map(article => \`
+              <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-2">
+                      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">\${article.source}</span>
+                      <span class="text-sm text-gray-500">\${article.date}</span>
+                    </div>
+                    <h3 class="font-medium text-gray-900 mb-1">\${article.title}</h3>
+                    <a href="\${article.link}" target="_blank" 
+                       class="text-sm text-blue-600 hover:underline">
+                      <i class="fas fa-external-link-alt mr-1"></i>기사 보기
+                    </a>
+                  </div>
+                  <div class="ml-4 flex space-x-2">
+                    <button onclick="editArticle(\${article.id})" class="text-gray-400 hover:text-blue-600 p-2">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button onclick="deleteArticle(\${article.id})" class="text-gray-400 hover:text-red-600 p-2">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            \`).join('');
+          }
+          
+          // 기사 추가/수정 폼 제출
+          document.getElementById('article-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('데이터베이스 연동 후 기능이 활성화됩니다.');
+            
+            const date = document.getElementById('article-date').value;
+            const title = document.getElementById('article-title').value;
+            const idxno = document.getElementById('article-link').value;
+            
+            if (!date || !title || !idxno) {
+              alert('모든 항목을 입력해주세요.');
+              return;
+            }
+            
+            try {
+              const url = editingId 
+                ? \`/admin/api/activities/\${editingId}\`
+                : '/admin/api/activities';
+              const method = editingId ? 'PUT' : 'POST';
+              
+              const response = await fetch(url, {
+                method: method,
+                headers: {
+                  'Authorization': 'Bearer ' + token,
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ date, title, idxno })
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert(data.message);
+                hideAddForm();
+                loadArticles();
+              } else {
+                alert(data.error || '처리 중 오류가 발생했습니다.');
+              }
+            } catch (error) {
+              console.error('Submit error:', error);
+              alert('서버 오류가 발생했습니다.');
+            }
           });
+          
+          // 기사 수정
+          function editArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+            
+            editingId = id;
+            document.getElementById('article-date').value = article.date;
+            document.getElementById('article-title').value = article.title;
+            
+            // idxno 추출 (링크에서)
+            const match = article.link.match(/idxno=(\\d+)/);
+            if (match) {
+              document.getElementById('article-link').value = match[1];
+            }
+            
+            document.getElementById('add-form').classList.remove('hidden');
+          }
+          
+          // 기사 삭제
+          async function deleteArticle(id) {
+            if (!confirm('정말 삭제하시겠습니까?')) return;
+            
+            try {
+              const response = await fetch(\`/admin/api/activities/\${id}\`, {
+                method: 'DELETE',
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert(data.message);
+                loadArticles();
+              } else {
+                alert(data.error || '삭제 중 오류가 발생했습니다.');
+              }
+            } catch (error) {
+              console.error('Delete error:', error);
+              alert('서버 오류가 발생했습니다.');
+            }
+          }
         `}</script>
       </body>
     </html>
   )
+})
+
+// ==================== 관리자 API 인증 미들웨어 ====================
+
+// JWT 토큰 검증 미들웨어
+const adminAuth = async (c: any, next: () => Promise<void>) => {
+  const authHeader = c.req.header('Authorization')
+  
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return c.json({ error: '인증이 필요합니다' }, 401)
+  }
+  
+  const token = authHeader.substring(7)
+  
+  try {
+    const payload = await verify(token, JWT_SECRET, 'HS256')
+    c.set('adminUser', payload)
+    await next()
+  } catch (error) {
+    console.error('Token verification error:', error)
+    return c.json({ error: '유효하지 않은 토큰입니다' }, 401)
+  }
+}
+
+// ==================== 관리자 API 엔드포인트 ====================
+
+// 관리자 로그인 API
+app.post('/admin/api/login', async (c) => {
+  try {
+    const { username, password } = await c.req.json()
+    const db = c.env.DB
+    
+    // 관리자 정보 조회
+    const admin = await db.prepare(
+      'SELECT * FROM admins WHERE username = ? AND is_active = 1'
+    ).bind(username).first()
+    
+    if (!admin) {
+      return c.json({ error: '아이디 또는 비밀번호가 올바르지 않습니다' }, 401)
+    }
+    
+    // 비밀번호 검증 (실제로는 해시 비교 필요)
+    if (admin.password_hash !== password) {
+      return c.json({ error: '아이디 또는 비밀번호가 올바르지 않습니다' }, 401)
+    }
+    
+    // JWT 토큰 생성
+    const token = await sign(
+      {
+        id: admin.id,
+        username: admin.username,
+        role: admin.role,
+        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24) // 24시간
+      },
+      JWT_SECRET,
+      'HS256'
+    )
+    
+    return c.json({
+      success: true,
+      token,
+      admin: {
+        id: admin.id,
+        username: admin.username,
+        name: admin.name,
+        role: admin.role
+      }
+    })
+  } catch (error) {
+    console.error('Login error:', error)
+    return c.json({ error: '로그인 처리 중 오류가 발생했습니다' }, 500)
+  }
+})
+
+// 활동소식 목록 조회 API (관리자용)
+app.get('/admin/api/activities', adminAuth, async (c) => {
+  try {
+    const db = c.env.DB
+    const { results } = await db.prepare(
+      'SELECT * FROM articles ORDER BY date DESC, created_at DESC'
+    ).all()
+    
+    return c.json({ success: true, data: results })
+  } catch (error) {
+    console.error('Get activities error:', error)
+    return c.json({ error: '활동소식 조회 중 오류가 발생했습니다' }, 500)
+  }
+})
+
+// 활동소식 추가 API
+app.post('/admin/api/activities', adminAuth, async (c) => {
+  try {
+    const { date, title, idxno } = await c.req.json()
+    const db = c.env.DB
+    
+    // 유효성 검사
+    if (!date || !title || !idxno) {
+      return c.json({ error: '필수 항목을 모두 입력해주세요' }, 400)
+    }
+    
+    // 링크 생성
+    const link = `https://www.lecturernews.com/news/articleView.html?idxno=${idxno}`
+    const source = '한국강사신문'
+    
+    // DB에 삽입
+    await db.prepare(
+      'INSERT INTO articles (date, title, link, source, created_at) VALUES (?, ?, ?, ?, datetime("now"))'
+    ).bind(date, title, link, source).run()
+    
+    return c.json({ success: true, message: '활동소식이 추가되었습니다' })
+  } catch (error) {
+    console.error('Add activity error:', error)
+    return c.json({ error: '활동소식 추가 중 오류가 발생했습니다' }, 500)
+  }
+})
+
+// 활동소식 수정 API
+app.put('/admin/api/activities/:id', adminAuth, async (c) => {
+  try {
+    const id = c.req.param('id')
+    const { date, title, idxno } = await c.req.json()
+    const db = c.env.DB
+    
+    // 유효성 검사
+    if (!date || !title || !idxno) {
+      return c.json({ error: '필수 항목을 모두 입력해주세요' }, 400)
+    }
+    
+    // 링크 생성
+    const link = `https://www.lecturernews.com/news/articleView.html?idxno=${idxno}`
+    
+    // DB 업데이트
+    await db.prepare(
+      'UPDATE articles SET date = ?, title = ?, link = ? WHERE id = ?'
+    ).bind(date, title, link, id).run()
+    
+    return c.json({ success: true, message: '활동소식이 수정되었습니다' })
+  } catch (error) {
+    console.error('Update activity error:', error)
+    return c.json({ error: '활동소식 수정 중 오류가 발생했습니다' }, 500)
+  }
+})
+
+// 활동소식 삭제 API
+app.delete('/admin/api/activities/:id', adminAuth, async (c) => {
+  try {
+    const id = c.req.param('id')
+    const db = c.env.DB
+    
+    // DB에서 삭제
+    await db.prepare('DELETE FROM articles WHERE id = ?').bind(id).run()
+    
+    return c.json({ success: true, message: '활동소식이 삭제되었습니다' })
+  } catch (error) {
+    console.error('Delete activity error:', error)
+    return c.json({ error: '활동소식 삭제 중 오류가 발생했습니다' }, 500)
+  }
 })
 
 export default app
