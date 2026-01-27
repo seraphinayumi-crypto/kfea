@@ -5,5 +5,12 @@
   "pages_build_output_dir": "./dist",
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kfea-production",
+      "database_id": "81a7641d-edc4-47a1-bc45-8c39257556ba"
+    }
   ]
 }
