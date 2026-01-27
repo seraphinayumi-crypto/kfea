@@ -2537,4 +2537,442 @@ app.get('/register', (c) => {
   )
 })
 
+// ==========================================
+// 관리자 모드
+// ==========================================
+
+// 관리자 로그인 페이지
+app.get('/admin/login', (c) => {
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>관리자 로그인 - 한국미래인재교육협회</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+      </head>
+      <body class="bg-gradient-to-br from-blue-50 to-gray-100 min-h-screen flex items-center justify-center">
+        <div class="max-w-md w-full mx-4">
+          <div class="bg-white rounded-2xl shadow-2xl p-8">
+            <div class="text-center mb-8">
+              <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-lock text-3xl text-white"></i>
+              </div>
+              <h1 class="text-2xl font-bold text-gray-900">관리자 로그인</h1>
+              <p class="text-gray-600 mt-2">한국미래인재교육협회 관리자 페이지</p>
+            </div>
+
+            <form id="admin-login-form" class="space-y-6">
+              <div>
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+                  <i class="fas fa-user mr-2"></i>아이디
+                </label>
+                <input type="text" id="username" name="username" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                       placeholder="관리자 아이디를 입력하세요" />
+              </div>
+
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                  <i class="fas fa-key mr-2"></i>비밀번호
+                </label>
+                <input type="password" id="password" name="password" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                       placeholder="비밀번호를 입력하세요" />
+              </div>
+
+              <div id="error-message" class="hidden bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                <p class="text-sm text-red-700"></p>
+              </div>
+
+              <button type="submit"
+                      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
+                <i class="fas fa-sign-in-alt mr-2"></i>
+                로그인
+              </button>
+            </form>
+
+            <div class="mt-6 text-center">
+              <a href="/" class="text-gray-600 hover:text-blue-600 text-sm">
+                <i class="fas fa-arrow-left mr-1"></i>홈으로 돌아가기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <script>{`
+          document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error-message');
+            
+            try {
+              const response = await fetch('/admin/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                localStorage.setItem('admin_token', data.token);
+                window.location.href = '/admin/dashboard';
+              } else {
+                errorDiv.classList.remove('hidden');
+                errorDiv.querySelector('p').textContent = data.message || '로그인에 실패했습니다.';
+              }
+            } catch (error) {
+              errorDiv.classList.remove('hidden');
+              errorDiv.querySelector('p').textContent = '서버 오류가 발생했습니다.';
+            }
+          });
+        `}</script>
+      </body>
+    </html>
+  )
+})
+
+// 관리자 로그인 API
+app.post('/admin/api/login', async (c) => {
+  const { username, password } = await c.req.json()
+  
+  // 임시 관리자 계정 (나중에 환경변수나 D1로 변경)
+  const ADMIN_USERNAME = 'admin'
+  const ADMIN_PASSWORD = 'kfea2026!@'
+  
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    // 간단한 토큰 생성 (실제로는 JWT 사용 권장)
+    const token = Buffer.from(`${username}:${Date.now()}`).toString('base64')
+    
+    return c.json({
+      success: true,
+      token: token,
+      message: '로그인 성공'
+    })
+  }
+  
+  return c.json({
+    success: false,
+    message: '아이디 또는 비밀번호가 올바르지 않습니다.'
+  }, 401)
+})
+
+// 관리자 대시보드
+app.get('/admin/dashboard', (c) => {
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>관리자 대시보드 - 한국미래인재교육협회</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+      </head>
+      <body class="bg-gray-100 min-h-screen">
+        {/* 관리자 네비게이션 */}
+        <nav class="bg-white shadow-lg">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+              <div class="flex items-center">
+                <i class="fas fa-shield-alt text-2xl text-blue-600 mr-3"></i>
+                <span class="text-xl font-bold text-gray-900">관리자 페이지</span>
+              </div>
+              <div class="flex items-center space-x-4">
+                <a href="/" target="_blank" class="text-gray-600 hover:text-blue-600">
+                  <i class="fas fa-external-link-alt mr-1"></i>사이트 보기
+                </a>
+                <button onclick="logout()" class="text-gray-600 hover:text-red-600">
+                  <i class="fas fa-sign-out-alt mr-1"></i>로그아웃
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="flex">
+          {/* 사이드바 */}
+          <aside class="w-64 bg-white shadow-lg min-h-screen">
+            <div class="p-6">
+              <nav class="space-y-2">
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-gray-700 bg-blue-50 rounded-lg font-medium">
+                  <i class="fas fa-home w-5"></i>
+                  <span class="ml-3">대시보드</span>
+                </a>
+                <a href="/admin/activities" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-newspaper w-5"></i>
+                  <span class="ml-3">활동소식 관리</span>
+                </a>
+                <a href="/admin/notices" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-bullhorn w-5"></i>
+                  <span class="ml-3">공지사항 관리</span>
+                </a>
+                <a href="/admin/resources" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-folder-open w-5"></i>
+                  <span class="ml-3">자료실 관리</span>
+                </a>
+                <a href="/admin/settings" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-cog w-5"></i>
+                  <span class="ml-3">설정</span>
+                </a>
+              </nav>
+            </div>
+          </aside>
+
+          {/* 메인 콘텐츠 */}
+          <main class="flex-1 p-8">
+            <div class="max-w-7xl mx-auto">
+              <h1 class="text-3xl font-bold text-gray-900 mb-8">대시보드</h1>
+
+              {/* 통계 카드 */}
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow p-6">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                      <i class="fas fa-newspaper text-2xl text-white"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">활동소식</dt>
+                        <dd class="text-2xl font-bold text-gray-900">31건</dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow p-6">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                      <i class="fas fa-bullhorn text-2xl text-white"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">공지사항</dt>
+                        <dd class="text-2xl font-bold text-gray-900">3건</dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow p-6">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                      <i class="fas fa-folder-open text-2xl text-white"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">자료실</dt>
+                        <dd class="text-2xl font-bold text-gray-900">0건</dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow p-6">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 bg-purple-500 rounded-md p-3">
+                      <i class="fas fa-users text-2xl text-white"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">회원</dt>
+                        <dd class="text-2xl font-bold text-gray-900">0명</dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 빠른 작업 */}
+              <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">빠른 작업</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <a href="/admin/activities" class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all">
+                    <i class="fas fa-plus-circle text-2xl text-blue-600 mr-3"></i>
+                    <span class="font-medium text-gray-900">활동소식 추가</span>
+                  </a>
+                  <a href="/admin/notices" class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all">
+                    <i class="fas fa-plus-circle text-2xl text-green-600 mr-3"></i>
+                    <span class="font-medium text-gray-900">공지사항 작성</span>
+                  </a>
+                  <a href="/admin/resources" class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition-all">
+                    <i class="fas fa-upload text-2xl text-yellow-600 mr-3"></i>
+                    <span class="font-medium text-gray-900">자료 업로드</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+
+        <script>{`
+          // 인증 체크
+          const token = localStorage.getItem('admin_token');
+          if (!token) {
+            window.location.href = '/admin/login';
+          }
+          
+          function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+              localStorage.removeItem('admin_token');
+              window.location.href = '/admin/login';
+            }
+          }
+        `}</script>
+      </body>
+    </html>
+  )
+})
+
+// 활동소식 관리 페이지
+app.get('/admin/activities', (c) => {
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>활동소식 관리 - 관리자</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+      </head>
+      <body class="bg-gray-100 min-h-screen">
+        <nav class="bg-white shadow-lg">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+              <div class="flex items-center">
+                <i class="fas fa-shield-alt text-2xl text-blue-600 mr-3"></i>
+                <span class="text-xl font-bold text-gray-900">활동소식 관리</span>
+              </div>
+              <div class="flex items-center space-x-4">
+                <a href="/admin/dashboard" class="text-gray-600 hover:text-blue-600">
+                  <i class="fas fa-home mr-1"></i>대시보드
+                </a>
+                <button onclick="logout()" class="text-gray-600 hover:text-red-600">
+                  <i class="fas fa-sign-out-alt mr-1"></i>로그아웃
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold text-gray-900">활동소식 목록</h2>
+              <button onclick="showAddForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium">
+                <i class="fas fa-plus mr-2"></i>새 기사 추가
+              </button>
+            </div>
+
+            {/* 기사 추가 폼 (숨김 상태) */}
+            <div id="add-form" class="hidden mb-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900 mb-4">새 기사 추가</h3>
+              <form id="article-form" class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">날짜 (YYYY-MM-DD)</label>
+                  <input type="text" id="article-date" required
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                         placeholder="2026-01-27" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">제목</label>
+                  <input type="text" id="article-title" required
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                         placeholder="기사 제목을 입력하세요" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">링크 (idxno)</label>
+                  <input type="text" id="article-link" required
+                         class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                         placeholder="195600" />
+                  <p class="text-sm text-gray-500 mt-1">기사 번호만 입력하세요 (예: 195600)</p>
+                </div>
+                <div class="flex space-x-3">
+                  <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium">
+                    추가
+                  </button>
+                  <button type="button" onclick="hideAddForm()" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-6 py-2 rounded-lg font-medium">
+                    취소
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            {/* 기사 목록 안내 */}
+            <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-6">
+              <p class="text-sm text-blue-800">
+                <i class="fas fa-info-circle mr-2"></i>
+                현재 활동소식 기사는 <strong>src/index.tsx</strong> 파일에 하드코딩되어 있습니다. 
+                데이터베이스 연동 후 동적 관리가 가능합니다.
+              </p>
+            </div>
+
+            {/* 임시 기사 목록 */}
+            <div class="space-y-3">
+              <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-2">
+                      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">한국강사신문</span>
+                      <span class="text-sm text-gray-500">2025-12-31</span>
+                    </div>
+                    <h3 class="font-medium text-gray-900 mb-1">한국면접관협회, 인문학 기반 면접관 마스터 자격과정 개최</h3>
+                    <a href="https://www.lecturernews.com/news/articleView.html?idxno=194008" target="_blank" 
+                       class="text-sm text-blue-600 hover:underline">
+                      <i class="fas fa-external-link-alt mr-1"></i>기사 보기
+                    </a>
+                  </div>
+                  <div class="ml-4 flex space-x-2">
+                    <button class="text-gray-400 hover:text-blue-600 p-2">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="text-gray-400 hover:text-red-600 p-2">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="text-center py-8 text-gray-500">
+                <i class="fas fa-database text-4xl mb-4"></i>
+                <p>데이터베이스 연동 후 전체 기사 목록을 표시합니다.</p>
+                <p class="text-sm mt-2">현재: 31건의 기사</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>{`
+          const token = localStorage.getItem('admin_token');
+          if (!token) window.location.href = '/admin/login';
+          
+          function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+              localStorage.removeItem('admin_token');
+              window.location.href = '/admin/login';
+            }
+          }
+          
+          function showAddForm() {
+            document.getElementById('add-form').classList.remove('hidden');
+          }
+          
+          function hideAddForm() {
+            document.getElementById('add-form').classList.add('hidden');
+            document.getElementById('article-form').reset();
+          }
+          
+          document.getElementById('article-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('데이터베이스 연동 후 기능이 활성화됩니다.');
+          });
+        `}</script>
+      </body>
+    </html>
+  )
+})
+
 export default app
