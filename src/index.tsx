@@ -1629,23 +1629,26 @@ app.get('/activities', (c) => {
     { date: '2025-08-26', title: '한국면접관협회, 제1회 대한민국 면접관 컨퍼런스 성공리에 마쳐', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185650', source: '한국강사신문' },
     { date: '2025-08-08', title: '[오늘의 강사] 한국강사에이전시, 면접관교육 분야 권혁근 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=185657', source: '한국강사신문' },
     
-    // 한국미래인재교육협회 관련 기사
-    { date: '2025-12-30', title: '경기도교육청 평생학습관, 2025년 방과후지도사 양성과정 운영', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193971', source: '한국강사신문' },
-    { date: '2025-12-16', title: '순천제일대학교, 최유미 강사 초청 맞춤형 산업-기업 현장실습 특강 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192951', source: '한국강사신문' },
-    { date: '2025-12-15', title: '한국미래인재교육협회-행복한진로심리이야기, NCS 취업역량 강화 교육 실시', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192950', source: '한국강사신문' },
+    // 한국미래인재교육협회 관련 기사 (2025년 최신)
+    { date: '2025-12-30', title: '경기도교육청 평생학습관, 2025년 방과후지도사 양성과정 4기 운영 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193971', source: '한국강사신문' },
+    { date: '2025-12-16', title: '순천제일대학교, 최유미 강사 초청 맞춤형 산업-기업-직무분석 특강 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192951', source: '한국강사신문' },
+    { date: '2025-12-15', title: '한국미래인재교육협회-행복한진로심리이야기, NCS 진로심리검사 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=192950', source: '한국강사신문' },
+    { date: '2025-11-29', title: '서울시, 청년·시민참여형 AI 인재 행사 AI 인재 페스티벌 위크 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=191654', source: '한국강사신문' },
+    { date: '2025-09-15', title: '최유미 강사, 나사렛대학교서 취업을 앞당기는 노션 자기관리 전략 특강', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186967', source: '한국강사신문' },
+    { date: '2025-08-11', title: '최유미 강사, 실무 중심 늘봄 방과후 강사 양성과정 2기 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184403', source: '한국강사신문' },
+    { date: '2025-07-23', title: '경기도인재개발원, 최유미 강사 초청 본캐는 공무원 부캐는 강사 특강 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=183192', source: '한국강사신문' },
+    { date: '2025-06-10', title: '대전교육청, 늘봄학교·중등 방과후학교 강사 운영 안내 자료 배포', link: 'https://www.lecturernews.com/news/articleView.html?idxno=180081', source: '한국강사신문' },
     { date: '2025-04-17', title: '한국미래인재교육협회 X 세무회계 소명, 종합소득세 신고 지원', link: 'https://www.lecturernews.com/news/articleView.html?idxno=176409', source: '한국강사신문' },
     { date: '2025-02-22', title: '한국미래인재교육협회, 프리랜서 강사를 위한 맞춤 세무관리 교육', link: 'https://www.lecturernews.com/news/articleView.html?idxno=172944', source: '한국강사신문' },
-    { date: '2024-12-16', title: '한국강사신문 대표가 만난 강사, 한국미래인재교육협회 회장으로 활동 중', link: 'https://www.lecturernews.com/news/articleView.html?idxno=168376', source: '한국강사신문' },
-    
-    // 최유미 대표 관련 기사
-    { date: '2025-09-15', title: '최유미 강사, 나사렛대학교서 취업을 앞당기는 노션 자기소개서 작성법 특강', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186967', source: '한국강사신문' },
-    { date: '2025-08-11', title: '최유미 강사, 실무 중심 늘봄 방과후 강사 양성과정 2기 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184403', source: '한국강사신문' },
+    { date: '2025-02-13', title: '교육부, 2025년 학교복합시설 1차 선정 공모 실시… 봄교실 현장실습장 구축', link: 'https://www.lecturernews.com/news/articleView.html?idxno=172342', source: '한국강사신문' },
+    { date: '2025-01-23', title: '인천남부교육지원청, 2025학년도 늘봄학교 프로그램 외부 강사 122명 선발', link: 'https://www.lecturernews.com/news/articleView.html?idxno=171052', source: '한국강사신문' },
+    { date: '2025-01-15', title: '인천강화교육지원청, 늘봄(방과후)학교 프로그램 외부 강사 모집', link: 'https://www.lecturernews.com/news/articleView.html?idxno=170409', source: '한국강사신문' },
+    { date: '2024-12-16', title: '한국강사신문 대표가 만난 강사, 한국미래인재교육협회 최유미 협회장 인터뷰', link: 'https://www.lecturernews.com/news/articleView.html?idxno=168376', source: '한국강사신문' },
     { date: '2025-08-08', title: '천안·오산까지 결혼이주여성 대상 이중언어강사양성과정 성료', link: 'https://www.lecturernews.com/news/articleView.html?idxno=184400', source: '한국강사신문' },
     { date: '2025-03-14', title: '[최유미의 커리어 디렉팅] 새로운 도약을 위한 준비, 경력단절 여성을 위한 재취업 전략', link: 'https://www.lecturernews.com/news/articleView.html?idxno=174248', source: '한국강사신문' },
-    { date: '2025-03-14', title: '[최유미의 커리어 디렉팅] 새로운 도약을 위한 준비, 경력단절을 넘어 새로운 커리어를', link: 'https://www.lecturernews.com/news/articleView.html?idxno=175561', source: '한국강사신문' },
     { date: '2025-02-06', title: '[오늘의 강사] 한국강사에이전시, 강사양성 분야 최유미 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=171702', source: '한국강사신문' },
     
-    // 강은지 전문위원 관련 기사
+    // 강은지 이사 관련 기사
     { date: '2025-11-28', title: '[주간강사] 한국강사에이전시가 김기연, 정진, 윤선동, 강은지 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=191647', source: '한국강사신문' },
     { date: '2025-10-24', title: '[강은지의 이미지메이킹 인사이트] 첫인상이 당신의 미래를 결정한다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=189268', source: '한국강사신문' },
     { date: '2025-10-15', title: '[오늘의 강사] 한국강사에이전시, 이미지메이킹 분야 강은지 강사를 소개합니다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188684', source: '한국강사신문' },
