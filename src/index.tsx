@@ -1618,14 +1618,8 @@ app.get('/programs', (c) => {
 app.get('/activities', (c) => {
   // 모든 검색 결과를 날짜별로 정렬 (최신순)
   const newsArticles = [
-    // 2026년 1월 최신 기사
-    { date: '2026-01-24', title: '한국강사교육진흥원, 2026년 임원 & 연구원 위촉식 및 워크숍 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=195497', source: '한국강사신문' },
-    { date: '2026-01-16', title: '[강사 인터뷰] COLiVE 전문대학평생직업교육협회 한광식 협회장을 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=194863', source: '한국강사신문' },
-    { date: '2026-01-06', title: '가천대 명강사 최고위과정 2026-1학기, AI 시대 강사 역량 강화 교육 실시', link: 'https://www.lecturernews.com/news/articleView.html?idxno=194346', source: '한국강사신문' },
-    { date: '2026-01-05', title: '[이영웅 과학칼럼] 대도약의 궤도: 균형의 중력과 혁신의 추진력', link: 'https://www.lecturernews.com/news/articleView.html?idxno=194300', source: '한국강사신문' },
-    
     // 한국면접관협회 관련 기사
-    { date: '2025-12-31', title: '한국면접관협회, 인문학 기반 면접관 마스터 자격과정 개최 (2026년 1월 17-18일)', link: 'https://www.lecturernews.com/news/articleView.html?idxno=194008', source: '한국강사신문' },
+    { date: '2025-12-31', title: '한국면접관협회, 인문학 기반 면접관 마스터 자격과정 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=194008', source: '한국강사신문' },
     { date: '2025-12-24', title: '[강사 인터뷰] 이제야 삶이 말이 되었다 이다인 강사를 만나다', link: 'https://www.lecturernews.com/news/articleView.html?idxno=193591', source: '한국강사신문' },
     { date: '2025-10-16', title: '피엑스알랩, AI 기반 성과창출형 면접평가 협력 MOU 체결', link: 'https://www.lecturernews.com/news/articleView.html?idxno=188762', source: '한국강사신문' },
     { date: '2025-09-15', title: '한국면접관협회, 제23기 전문 면접관 마스터 교육과정 개최', link: 'https://www.lecturernews.com/news/articleView.html?idxno=186927', source: '한국강사신문' },
