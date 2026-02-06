@@ -3246,4 +3246,218 @@ app.delete('/admin/api/activities/:id', adminAuth, async (c) => {
   }
 })
 
+// ============================================
+// RSS Feed Routes
+// ============================================
+
+// RSS Helper Functions
+function escapeXml(str: string): string {
+  if (!str) return ''
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+function formatRFC822Date(dateStr: string): string {
+  const date = new Date(dateStr)
+  return date.toUTCString()
+}
+
+// 전체 RSS Feed (활동소식)
+app.get('/rss.xml', async (c) => {
+  try {
+    const db = c.env.DB
+    
+    // 최신 활동소식 20개 가져오기
+    const result = await db.prepare(`
+      SELECT id, date, title, link, created_at
+      FROM articles
+      ORDER BY date DESC, created_at DESC
+      LIMIT 20
+    `).all()
+    
+    const items = result.results || []
+    const buildDate = new Date().toUTCString()
+    
+    const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>한국미래인재교육협회 - 활동소식</title>
+    <link>https://kfea.ai.kr</link>
+    <description>한국미래인재교육협회의 최신 활동소식, 공지사항, 교육소식을 전해드립니다.</description>
+    <language>ko</language>
+    <lastBuildDate>${buildDate}</lastBuildDate>
+    <atom:link href="https://kfea.ai.kr/rss.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://www.genspark.ai/api/files/s/Jier95KY</url>
+      <title>한국미래인재교육협회</title>
+      <link>https://kfea.ai.kr</link>
+    </image>
+${items.map((item: any) => `    <item>
+      <title>${escapeXml(item.title)}</title>
+      <link>${escapeXml(item.link)}</link>
+      <guid>${escapeXml(item.link)}</guid>
+      <pubDate>${formatRFC822Date(item.date)}</pubDate>
+      <description>${escapeXml(item.title)}</description>
+    </item>`).join('\n')}
+  </channel>
+</rss>`
+    
+    return new Response(rssXml, {
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600'
+      }
+    })
+  } catch (error) {
+    console.error('RSS generation error:', error)
+    return c.text('RSS Feed generation error', 500)
+  }
+})
+
+// 공지사항 RSS Feed
+app.get('/rss/notice.xml', async (c) => {
+  try {
+    const db = c.env.DB
+    
+    // 최신 공지사항 20개 가져오기
+    const result = await db.prepare(`
+      SELECT id, title, content, is_popup, created_at
+      FROM notices
+      ORDER BY created_at DESC
+      LIMIT 20
+    `).all()
+    
+    const items = result.results || []
+    const buildDate = new Date().toUTCString()
+    
+    const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>한국미래인재교육협회 - 공지사항</title>
+    <link>https://kfea.ai.kr/boards/notice</link>
+    <description>한국미래인재교육협회의 최신 공지사항을 전해드립니다.</description>
+    <language>ko</language>
+    <lastBuildDate>${buildDate}</lastBuildDate>
+    <atom:link href="https://kfea.ai.kr/rss/notice.xml" rel="self" type="application/rss+xml"/>
+${items.map((item: any) => `    <item>
+      <title>${item.is_popup ? '[중요] ' : ''}${escapeXml(item.title)}</title>
+      <link>https://kfea.ai.kr/boards/notice/${item.id}</link>
+      <guid>https://kfea.ai.kr/boards/notice/${item.id}</guid>
+      <pubDate>${formatRFC822Date(item.created_at)}</pubDate>
+      <description>${escapeXml(item.content || item.title)}</description>
+    </item>`).join('\n')}
+  </channel>
+</rss>`
+    
+    return new Response(rssXml, {
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600'
+      }
+    })
+  } catch (error) {
+    console.error('Notice RSS generation error:', error)
+    return c.text('RSS Feed generation error', 500)
+  }
+})
+
+// 교육소식 RSS Feed
+app.get('/rss/education.xml', async (c) => {
+  try {
+    const db = c.env.DB
+    
+    // 최신 교육소식 20개 가져오기
+    const result = await db.prepare(`
+      SELECT id, title, content, thumbnail_url, created_at
+      FROM education_news
+      ORDER BY created_at DESC
+      LIMIT 20
+    `).all()
+    
+    const items = result.results || []
+    const buildDate = new Date().toUTCString()
+    
+    const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>한국미래인재교육협회 - 교육소식</title>
+    <link>https://kfea.ai.kr/activities</link>
+    <description>한국미래인재교육협회의 최신 교육 프로그램 및 교육소식을 전해드립니다.</description>
+    <language>ko</language>
+    <lastBuildDate>${buildDate}</lastBuildDate>
+    <atom:link href="https://kfea.ai.kr/rss/education.xml" rel="self" type="application/rss+xml"/>
+${items.map((item: any) => `    <item>
+      <title>${escapeXml(item.title)}</title>
+      <link>https://kfea.ai.kr/activities#education-${item.id}</link>
+      <guid>https://kfea.ai.kr/activities#education-${item.id}</guid>
+      <pubDate>${formatRFC822Date(item.created_at)}</pubDate>
+      <description>${escapeXml(item.content || item.title)}</description>${item.thumbnail_url ? `
+      <media:thumbnail url="${escapeXml(item.thumbnail_url)}"/>` : ''}
+    </item>`).join('\n')}
+  </channel>
+</rss>`
+    
+    return new Response(rssXml, {
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600'
+      }
+    })
+  } catch (error) {
+    console.error('Education RSS generation error:', error)
+    return c.text('RSS Feed generation error', 500)
+  }
+})
+
+// 보도기사 RSS Feed (활동소식과 동일)
+app.get('/rss/press.xml', async (c) => {
+  try {
+    const db = c.env.DB
+    
+    // 최신 활동소식(보도기사) 20개 가져오기
+    const result = await db.prepare(`
+      SELECT id, date, title, link, created_at
+      FROM articles
+      ORDER BY date DESC, created_at DESC
+      LIMIT 20
+    `).all()
+    
+    const items = result.results || []
+    const buildDate = new Date().toUTCString()
+    
+    const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>한국미래인재교육협회 - 보도기사</title>
+    <link>https://kfea.ai.kr/activities</link>
+    <description>한국미래인재교육협회 관련 언론 보도 및 보도자료를 전해드립니다.</description>
+    <language>ko</language>
+    <lastBuildDate>${buildDate}</lastBuildDate>
+    <atom:link href="https://kfea.ai.kr/rss/press.xml" rel="self" type="application/rss+xml"/>
+${items.map((item: any) => `    <item>
+      <title>${escapeXml(item.title)}</title>
+      <link>${escapeXml(item.link)}</link>
+      <guid>${escapeXml(item.link)}</guid>
+      <pubDate>${formatRFC822Date(item.date)}</pubDate>
+      <description>${escapeXml(item.title)}</description>
+    </item>`).join('\n')}
+  </channel>
+</rss>`
+    
+    return new Response(rssXml, {
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600'
+      }
+    })
+  } catch (error) {
+    console.error('Press RSS generation error:', error)
+    return c.text('RSS Feed generation error', 500)
+  }
+})
+
 export default app
