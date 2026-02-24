@@ -2356,6 +2356,45 @@ app.get('/boards/notice/:id', async (c) => {
                     dangerouslySetInnerHTML={{ __html: notice.content.replace(/\n/g, '<br/>').replace(/  /g, '<br/>') }}
                   />
                 </div>
+
+                {/* 링크 버튼 섹션 */}
+                <div class="mt-8 space-y-4">
+                  {/* 블로그 상세 정보 */}
+                  <div class="bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-300 rounded-xl p-6">
+                    <h3 class="text-lg font-bold text-green-800 mb-3 flex items-center">
+                      <i class="fab fa-blogger-b text-2xl mr-3"></i>
+                      📝 자세한 내용 보기
+                    </h3>
+                    <p class="text-gray-700 mb-4 text-sm">교육 과정의 상세한 내용과 커리큘럼을 확인하세요</p>
+                    <a 
+                      href="https://blog.naver.com/aw_yumic/224194292359" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-bold transition-all duration-200 shadow-md hover:shadow-lg"
+                    >
+                      <i class="fas fa-external-link-alt mr-2"></i>
+                      네이버 블로그에서 자세히 보기
+                    </a>
+                  </div>
+
+                  {/* 구글 신청 폼 */}
+                  <div class="bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-300 rounded-xl p-6">
+                    <h3 class="text-lg font-bold text-blue-800 mb-3 flex items-center">
+                      <i class="fas fa-pen-fancy text-2xl mr-3"></i>
+                      ✍️ 지금 바로 신청하기
+                    </h3>
+                    <p class="text-gray-700 mb-4 text-sm">온라인으로 간편하게 교육 과정을 신청하세요</p>
+                    <a 
+                      href="https://forms.gle/QRjsjbD1Wu8RJpJb8" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold transition-all duration-200 shadow-md hover:shadow-lg"
+                    >
+                      <i class="fab fa-google mr-2"></i>
+                      구글 폼으로 신청하기
+                    </a>
+                  </div>
+                </div>
               </div>
 
               {/* 목록 버튼 */}
