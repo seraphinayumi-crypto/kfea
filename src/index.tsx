@@ -3091,8 +3091,8 @@ app.get('/admin/login', (c) => {
           </div>
         </div>
 
-        <script>{`
-          document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+        <script dangerouslySetInnerHTML={{__html: `
+          document.getElementById('admin-login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const username = document.getElementById('username').value;
@@ -3103,7 +3103,7 @@ app.get('/admin/login', (c) => {
               const response = await fetch('/admin/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ username: username, password: password })
               });
               
               const data = await response.json();
@@ -3121,7 +3121,7 @@ app.get('/admin/login', (c) => {
               errorDiv.querySelector('p').textContent = '서버 오류가 발생했습니다.';
             }
           });
-        `}</script>
+        `}} />
       </body>
     </html>
   )
@@ -3274,7 +3274,7 @@ app.get('/admin/dashboard', (c) => {
           </main>
         </div>
 
-        <script>{`
+        <script dangerouslySetInnerHTML={{__html: `
           // 인증 체크
           const token = localStorage.getItem('admin_token');
           if (!token) {
@@ -3287,7 +3287,7 @@ app.get('/admin/dashboard', (c) => {
               window.location.href = '/admin/login';
             }
           }
-        `}</script>
+        `}} />
       </body>
     </html>
   )
@@ -3475,7 +3475,7 @@ app.get('/admin/activities', (c) => {
           }
           
           // 기사 추가/수정 폼 제출
-          document.getElementById('article-form').addEventListener('submit', async (e) => {
+          document.getElementById('article-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const date = document.getElementById('article-date').value;
