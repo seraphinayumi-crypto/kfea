@@ -891,35 +891,6 @@ app.get('/', (c) => {
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section class="py-12 bg-blue-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-8">
-            <h2 class="text-3xl md:text-3xl font-bold mb-4">협회 통계 및 성과</h2>
-            <p class="text-xl text-blue-100">숫자로 보는 한국미래인재교육협회</p>
-          </div>
-
-          <div class="grid md:grid-cols-4 gap-6">
-            <div class="text-center">
-              <div class="text-3xl font-bold mb-2">32+</div>
-              <div class="text-xl text-blue-100">협력 기관</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl font-bold mb-2">6</div>
-              <div class="text-xl text-blue-100">민간자격증</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl font-bold mb-2">100+</div>
-              <div class="text-xl text-blue-100">강의 진행</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl font-bold mb-2">500+</div>
-              <div class="text-xl text-blue-100">수료생</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section class="py-12 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
