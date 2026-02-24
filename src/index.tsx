@@ -2351,10 +2351,60 @@ app.get('/boards/notice/:id', async (c) => {
               {/* 본문 내용 */}
               <div class="px-8 py-8">
                 <div class="prose max-w-none">
-                  <div 
-                    class="text-gray-800 leading-relaxed whitespace-pre-wrap text-base"
-                    dangerouslySetInnerHTML={{ __html: notice.content.replace(/\n/g, '<br/>') }}
-                  />
+                  <div class="text-gray-800 leading-relaxed text-base space-y-4">
+                    {notice.content.split(/[•📅💰📝📞🌱]/g).filter((line: string) => line.trim()).map((line: string, index: number) => {
+                      const trimmedLine = line.trim()
+                      if (!trimmedLine) return null
+                      
+                      // 각 섹션을 구분하여 표시
+                      if (trimmedLine.includes('일정:') || trimmedLine.includes('늘봄방과후') || trimmedLine.includes('제로웨이스트')) {
+                        return (
+                          <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                            <h3 class="font-bold text-green-800 mb-2 flex items-center">
+                              <i class="fas fa-calendar-alt mr-2"></i>📅 일정
+                            </h3>
+                            <div class="text-gray-700 space-y-1" dangerouslySetInnerHTML={{ __html: trimmedLine.replace(/일정:/g, '').replace(/•/g, '<br/>•') }} />
+                          </div>
+                        )
+                      } else if (trimmedLine.includes('수강료:') || trimmedLine.includes('정상가') || trimmedLine.includes('패키지') || trimmedLine.includes('할인')) {
+                        return (
+                          <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                            <h3 class="font-bold text-red-800 mb-2 flex items-center">
+                              <i class="fas fa-won-sign mr-2"></i>💰 수강료
+                            </h3>
+                            <div class="text-gray-700 space-y-1" dangerouslySetInnerHTML={{ __html: trimmedLine.replace(/수강료:/g, '').replace(/•/g, '<br/>•') }} />
+                          </div>
+                        )
+                      } else if (trimmedLine.includes('naver.com') || trimmedLine.includes('blog')) {
+                        return (
+                          <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                            <h3 class="font-bold text-blue-800 mb-2 flex items-center">
+                              <i class="fas fa-link mr-2"></i>📝 자세한 내용
+                            </h3>
+                            <a href={trimmedLine.match(/https?:\/\/[^\s]+/)?.[0] || '#'} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline break-all">
+                              {trimmedLine.match(/https?:\/\/[^\s]+/)?.[0] || trimmedLine}
+                            </a>
+                          </div>
+                        )
+                      } else if (trimmedLine.includes('문의:') || trimmedLine.includes('010-')) {
+                        return (
+                          <div class="bg-gray-50 border-l-4 border-gray-400 p-4 rounded">
+                            <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                              <i class="fas fa-phone mr-2"></i>📞 문의
+                            </h3>
+                            <p class="text-gray-700">{trimmedLine.replace(/문의:/g, '').trim()}</p>
+                          </div>
+                        )
+                      } else if (trimmedLine.length > 20) {
+                        return (
+                          <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+                            <p class="text-gray-800 font-medium">{trimmedLine}</p>
+                          </div>
+                        )
+                      }
+                      return null
+                    })}
+                  </div>
                 </div>
               </div>
 
