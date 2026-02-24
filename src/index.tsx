@@ -584,43 +584,43 @@ const Layout = (props: { children: any; title?: string }) => {
             .then(data => {
               if (data.success && data.notice) {
                 const popupHtml = \`
-                  <div id="notice-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+                  <div id="notice-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3 sm:p-4">
                     <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                       <div class="relative">
                         <!-- 헤더 -->
-                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-2xl">
-                          <button id="close-popup" class="absolute top-4 right-4 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full w-8 h-8 flex items-center justify-center transition-all">
-                            <i class="fas fa-times text-white text-lg"></i>
+                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 sm:p-6 rounded-t-2xl">
+                          <button id="close-popup" class="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center transition-all">
+                            <i class="fas fa-times text-white text-base sm:text-lg"></i>
                           </button>
-                          <div class="inline-block bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold mb-3">
+                          <div class="inline-block bg-red-500 text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-bold mb-2 sm:mb-3">
                             특별 할인 이벤트
                           </div>
-                          <h2 class="text-xl font-bold pr-8">\${data.notice.title}</h2>
+                          <h2 class="text-lg sm:text-xl font-bold pr-6 sm:pr-8">\${data.notice.title}</h2>
                         </div>
                         
                         <!-- 본문 -->
-                        <div class="p-6">
-                          <div class="space-y-4 text-sm">
-                            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
-                              <h3 class="font-bold text-green-800 mb-2">📢 과정 안내</h3>
-                              <ul class="text-gray-700 space-y-1">
+                        <div class="p-4 sm:p-6">
+                          <div class="space-y-3 sm:space-y-4 text-sm">
+                            <div class="bg-green-50 border-l-4 border-green-500 p-3 sm:p-4 rounded">
+                              <h3 class="font-bold text-green-800 mb-1.5 sm:mb-2 text-sm sm:text-base">📢 과정 안내</h3>
+                              <ul class="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
                                 <li>• 늘봄방과후 전문강사: 3월 8일(토) 10:00-17:00</li>
                                 <li>• 제로웨이스트실천교육강사: 3월 15일(일) 10:00-17:00</li>
                                 <li>• ZOOM 온라인 특강</li>
                               </ul>
                             </div>
                             
-                            <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-                              <h3 class="font-bold text-red-800 mb-2">💰 수강료 안내</h3>
-                              <ul class="text-gray-700 space-y-1">
+                            <div class="bg-red-50 border-l-4 border-red-500 p-3 sm:p-4 rounded">
+                              <h3 class="font-bold text-red-800 mb-1.5 sm:mb-2 text-sm sm:text-base">💰 수강료 안내</h3>
+                              <ul class="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
                                 <li>• 정가: <span class="line-through">280,000원</span></li>
                                 <li>• <span class="text-red-600 font-bold">패키지 할인가: 230,000원 (50,000원 할인!)</span></li>
                                 <li>• SNS 후기 작성 시 추가 10,000원 환급</li>
                               </ul>
                             </div>
                             
-                            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-                              <h3 class="font-bold text-blue-800 mb-2">✅ 이런 분께 추천</h3>
+                            <div class="bg-blue-50 border-l-4 border-blue-500 p-3 sm:p-4 rounded">
+                              <h3 class="font-bold text-blue-800 mb-1.5 sm:mb-2 text-sm sm:text-base">✅ 이런 분께 추천</h3>
                               <ul class="text-gray-700 space-y-1 text-xs">
                                 <li>☑ 늘봄학교·방과후에서 환경 수업 강사로 활동하고 싶은 분</li>
                                 <li>☑ 자격증은 있는데 실제 수업 콘텐츠가 없어 막막한 분</li>
@@ -628,8 +628,8 @@ const Layout = (props: { children: any; title?: string }) => {
                               </ul>
                             </div>
                             
-                            <div class="bg-gray-50 border-l-4 border-gray-400 p-4 rounded">
-                              <h3 class="font-bold text-gray-800 mb-2">📞 문의</h3>
+                            <div class="bg-gray-50 border-l-4 border-gray-400 p-3 sm:p-4 rounded">
+                              <h3 class="font-bold text-gray-800 mb-1.5 sm:mb-2 text-sm sm:text-base">📞 문의</h3>
                               <ul class="text-gray-700 space-y-1 text-xs">
                                 <li>전화: 010-3450-1117</li>
                                 <li>이메일: info@kfea.ai.kr</li>
@@ -639,12 +639,12 @@ const Layout = (props: { children: any; title?: string }) => {
                         </div>
                         
                         <!-- 푸터 -->
-                        <div class="bg-gray-50 px-6 py-4 rounded-b-2xl flex flex-col sm:flex-row items-center justify-between gap-3 border-t">
-                          <label class="flex items-center cursor-pointer text-sm">
-                            <input type="checkbox" id="hide-today" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-2" />
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:py-4 rounded-b-2xl flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 border-t">
+                          <label class="flex items-center cursor-pointer text-xs sm:text-sm">
+                            <input type="checkbox" id="hide-today" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-1.5 sm:mr-2" />
                             <span class="text-gray-600">오늘 하루 보지 않기</span>
                           </label>
-                          <a href="/boards/notice/\${data.notice.id}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-bold transition-colors text-sm shadow-md">
+                          <a href="/boards/notice/\${data.notice.id}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-lg font-bold transition-colors text-xs sm:text-sm shadow-md w-full sm:w-auto text-center">
                             자세히 보기 →
                           </a>
                         </div>
@@ -789,7 +789,7 @@ app.get('/', (c) => {
   return c.html(
     <Layout>
       {/* Hero Section */}
-      <section class="relative min-h-[500px] md:min-h-[450px] overflow-hidden bg-gradient-to-br from-orange-100 via-teal-100 to-blue-100">
+      <section class="relative min-h-[300px] sm:min-h-[400px] md:min-h-[450px] overflow-hidden bg-gradient-to-br from-orange-100 via-teal-100 to-blue-100">
         <div class="absolute inset-0 flex items-center justify-center">
           <img 
             src="https://www.genspark.ai/api/files/s/F1FQTlAq?cache_control=3600" 
@@ -801,37 +801,37 @@ app.get('/', (c) => {
       </section>
 
       {/* Programs Section */}
-      <section class="py-8 bg-gradient-to-b from-white to-gray-50">
+      <section class="py-6 sm:py-8 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-6">
+          <div class="text-center mb-4 sm:mb-6">
             <div class="inline-block mb-3">
               <span class="bg-blue-100 text-blue-800 px-4 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider">
                 Our Programs
               </span>
             </div>
-            <h2 class="text-2xl md:text-2xl font-bold text-gray-900 mb-2">교육 프로그램</h2>
-            <p class="text-base text-gray-600">다양한 분야의 전문 교육과정을 만나보세요</p>
+            <h2 class="text-xl sm:text-2xl md:text-2xl font-bold text-gray-900 mb-2">교육 프로그램</h2>
+            <p class="text-sm sm:text-base text-gray-600">다양한 분야의 전문 교육과정을 만나보세요</p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-            <a href="/programs" class="group bg-white rounded-xl p-6 border border-gray-200 hover:border-blue-500 transition-all duration-300 hover:shadow-lg">
-              <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <i class="fas fa-book-open text-white text-2xl"></i>
+          <div class="grid sm:grid-cols-2 gap-3 sm:gap-4 max-w-4xl mx-auto">
+            <a href="/programs" class="group bg-white rounded-xl p-4 sm:p-6 border border-gray-200 hover:border-blue-500 transition-all duration-300 hover:shadow-lg">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                <i class="fas fa-book-open text-white text-xl sm:text-2xl"></i>
               </div>
-              <h4 class="text-xl font-bold mb-2 text-gray-900">기본 교육과정</h4>
-              <p class="text-gray-600 text-sm mb-3">AI 활용, 취업 지원, 강사 양성 등 전문 실무 교육</p>
+              <h4 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-gray-900">기본 교육과정</h4>
+              <p class="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3">AI 활용, 취업 지원, 강사 양성 등 전문 실무 교육</p>
               <div class="inline-flex items-center text-blue-600 font-semibold text-sm">
                 <span>자세히 보기</span>
                 <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
               </div>
             </a>
 
-            <a href="/programs/certifications" class="group bg-white rounded-xl p-6 border border-gray-200 hover:border-purple-500 transition-all duration-300 hover:shadow-lg">
-              <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <i class="fas fa-certificate text-white text-2xl"></i>
+            <a href="/programs/certifications" class="group bg-white rounded-xl p-4 sm:p-6 border border-gray-200 hover:border-purple-500 transition-all duration-300 hover:shadow-lg">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                <i class="fas fa-certificate text-white text-xl sm:text-2xl"></i>
               </div>
-              <h4 class="text-xl font-bold mb-2 text-gray-900">자격증 과정</h4>
-              <p class="text-gray-600 text-sm mb-3">민간자격증 취득 및 전문성 향상 과정</p>
+              <h4 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-gray-900">자격증 과정</h4>
+              <p class="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3">민간자격증 취득 및 전문성 향상 과정</p>
               <div class="inline-flex items-center text-purple-600 font-semibold text-sm">
                 <span>자세히 보기</span>
                 <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
@@ -842,22 +842,22 @@ app.get('/', (c) => {
       </section>
 
       {/* Notices Section - 동적으로 로드 */}
-      <section class="py-12 bg-slate-50" id="notices-section">
+      <section class="py-6 sm:py-10 md:py-12 bg-slate-50" id="notices-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between items-center mb-8">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 md:mb-8 gap-3 sm:gap-0">
             <div>
-              <h2 class="text-3xl md:text-3xl font-bold text-gray-900 mb-2">공지사항</h2>
-              <p class="text-gray-600">최신 소식을 확인하세요</p>
+              <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">공지사항</h2>
+              <p class="text-sm sm:text-base text-gray-600">최신 소식을 확인하세요</p>
             </div>
-            <a href="/boards/notice" class="inline-flex items-center bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
+            <a href="/boards/notice" class="inline-flex items-center bg-blue-900 hover:bg-blue-800 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base">
               <span>전체보기</span>
               <i class="fas fa-arrow-right ml-2"></i>
             </a>
           </div>
 
-          <div class="grid md:grid-cols-3 gap-6" id="notices-list">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6" id="notices-list">
             {/* 여기에 동적으로 공지사항이 로드됩니다 */}
-            <div class="col-span-3 text-center py-8">
+            <div class="col-span-full text-center py-6 sm:py-8">
               <i class="fas fa-spinner fa-spin text-3xl text-gray-400 mb-2"></i>
               <p class="text-gray-500">공지사항을 불러오는 중...</p>
             </div>
@@ -866,14 +866,14 @@ app.get('/', (c) => {
       </section>
 
       {/* Partner Organizations Section - 32 institutions */}
-      <section class="py-10 bg-gray-100">
+      <section class="py-6 sm:py-8 md:py-10 bg-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold mb-4">주요 출강 및 협력 기관</h2>
-            <p class="text-base text-gray-600">신뢰할 수 있는 기관들과 함께합니다</p>
+          <div class="text-center mb-4 sm:mb-6 md:mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 md:mb-4">주요 출강 및 협력 기관</h2>
+            <p class="text-sm sm:text-base text-gray-600">신뢰할 수 있는 기관들과 함께합니다</p>
           </div>
 
-          <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 items-center">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 sm:gap-2.5 items-center">
             {/* 32 Partner Organizations */}
             {[
               '전북대학교', '경북대학교', '영남대학교', '대구대학교', '계명대학교', '제주대학교',
@@ -883,7 +883,7 @@ app.get('/', (c) => {
               '국립금오공과대학교', '강원도립대학교', '건양사이버대학교', '한국철도공사', '공주정보고등학교',
               '한국호텔관광고등학교', '한국면접관협회', '대전광역시자원봉사센터'
             ].map((org) => (
-              <div class="bg-white p-2 rounded shadow hover:shadow-md transition-all duration-200 flex items-center justify-center h-16 border border-gray-200 hover:border-blue-300">
+              <div class="bg-white p-1.5 sm:p-2 rounded shadow hover:shadow-md transition-all duration-200 flex items-center justify-center h-14 sm:h-16 border border-gray-200 hover:border-blue-300">
                 <p class="font-bold text-xs text-center text-gray-800 leading-tight">{org}</p>
               </div>
             ))}
@@ -892,17 +892,17 @@ app.get('/', (c) => {
       </section>
 
       {/* CTA Section */}
-      <section class="py-12 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <section class="py-8 sm:py-10 md:py-12 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-3xl md:text-3xl font-bold mb-6">지금 시작하세요</h2>
-          <p class="text-xl mb-10 text-blue-100">
+          <h2 class="text-2xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 md:mb-6">지금 시작하세요</h2>
+          <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 md:mb-10 text-blue-100">
             한국미래인재교육협회와 함께 미래를 준비하는 전문가가 되어보세요
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/programs" class="bg-white hover:bg-gray-100 text-blue-900 px-10 py-4 rounded-lg font-bold text-lg transition-colors duration-200 shadow-lg">
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <a href="/programs" class="bg-white hover:bg-gray-100 text-blue-900 px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-lg font-bold text-base sm:text-lg transition-colors duration-200 shadow-lg">
               교육과정 보기
             </a>
-            <a href="/contact" class="bg-transparent hover:bg-white/10 border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg transition-colors duration-200">
+            <a href="/contact" class="bg-transparent hover:bg-white/10 border-2 border-white text-white px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-lg font-bold text-base sm:text-lg transition-colors duration-200">
               문의하기
             </a>
           </div>
