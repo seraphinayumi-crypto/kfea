@@ -156,6 +156,20 @@ const Layout = (props: { children: any; title?: string }) => {
       </head>
       <body class="min-h-[400px] bg-gray-50">
         <div>
+          {/* 카카오톡 플로팅 버튼 */}
+          <a 
+            href="https://open.kakao.com/me/kfea" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="fixed bottom-6 right-6 z-50 bg-yellow-400 hover:bg-yellow-500 text-gray-900 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            aria-label="카카오톡 문의하기"
+          >
+            <i class="fas fa-comment text-2xl group-hover:scale-110 transition-transform"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold animate-pulse">
+              1:1
+            </span>
+          </a>
+
           {/* Header with improved navigation spacing */}
           <header class="bg-white/80 backdrop-blur-lg shadow-sm border-b border-gray-200/50 sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
