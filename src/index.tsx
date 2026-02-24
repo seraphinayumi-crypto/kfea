@@ -583,7 +583,7 @@ const Layout = (props: { children: any; title?: string }) => {
                           <input type="checkbox" id="hide-today" class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3" />
                           <span class="text-gray-700 font-medium">오늘 하루 보지 않기</span>
                         </label>
-                        <a href="/boards/notice" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors whitespace-nowrap">
+                        <a href="/boards/notice/\${data.notice.id}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors whitespace-nowrap">
                           자세히 보기
                         </a>
                       </div>
@@ -621,7 +621,12 @@ const Layout = (props: { children: any; title?: string }) => {
         
         // 홈페이지에서만 팝업 표시
         if (window.location.pathname === '/') {
-          document.addEventListener('DOMContentLoaded', showPopupNotice);
+          // DOMContentLoaded 이벤트가 이미 발생했을 수도 있으므로 즉시 실행도 포함
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', showPopupNotice);
+          } else {
+            showPopupNotice();
+          }
         }
       `
         }} />
