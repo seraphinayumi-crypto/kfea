@@ -715,24 +715,28 @@ const Layout = (props: { children: any; title?: string }) => {
                   
                   // 날짜 포맷팅
                   const date = new Date(notice.created_at);
-                  const formattedDate = \`\${date.getFullYear()}.\${String(date.getMonth() + 1).padStart(2, '0')}.\${String(date.getDate()).padStart(2, '0')}\`;
+                  const year = date.getFullYear();
+                  const month = String(date.getMonth() + 1).padStart(2, '0');
+                  const day = String(date.getDate()).padStart(2, '0');
+                  const formattedDate = year + '.' + month + '.' + day;
                   
                   // 내용 요약 (첫 100자)
                   const summary = notice.content ? notice.content.substring(0, 100) : '';
                   
-                  const noticeHtml = \`
-                    <a href="/boards/notice/\${notice.id}" class="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-lg cursor-pointer">
-                      <div class="flex items-center mb-4">
-                        <span class="\${badgeClass} text-white px-4 py-1.5 text-xs font-semibold rounded-lg mr-3">\${badgeText}</span>
-                        <span class="text-gray-500 text-sm font-medium">\${formattedDate}</span>
-                      </div>
-                      <h4 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">\${notice.title}</h4>
-                      <p class="text-gray-600 leading-relaxed">\${summary}...</p>
-                    </a>
-                  \`;
+                  const noticeHtml = 
+                    '<a href="/boards/notice/' + notice.id + '" class="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-lg cursor-pointer">' +
+                      '<div class="flex items-center mb-4">' +
+                        '<span class="' + badgeClass + ' text-white px-4 py-1.5 text-xs font-semibold rounded-lg mr-3">' + badgeText + '</span>' +
+                        '<span class="text-gray-500 text-sm font-medium">' + formattedDate + '</span>' +
+                      '</div>' +
+                      '<h4 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">' + notice.title + '</h4>' +
+                      '<p class="text-gray-600 leading-relaxed">' + summary + '...</p>' +
+                    '</a>';
                   
                   noticesList.insertAdjacentHTML('beforeend', noticeHtml);
+                  console.log('공지사항 추가 완료:', notice.id, notice.title);
                 });
+                console.log('=== 모든 공지사항 렌더링 완료 ===');
               } else {
                 noticesList.innerHTML = '<div class="col-span-3 text-center py-8 text-gray-500">등록된 공지사항이 없습니다.</div>';
               }
