@@ -2287,24 +2287,231 @@ app.get('/boards/notice/:id', async (c) => {
     return c.html(
       <Layout title={`${notice.title} - 한국미래인재교육협회`}>
         <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
-          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-              <div class="border-b pb-6 mb-6">
-                <h1 class="text-3xl font-bold text-gray-900 mb-4">{notice.title}</h1>
-                <div class="flex items-center text-sm text-gray-600 space-x-4">
-                  <span><i class="far fa-calendar mr-2"></i>{date}</span>
-                  <span><i class="far fa-eye mr-2"></i>조회 {notice.views}</span>
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              {/* 헤더 */}
+              <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-6">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="inline-block bg-red-500 text-white px-4 py-1.5 rounded-full text-sm font-bold">
+                    특별 할인 이벤트
+                  </span>
+                  <div class="flex items-center text-sm space-x-4 text-blue-100">
+                    <span><i class="far fa-calendar mr-1"></i>{date}</span>
+                    <span><i class="far fa-eye mr-1"></i>조회 {notice.views}</span>
+                  </div>
+                </div>
+                <h1 class="text-3xl font-bold">{notice.title}</h1>
+              </div>
+
+              {/* 포스터 이미지 */}
+              <div class="p-8 bg-gray-50">
+                <img 
+                  src="https://www.genspark.ai/api/files/s/TQqamezQ" 
+                  alt={notice.title}
+                  class="w-full max-w-2xl mx-auto rounded-xl shadow-lg"
+                  onerror="this.style.display='none'"
+                />
+              </div>
+
+              {/* 본문 내용 */}
+              <div class="px-8 py-6">
+                <div class="space-y-6">
+                  {/* 과정 안내 */}
+                  <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
+                    <h2 class="text-xl font-bold text-green-900 mb-4 flex items-center">
+                      <i class="fas fa-calendar-check mr-3 text-green-600"></i>
+                      📢 과정 안내
+                    </h2>
+                    <div class="space-y-3 text-gray-700">
+                      <p class="flex items-start">
+                        <span class="text-green-600 mr-3 mt-1">•</span>
+                        <span><strong>늘봄방과후 전문강사:</strong> 2026년 3월 8일(토) 10:00-17:00</span>
+                      </p>
+                      <p class="flex items-start">
+                        <span class="text-green-600 mr-3 mt-1">•</span>
+                        <span><strong>제로웨이스트실천교육강사:</strong> 2026년 3월 15일(일) 10:00-17:00</span>
+                      </p>
+                      <p class="flex items-start">
+                        <span class="text-green-600 mr-3 mt-1">•</span>
+                        <span><strong>교육 방식:</strong> ZOOM 온라인 특강</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 수강료 안내 */}
+                  <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg">
+                    <h2 class="text-xl font-bold text-red-900 mb-4 flex items-center">
+                      <i class="fas fa-tag mr-3 text-red-600"></i>
+                      💰 수강료 안내
+                    </h2>
+                    <div class="space-y-3 text-gray-700">
+                      <p class="flex items-start">
+                        <span class="text-red-600 mr-3 mt-1">•</span>
+                        <span>정가: <span class="line-through text-gray-500">280,000원</span> (늘봄 100,000원 + 제로웨이스트 180,000원)</span>
+                      </p>
+                      <p class="flex items-start">
+                        <span class="text-red-600 mr-3 mt-1">•</span>
+                        <span class="text-red-700 font-bold text-lg">패키지 할인가: 230,000원 <span class="bg-red-600 text-white px-2 py-1 rounded text-sm ml-2">50,000원 할인!</span></span>
+                      </p>
+                      <p class="flex items-start">
+                        <span class="text-red-600 mr-3 mt-1">•</span>
+                        <span>SNS 후기 작성 시 추가 <strong class="text-red-700">10,000원 환급</strong></span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 늘봄방과후강사 자격증 필요 이유 */}
+                  <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                    <h2 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                      <i class="fas fa-lightbulb mr-3 text-blue-600"></i>
+                      📌 늘봄방과후강사 자격증이 필요한 이유
+                    </h2>
+                    <p class="text-gray-700 leading-relaxed">
+                      2026년부터 교육부가 초등 3학년 이상 학생에게 방과후 프로그램 이용권 연 50만 원을 지급하기 시작했습니다. 
+                      전국 교육청에서 방과후·늘봄 프로그램 강사를 대규모로 모집하고 있습니다.
+                    </p>
+                  </div>
+
+                  {/* 제로웨이스트강사의 특별함 */}
+                  <div class="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-lg">
+                    <h2 class="text-xl font-bold text-purple-900 mb-4 flex items-center">
+                      <i class="fas fa-star mr-3 text-purple-600"></i>
+                      📌 제로웨이스트강사의 특별함
+                    </h2>
+                    <ul class="space-y-2 text-gray-700">
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
+                        <span>강의 교안 + 수업용 키트 세트 제공</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
+                        <span>수료 후 12개 강의 바로 사용 가능</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
+                        <span>유아~성인 전 연령 수업 가능</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
+                        <span>전 과정 화기·유해물질 없음 (안전 수업)</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* 추천 대상 */}
+                  <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg">
+                    <h2 class="text-xl font-bold text-yellow-900 mb-4 flex items-center">
+                      <i class="fas fa-users mr-3 text-yellow-600"></i>
+                      ✅ 이런 분께 추천합니다
+                    </h2>
+                    <ul class="space-y-2 text-gray-700">
+                      <li class="flex items-start">
+                        <span class="text-yellow-600 mr-3 mt-1">☑</span>
+                        <span>늘봄학교·방과후에서 환경 수업 강사로 활동하고 싶은 분</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="text-yellow-600 mr-3 mt-1">☑</span>
+                        <span>자격증은 있는데 실제 수업 콘텐츠가 없어 막막한 분</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="text-yellow-600 mr-3 mt-1">☑</span>
+                        <span>부업·프리랜서 강사로 활동하려는 직장인·주부</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="text-yellow-600 mr-3 mt-1">☑</span>
+                        <span>환경 체험 수업을 시작하려는 카페·공방 운영자</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="text-yellow-600 mr-3 mt-1">☑</span>
+                        <span>기업 ESG 담당자로 환경교육을 직접 운영하고 싶은 분</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* 활동 가능 분야 */}
+                  <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg">
+                    <h2 class="text-xl font-bold text-indigo-900 mb-4 flex items-center">
+                      <i class="fas fa-briefcase mr-3 text-indigo-600"></i>
+                      🎯 활동 가능 분야
+                    </h2>
+                    <ul class="space-y-2 text-gray-700">
+                      <li class="flex items-start">
+                        <i class="fas fa-school text-indigo-600 mr-3 mt-1"></i>
+                        <span>전국 늘봄학교·초중고 환경교육 외부 강사</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-landmark text-indigo-600 mr-3 mt-1"></i>
+                        <span>지자체·도서관·주민센터·문화센터 체험 강좌</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-leaf text-indigo-600 mr-3 mt-1"></i>
+                        <span>지역 환경센터·제로웨이스트 숍 협업 강사</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-building text-indigo-600 mr-3 mt-1"></i>
+                        <span>기업 ESG 교육·임직원 환경 워크숍 강사</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-coffee text-indigo-600 mr-3 mt-1"></i>
+                        <span>공방·카페·독립 공간 원데이 클래스 운영</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* 문의 및 신청 */}
+                  <div class="bg-gray-50 border-l-4 border-gray-500 p-6 rounded-r-lg">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                      <i class="fas fa-phone-alt mr-3 text-gray-600"></i>
+                      📞 문의 및 신청
+                    </h2>
+                    <div class="space-y-3 text-gray-700">
+                      <p class="flex items-center">
+                        <i class="fas fa-phone text-gray-600 mr-3"></i>
+                        <span><strong>전화:</strong> 010-3450-1117</span>
+                      </p>
+                      <p class="flex items-center">
+                        <i class="fas fa-envelope text-gray-600 mr-3"></i>
+                        <span><strong>이메일:</strong> info@kfea.ai.kr</span>
+                      </p>
+                      <p class="flex items-center">
+                        <i class="fas fa-blog text-gray-600 mr-3"></i>
+                        <a href="https://blog.naver.com/aw_yumic/224194292359" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">
+                          <strong>자세한 내용 보기 →</strong>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              
-              <div class="prose max-w-none">
-                <div class="text-gray-700 whitespace-pre-wrap leading-relaxed text-base">
-                  {notice.content}
+
+              {/* 신청 버튼 */}
+              <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdVJKUjQtJSdocfp-C6p9d7meMCVawxS3NS5ljXVYuYC-LgRw/viewform" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-10 py-4 rounded-xl font-bold text-lg shadow-xl transition-all transform hover:scale-105 inline-flex items-center"
+                  >
+                    <i class="fas fa-edit mr-3 text-xl"></i>
+                    지금 바로 신청하기
+                    <i class="fas fa-arrow-right ml-3"></i>
+                  </a>
+                  <a 
+                    href="https://blog.naver.com/aw_yumic/224194292359" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="bg-white hover:bg-gray-100 text-blue-700 px-8 py-4 rounded-xl font-semibold shadow-lg transition-all inline-flex items-center"
+                  >
+                    <i class="fas fa-info-circle mr-2"></i>
+                    상세 정보 보기
+                  </a>
                 </div>
               </div>
-              
-              <div class="mt-8 pt-6 border-t flex justify-center">
-                <a href="/boards/notice" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+
+              {/* 목록 버튼 */}
+              <div class="px-8 py-6 bg-gray-50 border-t flex justify-center">
+                <a href="/boards/notice" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center">
                   <i class="fas fa-list mr-2"></i>목록으로
                 </a>
               </div>
