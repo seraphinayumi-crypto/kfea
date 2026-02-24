@@ -571,31 +571,66 @@ const Layout = (props: { children: any; title?: string }) => {
               if (data.success && data.notice) {
                 const popupHtml = \`
                   <div id="notice-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-                    <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                      <div class="relative p-8">
-                        <button id="close-popup" class="absolute top-4 right-4 bg-white hover:bg-gray-100 rounded-full w-10 h-10 flex items-center justify-center transition-all shadow-lg z-10">
-                          <i class="fas fa-times text-gray-800 text-xl"></i>
-                        </button>
-                        
-                        <div class="text-center mb-6">
-                          <div class="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
-                            🔥 특별 할인 이벤트
+                    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                      <div class="relative">
+                        <!-- 헤더 -->
+                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-2xl">
+                          <button id="close-popup" class="absolute top-4 right-4 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full w-8 h-8 flex items-center justify-center transition-all">
+                            <i class="fas fa-times text-white text-lg"></i>
+                          </button>
+                          <div class="inline-block bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold mb-3">
+                            특별 할인 이벤트
                           </div>
-                          <h2 class="text-2xl font-bold text-gray-900 mb-2">\${data.notice.title}</h2>
+                          <h2 class="text-xl font-bold pr-8">\${data.notice.title}</h2>
                         </div>
                         
-                        <div class="bg-white rounded-xl p-6 shadow-inner mb-6">
-                          <div class="prose prose-sm max-w-none">
-                            <div class="whitespace-pre-wrap text-gray-700 leading-relaxed">\${data.notice.content}</div>
+                        <!-- 본문 -->
+                        <div class="p-6">
+                          <div class="space-y-4 text-sm">
+                            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                              <h3 class="font-bold text-green-800 mb-2">📢 과정 안내</h3>
+                              <ul class="text-gray-700 space-y-1">
+                                <li>• 늘봄방과후 전문강사: 3월 8일(토) 10:00-17:00</li>
+                                <li>• 제로웨이스트실천교육강사: 3월 15일(일) 10:00-17:00</li>
+                                <li>• ZOOM 온라인 특강</li>
+                              </ul>
+                            </div>
+                            
+                            <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                              <h3 class="font-bold text-red-800 mb-2">💰 수강료 안내</h3>
+                              <ul class="text-gray-700 space-y-1">
+                                <li>• 정가: <span class="line-through">280,000원</span></li>
+                                <li>• <span class="text-red-600 font-bold">패키지 할인가: 230,000원 (50,000원 할인!)</span></li>
+                                <li>• SNS 후기 작성 시 추가 10,000원 환급</li>
+                              </ul>
+                            </div>
+                            
+                            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                              <h3 class="font-bold text-blue-800 mb-2">✅ 이런 분께 추천</h3>
+                              <ul class="text-gray-700 space-y-1 text-xs">
+                                <li>☑ 늘봄학교·방과후에서 환경 수업 강사로 활동하고 싶은 분</li>
+                                <li>☑ 자격증은 있는데 실제 수업 콘텐츠가 없어 막막한 분</li>
+                                <li>☑ 부업·프리랜서 강사로 활동하려는 직장인·주부</li>
+                              </ul>
+                            </div>
+                            
+                            <div class="bg-gray-50 border-l-4 border-gray-400 p-4 rounded">
+                              <h3 class="font-bold text-gray-800 mb-2">📞 문의</h3>
+                              <ul class="text-gray-700 space-y-1 text-xs">
+                                <li>전화: 010-3450-1117</li>
+                                <li>이메일: info@kfea.ai.kr</li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
                         
-                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-200">
-                          <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" id="hide-today" class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3" />
-                            <span class="text-gray-700 font-medium">오늘 하루 보지 않기</span>
+                        <!-- 푸터 -->
+                        <div class="bg-gray-50 px-6 py-4 rounded-b-2xl flex flex-col sm:flex-row items-center justify-between gap-3 border-t">
+                          <label class="flex items-center cursor-pointer text-sm">
+                            <input type="checkbox" id="hide-today" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-2" />
+                            <span class="text-gray-600">오늘 하루 보지 않기</span>
                           </label>
-                          <a href="/boards/notice/\${data.notice.id}" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold transition-colors whitespace-nowrap shadow-lg">
+                          <a href="/boards/notice/\${data.notice.id}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-bold transition-colors text-sm shadow-md">
                             자세히 보기 →
                           </a>
                         </div>
