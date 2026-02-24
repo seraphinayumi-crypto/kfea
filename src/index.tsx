@@ -679,13 +679,25 @@ const Layout = (props: { children: any; title?: string }) => {
         
         // 메인페이지 공지사항 로드
         function loadHomeNotices() {
+          console.log('=== loadHomeNotices 함수 시작 ===');
           const noticesList = document.getElementById('notices-list');
-          if (!noticesList) return;
+          console.log('notices-list 요소:', noticesList);
           
+          if (!noticesList) {
+            console.error('notices-list 요소를 찾을 수 없습니다');
+            return;
+          }
+          
+          console.log('API 호출 시작: /api/notices?limit=3');
           fetch('/api/notices?limit=3')
-            .then(response => response.json())
+            .then(response => {
+              console.log('API 응답 받음:', response.status, response.statusText);
+              return response.json();
+            })
             .then(data => {
+              console.log('API 데이터:', data);
               if (data.success && data.notices && data.notices.length > 0) {
+                console.log('공지사항 ' + data.notices.length + '개 표시 시작');
                 noticesList.innerHTML = '';
                 
                 data.notices.forEach((notice, index) => {
@@ -732,12 +744,20 @@ const Layout = (props: { children: any; title?: string }) => {
         }
         
         // 홈페이지에서만 공지사항 로드
+        console.log('Current path:', window.location.pathname);
+        console.log('Document ready state:', document.readyState);
+        
         if (window.location.pathname === '/') {
+          console.log('홈페이지 감지됨 - 공지사항 로드 시작');
           if (document.readyState === 'loading') {
+            console.log('DOMContentLoaded 이벤트 대기 중...');
             document.addEventListener('DOMContentLoaded', loadHomeNotices);
           } else {
+            console.log('즉시 공지사항 로드 실행');
             loadHomeNotices();
           }
+        } else {
+          console.log('홈페이지가 아님 - 공지사항 로드 스킵');
         }
       `
         }} />
