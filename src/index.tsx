@@ -2128,45 +2128,156 @@ app.get('/classroom', (c) => {
 })
 
 // Notice Board - 공지사항
-app.get('/boards/notice', (c) => {
-  return c.html(
-    <Layout title="공지사항 - 한국미래인재교육협회">
-      <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold text-gray-900 mb-8">공지사항</h1>
-          
-          <div class="space-y-3">
-            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
-              <div class="flex items-center mb-2">
-                <span class="bg-red-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">중요</span>
-                <span class="text-gray-500 text-sm">2025.12.08</span>
+app.get('/boards/notice', async (c) => {
+  try {
+    const db = c.env.DB
+    
+    // 공지사항 목록 조회
+    const notices = await db.prepare(
+      'SELECT id, title, content, is_popup, created_at FROM notices WHERE is_published = 1 ORDER BY created_at DESC LIMIT 20'
+    ).all()
+    
+    return c.html(
+      <Layout title="공지사항 - 한국미래인재교육협회">
+        <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">공지사항</h1>
+            
+            {notices.results.length > 0 ? (
+              <div class="space-y-3">
+                {notices.results.map((notice: any) => {
+                  const date = new Date(notice.created_at).toLocaleDateString('ko-KR').replace(/\. /g, '.').replace('.', '.')
+                  const shortContent = notice.content.substring(0, 100) + (notice.content.length > 100 ? '...' : '')
+                  
+                  return (
+                    <a href={`/boards/notice/${notice.id}`} class="block">
+                      <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                        <div class="flex items-center mb-2">
+                          {notice.is_popup ? (
+                            <span class="bg-red-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">중요</span>
+                          ) : (
+                            <span class="bg-blue-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">일반</span>
+                          )}
+                          <span class="text-gray-500 text-sm">{date}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">{notice.title}</h3>
+                        <p class="text-gray-600">{shortContent}</p>
+                      </div>
+                    </a>
+                  )
+                })}
               </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-2">2025년 겨울방학 늘봄방과후 전문강사 특별과정 모집</h3>
-              <p class="text-gray-600">2025학년도 신학기 대비 늘봄방과후 전문강사 양성과정을 개설합니다...</p>
-            </div>
-
-            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
-              <div class="flex items-center mb-2">
-                <span class="bg-slate-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">교육</span>
-                <span class="text-gray-500 text-sm">2025.12.05</span>
+            ) : (
+              <div class="bg-white rounded-lg p-8 text-center">
+                <i class="fas fa-info-circle text-4xl text-gray-400 mb-4"></i>
+                <p class="text-base text-gray-600">등록된 공지사항이 없습니다.</p>
               </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-2">2026학년도 대입 AI 면접 대비 특강 개최</h3>
-              <p class="text-gray-600">최신 AI 면접 트렌드 분석과 실전 연습을 통해 대입 면접을 완벽하게 준비하세요...</p>
-            </div>
-
-            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
-              <div class="flex items-center mb-2">
-                <span class="bg-blue-600 text-white px-3 py-1 text-xs font-semibold rounded mr-3">신규</span>
-                <span class="text-gray-500 text-sm">2025.12.01</span>
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-2">온라인 강의실 시스템 업그레이드 완료</h3>
-              <p class="text-gray-600">더욱 편리해진 학습 관리 시스템으로 언제 어디서나 수준 높은 교육을 받으실 수 있습니다...</p>
+            )}
+          </div>
+        </section>
+      </Layout>
+    )
+  } catch (error) {
+    console.error('Notice list error:', error)
+    return c.html(
+      <Layout title="공지사항 - 한국미래인재교육협회">
+        <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">공지사항</h1>
+            <div class="bg-white rounded-lg p-8 text-center">
+              <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+              <p class="text-base text-gray-600">공지사항을 불러오는 중 오류가 발생했습니다.</p>
             </div>
           </div>
-        </div>
-      </section>
-    </Layout>
-  )
+        </section>
+      </Layout>
+    )
+  }
+})
+
+// 공지사항 상세 페이지
+app.get('/boards/notice/:id', async (c) => {
+  try {
+    const id = c.req.param('id')
+    const db = c.env.DB
+    
+    // 공지사항 조회 및 조회수 증가
+    const notice = await db.prepare(
+      'SELECT id, title, content, created_at, views FROM notices WHERE id = ? AND is_published = 1'
+    ).bind(id).first()
+    
+    if (!notice) {
+      return c.html(
+        <Layout title="공지사항 - 한국미래인재교육협회">
+          <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="bg-white rounded-lg p-8 text-center">
+                <i class="fas fa-exclamation-triangle text-4xl text-yellow-400 mb-4"></i>
+                <p class="text-base text-gray-600 mb-4">존재하지 않는 공지사항입니다.</p>
+                <a href="/boards/notice" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
+                  목록으로 돌아가기
+                </a>
+              </div>
+            </div>
+          </section>
+        </Layout>
+      )
+    }
+    
+    // 조회수 증가
+    await db.prepare(
+      'UPDATE notices SET views = views + 1 WHERE id = ?'
+    ).bind(id).run()
+    
+    const date = new Date(notice.created_at).toLocaleDateString('ko-KR')
+    
+    return c.html(
+      <Layout title={`${notice.title} - 한국미래인재교육협회`}>
+        <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+              <div class="border-b pb-6 mb-6">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">{notice.title}</h1>
+                <div class="flex items-center text-sm text-gray-600 space-x-4">
+                  <span><i class="far fa-calendar mr-2"></i>{date}</span>
+                  <span><i class="far fa-eye mr-2"></i>조회 {notice.views}</span>
+                </div>
+              </div>
+              
+              <div class="prose max-w-none">
+                <div class="text-gray-700 whitespace-pre-wrap leading-relaxed text-base">
+                  {notice.content}
+                </div>
+              </div>
+              
+              <div class="mt-8 pt-6 border-t flex justify-center">
+                <a href="/boards/notice" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                  <i class="fas fa-list mr-2"></i>목록으로
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    )
+  } catch (error) {
+    console.error('Notice detail error:', error)
+    return c.html(
+      <Layout title="오류 - 한국미래인재교육협회">
+        <section class="py-12 bg-gradient-to-b from-blue-50 to-white min-h-[400px]">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-lg p-8 text-center">
+              <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+              <p class="text-base text-gray-600 mb-4">공지사항을 불러오는 중 오류가 발생했습니다.</p>
+              <a href="/boards/notice" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
+                목록으로 돌아가기
+              </a>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    )
+  }
 })
 
 // Resources Board - 자료실
@@ -3189,26 +3300,25 @@ app.post('/admin/api/login', async (c) => {
     const { username, password } = await c.req.json()
     const db = c.env.DB
     
-    // 관리자 정보 조회
+    // 관리자 정보 조회 (is_active 필드 제거)
     const admin = await db.prepare(
-      'SELECT * FROM admins WHERE username = ? AND is_active = 1'
+      'SELECT * FROM admins WHERE username = ?'
     ).bind(username).first()
     
     if (!admin) {
       return c.json({ error: '아이디 또는 비밀번호가 올바르지 않습니다' }, 401)
     }
     
-    // 비밀번호 검증 (실제로는 해시 비교 필요)
+    // 비밀번호 검증 (평문 비교)
     if (admin.password_hash !== password) {
       return c.json({ error: '아이디 또는 비밀번호가 올바르지 않습니다' }, 401)
     }
     
-    // JWT 토큰 생성
+    // JWT 토큰 생성 (role 필드 제거)
     const token = await sign(
       {
         id: admin.id,
         username: admin.username,
-        role: admin.role,
         exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24) // 24시간
       },
       JWT_SECRET,
@@ -3221,8 +3331,7 @@ app.post('/admin/api/login', async (c) => {
       admin: {
         id: admin.id,
         username: admin.username,
-        name: admin.name,
-        role: admin.role
+        name: admin.name
       }
     })
   } catch (error) {
