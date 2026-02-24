@@ -787,38 +787,38 @@ app.get('/', (c) => {
       </section>
 
       {/* Programs Section */}
-      <section class="py-10 bg-gradient-to-b from-white to-gray-50">
+      <section class="py-8 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-8">
-            <div class="inline-block mb-4">
-              <span class="bg-blue-100 text-blue-800 px-6 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider">
+          <div class="text-center mb-6">
+            <div class="inline-block mb-3">
+              <span class="bg-blue-100 text-blue-800 px-4 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider">
                 Our Programs
               </span>
             </div>
-            <h2 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">교육 프로그램</h2>
-            <p class="text-lg text-gray-600">다양한 분야의 전문 교육과정을 만나보세요</p>
+            <h2 class="text-2xl md:text-2xl font-bold text-gray-900 mb-2">교육 프로그램</h2>
+            <p class="text-base text-gray-600">다양한 분야의 전문 교육과정을 만나보세요</p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <a href="/programs" class="group bg-white rounded-2xl p-10 border-2 border-gray-200 hover:border-blue-500 transition-all duration-300 hover:shadow-2xl">
-              <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <i class="fas fa-book-open text-white text-3xl"></i>
+          <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            <a href="/programs" class="group bg-white rounded-xl p-6 border border-gray-200 hover:border-blue-500 transition-all duration-300 hover:shadow-lg">
+              <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <i class="fas fa-book-open text-white text-2xl"></i>
               </div>
-              <h4 class="text-2xl font-bold mb-3 text-gray-900">기본 교육과정</h4>
-              <p class="text-gray-600 mb-4">AI 활용, 취업 지원, 강사 양성 등 전문 실무 교육</p>
-              <div class="inline-flex items-center text-blue-600 font-semibold">
+              <h4 class="text-xl font-bold mb-2 text-gray-900">기본 교육과정</h4>
+              <p class="text-gray-600 text-sm mb-3">AI 활용, 취업 지원, 강사 양성 등 전문 실무 교육</p>
+              <div class="inline-flex items-center text-blue-600 font-semibold text-sm">
                 <span>자세히 보기</span>
                 <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
               </div>
             </a>
 
-            <a href="/programs/certifications" class="group bg-white rounded-2xl p-10 border-2 border-gray-200 hover:border-purple-500 transition-all duration-300 hover:shadow-2xl">
-              <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <i class="fas fa-certificate text-white text-3xl"></i>
+            <a href="/programs/certifications" class="group bg-white rounded-xl p-6 border border-gray-200 hover:border-purple-500 transition-all duration-300 hover:shadow-lg">
+              <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <i class="fas fa-certificate text-white text-2xl"></i>
               </div>
-              <h4 class="text-2xl font-bold mb-3 text-gray-900">자격증 과정</h4>
-              <p class="text-gray-600 mb-4">민간자격증 취득 및 전문성 향상 과정</p>
-              <div class="inline-flex items-center text-purple-600 font-semibold">
+              <h4 class="text-xl font-bold mb-2 text-gray-900">자격증 과정</h4>
+              <p class="text-gray-600 text-sm mb-3">민간자격증 취득 및 전문성 향상 과정</p>
+              <div class="inline-flex items-center text-purple-600 font-semibold text-sm">
                 <span>자세히 보기</span>
                 <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
               </div>
