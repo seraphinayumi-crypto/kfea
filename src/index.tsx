@@ -571,21 +571,34 @@ const Layout = (props: { children: any; title?: string }) => {
               if (data.success && data.notice) {
                 const popupHtml = \`
                   <div id="notice-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-                    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden">
-                      <div class="relative">
-                        <img src="\${data.notice.popup_image_url}" alt="\${data.notice.title}" class="w-full h-auto" />
-                        <button id="close-popup" class="absolute top-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-10 h-10 flex items-center justify-center transition-all shadow-lg">
+                    <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                      <div class="relative p-8">
+                        <button id="close-popup" class="absolute top-4 right-4 bg-white hover:bg-gray-100 rounded-full w-10 h-10 flex items-center justify-center transition-all shadow-lg z-10">
                           <i class="fas fa-times text-gray-800 text-xl"></i>
                         </button>
-                      </div>
-                      <div class="p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-200">
-                        <label class="flex items-center cursor-pointer">
-                          <input type="checkbox" id="hide-today" class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3" />
-                          <span class="text-gray-700 font-medium">오늘 하루 보지 않기</span>
-                        </label>
-                        <a href="/boards/notice/\${data.notice.id}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors whitespace-nowrap">
-                          자세히 보기
-                        </a>
+                        
+                        <div class="text-center mb-6">
+                          <div class="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                            🔥 특별 할인 이벤트
+                          </div>
+                          <h2 class="text-2xl font-bold text-gray-900 mb-2">\${data.notice.title}</h2>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-inner mb-6">
+                          <div class="prose prose-sm max-w-none">
+                            <div class="whitespace-pre-wrap text-gray-700 leading-relaxed">\${data.notice.content}</div>
+                          </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-200">
+                          <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" id="hide-today" class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3" />
+                            <span class="text-gray-700 font-medium">오늘 하루 보지 않기</span>
+                          </label>
+                          <a href="/boards/notice/\${data.notice.id}" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold transition-colors whitespace-nowrap shadow-lg">
+                            자세히 보기 →
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
