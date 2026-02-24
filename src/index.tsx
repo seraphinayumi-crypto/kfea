@@ -2232,7 +2232,7 @@ app.get('/boards/notice', async (c) => {
     
     // 공지사항 목록 조회
     const notices = await db.prepare(
-      'SELECT id, title, content, is_popup, created_at FROM notices WHERE is_published = 1 ORDER BY created_at DESC LIMIT 20'
+      'SELECT id, title, content, is_popup, created_at FROM notices ORDER BY created_at DESC LIMIT 20'
     ).all()
     
     return c.html(
@@ -2301,7 +2301,7 @@ app.get('/boards/notice/:id', async (c) => {
     
     // 공지사항 조회 및 조회수 증가
     const notice = await db.prepare(
-      'SELECT id, title, content, created_at, views FROM notices WHERE id = ? AND is_published = 1'
+      'SELECT id, title, content, created_at, views FROM notices WHERE id = ?'
     ).bind(id).first()
     
     if (!notice) {
@@ -4465,7 +4465,6 @@ app.get('/api/notices', async (c) => {
     const result = await db.prepare(`
       SELECT id, title, content, created_at, views, is_popup
       FROM notices
-      WHERE is_published = 1
       ORDER BY created_at DESC
       LIMIT ?
     `).bind(limit).all()
