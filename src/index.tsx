@@ -676,6 +676,69 @@ const Layout = (props: { children: any; title?: string }) => {
             showPopupNotice();
           }
         }
+        
+        // 메인페이지 공지사항 로드
+        function loadHomeNotices() {
+          const noticesList = document.getElementById('notices-list');
+          if (!noticesList) return;
+          
+          fetch('/api/notices?limit=3')
+            .then(response => response.json())
+            .then(data => {
+              if (data.success && data.notices && data.notices.length > 0) {
+                noticesList.innerHTML = '';
+                
+                data.notices.forEach((notice, index) => {
+                  // 배지 설정
+                  let badgeClass = 'bg-blue-600';
+                  let badgeText = '신규';
+                  
+                  if (notice.is_popup === 1) {
+                    badgeClass = 'bg-red-600';
+                    badgeText = '중요';
+                  } else if (index === 1) {
+                    badgeClass = 'bg-slate-600';
+                    badgeText = '교육';
+                  }
+                  
+                  // 날짜 포맷팅
+                  const date = new Date(notice.created_at);
+                  const formattedDate = \`\${date.getFullYear()}.\${String(date.getMonth() + 1).padStart(2, '0')}.\${String(date.getDate()).padStart(2, '0')}\`;
+                  
+                  // 내용 요약 (첫 100자)
+                  const summary = notice.content ? notice.content.substring(0, 100) : '';
+                  
+                  const noticeHtml = \`
+                    <a href="/boards/notice/\${notice.id}" class="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-lg cursor-pointer">
+                      <div class="flex items-center mb-4">
+                        <span class="\${badgeClass} text-white px-4 py-1.5 text-xs font-semibold rounded-lg mr-3">\${badgeText}</span>
+                        <span class="text-gray-500 text-sm font-medium">\${formattedDate}</span>
+                      </div>
+                      <h4 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">\${notice.title}</h4>
+                      <p class="text-gray-600 leading-relaxed">\${summary}...</p>
+                    </a>
+                  \`;
+                  
+                  noticesList.insertAdjacentHTML('beforeend', noticeHtml);
+                });
+              } else {
+                noticesList.innerHTML = '<div class="col-span-3 text-center py-8 text-gray-500">등록된 공지사항이 없습니다.</div>';
+              }
+            })
+            .catch(error => {
+              console.error('공지사항 로드 실패:', error);
+              noticesList.innerHTML = '<div class="col-span-3 text-center py-8 text-red-500">공지사항을 불러오는 중 오류가 발생했습니다.</div>';
+            });
+        }
+        
+        // 홈페이지에서만 공지사항 로드
+        if (window.location.pathname === '/') {
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadHomeNotices);
+          } else {
+            loadHomeNotices();
+          }
+        }
       `
         }} />
       </body>
@@ -740,52 +803,25 @@ app.get('/', (c) => {
         </div>
       </section>
 
-      {/* Notices Section */}
-      <section class="py-12 bg-slate-50">
+      {/* Notices Section - 동적으로 로드 */}
+      <section class="py-12 bg-slate-50" id="notices-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between items-center mb-8">
             <div>
               <h2 class="text-3xl md:text-3xl font-bold text-gray-900 mb-2">공지사항</h2>
               <p class="text-gray-600">최신 소식을 확인하세요</p>
             </div>
-            <a href="/notice" class="inline-flex items-center bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
+            <a href="/boards/notice" class="inline-flex items-center bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
               <span>전체보기</span>
               <i class="fas fa-arrow-right ml-2"></i>
             </a>
           </div>
 
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-lg">
-              <div class="flex items-center mb-4">
-                <span class="bg-red-600 text-white px-4 py-1.5 text-xs font-semibold rounded-lg mr-3">중요</span>
-                <span class="text-gray-500 text-sm font-medium">2025.12.08</span>
-              </div>
-              <h4 class="text-xl font-bold mb-3 text-gray-900">2025년 겨울방학 늘봄방과후 전문강사 특별과정 모집</h4>
-              <p class="text-gray-600 leading-relaxed">
-                2025학년도 신학기 대비 늘봄방과후 전문강사 양성과정을 개설합니다. 조기 신청 시 수강료 할인 혜택을 받으실 수 있습니다.
-              </p>
-            </div>
-
-            <div class="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-lg">
-              <div class="flex items-center mb-4">
-                <span class="bg-slate-600 text-white px-4 py-1.5 text-xs font-semibold rounded-lg mr-3">교육</span>
-                <span class="text-gray-500 text-sm font-medium">2025.12.05</span>
-              </div>
-              <h4 class="text-xl font-bold mb-3 text-gray-900">2026학년도 대입 AI 면접 대비 특강 개최</h4>
-              <p class="text-gray-600 leading-relaxed">
-                최신 AI 면접 트렌드 분석과 실전 연습을 통해 대입 면접을 완벽하게 준비하세요. 12월 중 매주 토요일 진행됩니다.
-              </p>
-            </div>
-
-            <div class="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-lg">
-              <div class="flex items-center mb-4">
-                <span class="bg-blue-600 text-white px-4 py-1.5 text-xs font-semibold rounded-lg mr-3">신규</span>
-                <span class="text-gray-500 text-sm font-medium">2025.12.01</span>
-              </div>
-              <h4 class="text-xl font-bold mb-3 text-gray-900">온라인 강의실 시스템 업그레이드 완료</h4>
-              <p class="text-gray-600 leading-relaxed">
-                더욱 편리해진 학습 관리 시스템으로 언제 어디서나 수준 높은 교육을 받으실 수 있습니다.
-              </p>
+          <div class="grid md:grid-cols-3 gap-6" id="notices-list">
+            {/* 여기에 동적으로 공지사항이 로드됩니다 */}
+            <div class="col-span-3 text-center py-8">
+              <i class="fas fa-spinner fa-spin text-3xl text-gray-400 mb-2"></i>
+              <p class="text-gray-500">공지사항을 불러오는 중...</p>
             </div>
           </div>
         </div>
@@ -3688,6 +3724,27 @@ app.delete('/admin/api/activities/:id', adminAuth, async (c) => {
 // ============================================
 // Popup API Route
 // ============================================
+// 공지사항 목록 API
+app.get('/api/notices', async (c) => {
+  try {
+    const db = c.env.DB
+    const limit = parseInt(c.req.query('limit') || '10')
+    
+    const result = await db.prepare(`
+      SELECT id, title, content, created_at, views, is_popup
+      FROM notices
+      WHERE is_published = 1
+      ORDER BY created_at DESC
+      LIMIT ?
+    `).bind(limit).all()
+    
+    return c.json({ success: true, notices: result.results || [] })
+  } catch (error) {
+    console.error('공지사항 목록 조회 오류:', error)
+    return c.json({ success: false, error: '공지사항 목록 조회 실패' }, 500)
+  }
+})
+
 app.get('/api/popup-notice', async (c) => {
   try {
     const db = c.env.DB
