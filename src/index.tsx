@@ -2365,7 +2365,7 @@ app.get('/boards/notice/:id', async (c) => {
                 <div class="mb-8">
                   <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                     <i class="far fa-calendar-alt text-blue-600 mr-3"></i>
-                    📅 교육 일정
+                    교육 일정
                   </h2>
                   <div class="grid md:grid-cols-2 gap-4">
                     <div class="bg-white border-2 border-blue-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
@@ -2402,7 +2402,7 @@ app.get('/boards/notice/:id', async (c) => {
                 <div class="mb-8">
                   <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                     <i class="fas fa-won-sign text-blue-600 mr-3"></i>
-                    💰 수강료 안내
+                    수강료 안내
                   </h2>
                   <div class="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-200 rounded-xl p-6">
                     <div class="grid md:grid-cols-3 gap-6 text-center">
@@ -2431,7 +2431,7 @@ app.get('/boards/notice/:id', async (c) => {
                 <div class="mb-8">
                   <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                     <i class="fas fa-user-check text-blue-600 mr-3"></i>
-                    👥 이런 분께 추천합니다
+                    이런 분께 추천합니다
                   </h2>
                   <div class="grid md:grid-cols-2 gap-3">
                     <div class="bg-blue-50 rounded-lg p-4 flex items-start">
@@ -2465,26 +2465,26 @@ app.get('/boards/notice/:id', async (c) => {
                 <div class="mb-8">
                   <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                     <i class="fas fa-star text-yellow-500 mr-3"></i>
-                    ✨ 이 과정의 특별한 점
+                    이 과정의 특별한 점
                   </h2>
                   <div class="space-y-4">
                     <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-400 rounded-lg p-6">
-                      <h3 class="text-lg font-bold text-gray-900 mb-2">🎯 실전 중심 교육</h3>
+                      <h3 class="text-lg font-bold text-gray-900 mb-2">실전 중심 교육</h3>
                       <p class="text-gray-700">이론뿐만 아니라 <strong>강의 교안 + 수업용 키트</strong>를 세트로 익히고 나가는 구조로, 수료 후 별도 준비 없이 바로 수업 가능</p>
                     </div>
                     
                     <div class="bg-gradient-to-r from-green-50 to-teal-50 border-l-4 border-green-400 rounded-lg p-6">
-                      <h3 class="text-lg font-bold text-gray-900 mb-2">📚 12개 강의 커리큘럼 제공</h3>
+                      <h3 class="text-lg font-bold text-gray-900 mb-2">12개 강의 커리큘럼 제공</h3>
                       <p class="text-gray-700">제로웨이스트 강사 과정은 <strong>12강의 완전한 커리큘럼</strong>을 제공하여 수료 후 바로 활용 가능</p>
                     </div>
                     
                     <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 rounded-lg p-6">
-                      <h3 class="text-lg font-bold text-gray-900 mb-2">🔒 안전한 교육 자료</h3>
+                      <h3 class="text-lg font-bold text-gray-900 mb-2">안전한 교육 자료</h3>
                       <p class="text-gray-700">전 과정 <strong>화기·유해물질 없음</strong>, 2시간 이내 완성 가능한 안전한 키트로 구성</p>
                     </div>
                     
                     <div class="bg-gradient-to-r from-purple-50 to-pink-50 border-l-4 border-purple-400 rounded-lg p-6">
-                      <h3 class="text-lg font-bold text-gray-900 mb-2">🎓 2026년 교육부 예산지원</h3>
+                      <h3 class="text-lg font-bold text-gray-900 mb-2">2026년 교육부 예산지원</h3>
                       <p class="text-gray-700">초등 3학년 이상 학생에게 방과후 프로그램 이용권 <strong>연 50만원 지급</strong> 시작, 전국 교육청 강사 대규모 모집 중</p>
                     </div>
                   </div>
@@ -2494,7 +2494,7 @@ app.get('/boards/notice/:id', async (c) => {
                 <div class="mb-8">
                   <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                     <i class="fas fa-briefcase text-blue-600 mr-3"></i>
-                    💼 자격증 취득 후 활동 분야
+                    자격증 취득 후 활동 분야
                   </h2>
                   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
@@ -2540,7 +2540,7 @@ app.get('/boards/notice/:id', async (c) => {
                   <div class="bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-300 rounded-xl p-6">
                     <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
                       <i class="fas fa-phone-alt text-blue-600 mr-3"></i>
-                      📞 문의하기
+                      문의하기
                     </h2>
                     <div class="space-y-2">
                       <p class="text-gray-700"><i class="fas fa-phone mr-2 text-blue-600"></i><strong>전화:</strong> 010-3450-1117</p>
@@ -2559,7 +2559,7 @@ app.get('/boards/notice/:id', async (c) => {
                   <div class="bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-400 rounded-xl p-8 shadow-lg">
                     <div class="flex items-center mb-4">
                       <i class="fab fa-blogger-b text-4xl text-green-600 mr-4"></i>
-                      <h3 class="text-2xl font-bold text-green-800">📝 더 자세한 내용이 궁금하신가요?</h3>
+                      <h3 class="text-2xl font-bold text-green-800">더 자세한 내용이 궁금하신가요?</h3>
                     </div>
                     <p class="text-gray-700 mb-6 text-lg">
                       교육 과정의 상세한 커리큘럼, 12강 구성 내용, 키트 구성, 활동 사례 등을 네이버 블로그에서 확인하세요!
@@ -2579,7 +2579,7 @@ app.get('/boards/notice/:id', async (c) => {
                   <div class="bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-400 rounded-xl p-8 shadow-lg">
                     <div class="flex items-center mb-4">
                       <i class="fas fa-pen-fancy text-4xl text-blue-600 mr-4"></i>
-                      <h3 class="text-2xl font-bold text-blue-800">✍️ 지금 바로 신청하세요!</h3>
+                      <h3 class="text-2xl font-bold text-blue-800">지금 바로 신청하세요!</h3>
                     </div>
                     <p class="text-gray-700 mb-6 text-lg">
                       <strong class="text-red-600">선착순 마감</strong>이므로 서두르시는 것을 추천드립니다. 구글 폼으로 간편하게 온라인 신청하세요!
