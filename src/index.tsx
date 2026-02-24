@@ -859,7 +859,7 @@ app.get('/', (c) => {
             <p class="text-base text-gray-600">신뢰할 수 있는 기관들과 함께합니다</p>
           </div>
 
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 items-center">
+          <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 items-center">
             {/* 32 Partner Organizations */}
             {[
               '전북대학교', '경북대학교', '영남대학교', '대구대학교', '계명대학교', '제주대학교',
@@ -869,7 +869,7 @@ app.get('/', (c) => {
               '국립금오공과대학교', '강원도립대학교', '건양사이버대학교', '한국철도공사', '공주정보고등학교',
               '한국호텔관광고등학교', '한국면접관협회', '대전광역시자원봉사센터'
             ].map((org) => (
-              <div class="bg-white p-4 rounded-lg shadow hover:shadow-xl transition-all duration-200 flex flex-col items-center justify-center h-28 border border-gray-200 hover:border-blue-300">
+              <div class="bg-white p-2 rounded shadow hover:shadow-md transition-all duration-200 flex items-center justify-center h-16 border border-gray-200 hover:border-blue-300">
                 <p class="font-bold text-xs text-center text-gray-800 leading-tight">{org}</p>
               </div>
             ))}
