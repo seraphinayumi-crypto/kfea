@@ -553,6 +553,76 @@ const Layout = (props: { children: any; title?: string }) => {
             window.location.href = '/admin/login';
           }
         }
+        
+        // 팝업 공지사항 표시
+        function showPopupNotice() {
+          const today = new Date().toDateString();
+          const hideDate = localStorage.getItem('hidePopupDate');
+          
+          // 오늘 하루 보지 않기가 설정되어 있으면 팝업 표시 안함
+          if (hideDate === today) {
+            return;
+          }
+          
+          // 서버에서 팝업 공지사항 조회
+          fetch('/api/popup-notice')
+            .then(response => response.json())
+            .then(data => {
+              if (data.success && data.notice) {
+                const popupHtml = \`
+                  <div id="notice-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+                    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden">
+                      <div class="relative">
+                        <img src="\${data.notice.popup_image_url}" alt="\${data.notice.title}" class="w-full h-auto" />
+                        <button id="close-popup" class="absolute top-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-10 h-10 flex items-center justify-center transition-all shadow-lg">
+                          <i class="fas fa-times text-gray-800 text-xl"></i>
+                        </button>
+                      </div>
+                      <div class="p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-200">
+                        <label class="flex items-center cursor-pointer">
+                          <input type="checkbox" id="hide-today" class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3" />
+                          <span class="text-gray-700 font-medium">오늘 하루 보지 않기</span>
+                        </label>
+                        <a href="/boards/notice" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors whitespace-nowrap">
+                          자세히 보기
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                \`;
+                
+                document.body.insertAdjacentHTML('beforeend', popupHtml);
+                
+                // 팝업 닫기 이벤트
+                const popup = document.getElementById('notice-popup');
+                const closeButton = document.getElementById('close-popup');
+                const hideTodayCheckbox = document.getElementById('hide-today');
+                
+                closeButton.addEventListener('click', function() {
+                  if (hideTodayCheckbox.checked) {
+                    localStorage.setItem('hidePopupDate', today);
+                  }
+                  popup.remove();
+                });
+                
+                // 배경 클릭 시 닫기
+                popup.addEventListener('click', function(e) {
+                  if (e.target === popup) {
+                    if (hideTodayCheckbox.checked) {
+                      localStorage.setItem('hidePopupDate', today);
+                    }
+                    popup.remove();
+                  }
+                });
+              }
+            })
+            .catch(error => console.error('팝업 조회 실패:', error));
+        }
+        
+        // 홈페이지에서만 팝업 표시
+        if (window.location.pathname === '/') {
+          document.addEventListener('DOMContentLoaded', showPopupNotice);
+        }
       `
         }} />
       </body>
@@ -3243,6 +3313,37 @@ app.delete('/admin/api/activities/:id', adminAuth, async (c) => {
   } catch (error) {
     console.error('Delete activity error:', error)
     return c.json({ error: '활동소식 삭제 중 오류가 발생했습니다' }, 500)
+  }
+})
+
+// ============================================
+// Popup API Route
+// ============================================
+app.get('/api/popup-notice', async (c) => {
+  try {
+    const db = c.env.DB
+    const today = new Date().toISOString().split('T')[0]
+    
+    // 현재 표시할 팝업 공지사항 조회
+    const result = await db.prepare(`
+      SELECT id, title, content, popup_image_url, popup_start_date, popup_end_date
+      FROM notices
+      WHERE is_popup = 1
+        AND is_published = 1
+        AND popup_start_date <= ?
+        AND popup_end_date >= ?
+      ORDER BY created_at DESC
+      LIMIT 1
+    `).bind(today, today).all()
+    
+    if (result.results && result.results.length > 0) {
+      return c.json({ success: true, notice: result.results[0] })
+    }
+    
+    return c.json({ success: false, notice: null })
+  } catch (error) {
+    console.error('팝업 조회 오류:', error)
+    return c.json({ success: false, error: '팝업 조회 실패' }, 500)
   }
 })
 
