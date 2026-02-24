@@ -4059,6 +4059,586 @@ app.delete('/admin/api/notices/:id', adminAuth, async (c) => {
   }
 })
 
+// ==================== 자료실 관리 페이지 ====================
+app.get('/admin/resources', (c) => {
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>자료실 관리 - 한국미래인재교육협회</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+      </head>
+      <body class="bg-gray-100 min-h-screen">
+        {/* 관리자 네비게이션 */}
+        <nav class="bg-white shadow-lg">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+              <div class="flex items-center">
+                <i class="fas fa-shield-alt text-2xl text-blue-600 mr-3"></i>
+                <span class="text-xl font-bold text-gray-900">관리자 페이지</span>
+              </div>
+              <div class="flex items-center space-x-4">
+                <a href="/" target="_blank" class="text-gray-600 hover:text-blue-600">
+                  <i class="fas fa-external-link-alt mr-1"></i>사이트 보기
+                </a>
+                <button onclick="logout()" class="text-gray-600 hover:text-red-600">
+                  <i class="fas fa-sign-out-alt mr-1"></i>로그아웃
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="flex">
+          {/* 사이드바 */}
+          <aside class="w-64 bg-white shadow-lg min-h-screen">
+            <div class="p-6">
+              <nav class="space-y-2">
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-home w-5"></i>
+                  <span class="ml-3">대시보드</span>
+                </a>
+                <a href="/admin/activities" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-newspaper w-5"></i>
+                  <span class="ml-3">활동소식 관리</span>
+                </a>
+                <a href="/admin/notices" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-bullhorn w-5"></i>
+                  <span class="ml-3">공지사항 관리</span>
+                </a>
+                <a href="/admin/resources" class="flex items-center px-4 py-3 text-gray-700 bg-blue-50 rounded-lg font-medium">
+                  <i class="fas fa-folder-open w-5"></i>
+                  <span class="ml-3">자료실 관리</span>
+                </a>
+                <a href="/admin/settings" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-cog w-5"></i>
+                  <span class="ml-3">설정</span>
+                </a>
+              </nav>
+            </div>
+          </aside>
+
+          {/* 메인 컨텐츠 */}
+          <main class="flex-1 p-8">
+            <div class="max-w-7xl mx-auto">
+              <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-900">자료실 관리</h1>
+                <button onclick="showAddForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
+                  <i class="fas fa-plus mr-2"></i>새 자료 추가
+                </button>
+              </div>
+
+              {/* 자료 추가/수정 폼 */}
+              <div id="add-form" class="hidden mb-6 bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">자료 등록</h2>
+                <form id="resource-form" class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">제목</label>
+                    <input type="text" id="resource-title" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">설명</label>
+                    <textarea id="resource-description" rows="3"
+                              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"></textarea>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">파일 URL</label>
+                    <input type="url" id="resource-file-url" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                           placeholder="https://example.com/file.pdf" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">파일명</label>
+                    <input type="text" id="resource-file-name" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                           placeholder="문서.pdf" />
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">파일 크기 (bytes)</label>
+                      <input type="number" id="resource-file-size"
+                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                             placeholder="1024000" />
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">파일 타입</label>
+                      <input type="text" id="resource-file-type"
+                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                             placeholder="application/pdf" />
+                    </div>
+                  </div>
+                  <div class="flex space-x-3">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">
+                      저장
+                    </button>
+                    <button type="button" onclick="hideAddForm()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">
+                      취소
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              {/* 자료 목록 */}
+              <div id="resources-list" class="bg-white rounded-lg shadow">
+                <div class="text-center py-8">
+                  <i class="fas fa-spinner fa-spin text-3xl text-gray-400 mb-2"></i>
+                  <p class="text-gray-500">불러오는 중...</p>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+
+        <script dangerouslySetInnerHTML={{__html: `
+          const token = localStorage.getItem('admin_token');
+          if (!token) window.location.href = '/admin/login';
+          
+          let resources = [];
+          let editingId = null;
+          
+          loadResources();
+          
+          function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+              localStorage.removeItem('admin_token');
+              localStorage.removeItem('admin_user');
+              window.location.href = '/admin/login';
+            }
+          }
+          
+          function showAddForm() {
+            editingId = null;
+            document.getElementById('add-form').classList.remove('hidden');
+            document.getElementById('resource-form').reset();
+          }
+          
+          function hideAddForm() {
+            editingId = null;
+            document.getElementById('add-form').classList.add('hidden');
+            document.getElementById('resource-form').reset();
+          }
+          
+          async function loadResources() {
+            try {
+              const response = await fetch('/admin/api/resources', {
+                headers: { 'Authorization': 'Bearer ' + token }
+              });
+              
+              if (!response.ok) throw new Error('Failed to load resources');
+              
+              const data = await response.json();
+              resources = data.data || [];
+              renderResources();
+            } catch (error) {
+              console.error('Load error:', error);
+              document.getElementById('resources-list').innerHTML = 
+                '<div class="text-center py-8 text-red-500"><i class="fas fa-exclamation-circle text-4xl mb-4"></i><p>자료를 불러오는데 실패했습니다.</p></div>';
+            }
+          }
+          
+          function renderResources() {
+            const listDiv = document.getElementById('resources-list');
+            
+            if (resources.length === 0) {
+              listDiv.innerHTML = '<div class="text-center py-8 text-gray-500"><i class="fas fa-inbox text-4xl mb-4"></i><p>등록된 자료가 없습니다.</p></div>';
+              return;
+            }
+            
+            listDiv.innerHTML = '<div class="divide-y">' + resources.map(function(resource) {
+              const fileSize = resource.file_size ? (resource.file_size / 1024).toFixed(1) + ' KB' : '-';
+              const created = new Date(resource.created_at).toLocaleDateString('ko-KR');
+              
+              return '<div class="p-4 hover:bg-gray-50">' +
+                '<div class="flex items-start justify-between">' +
+                  '<div class="flex-1">' +
+                    '<div class="flex items-center space-x-2 mb-2">' +
+                      '<h3 class="text-lg font-semibold text-gray-900">' + resource.title + '</h3>' +
+                      '<span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded">' + (resource.file_type || 'Unknown') + '</span>' +
+                    '</div>' +
+                    '<p class="text-gray-600 mb-2">' + (resource.description || '설명 없음') + '</p>' +
+                    '<div class="flex items-center space-x-4 text-sm text-gray-500">' +
+                      '<span><i class="fas fa-file mr-1"></i>' + resource.file_name + '</span>' +
+                      '<span><i class="fas fa-hdd mr-1"></i>' + fileSize + '</span>' +
+                      '<span><i class="fas fa-download mr-1"></i>' + resource.downloads + '회</span>' +
+                      '<span><i class="fas fa-calendar mr-1"></i>' + created + '</span>' +
+                    '</div>' +
+                  '</div>' +
+                  '<div class="flex space-x-2 ml-4">' +
+                    '<a href="' + resource.file_url + '" target="_blank" class="text-blue-600 hover:text-blue-800">' +
+                      '<i class="fas fa-external-link-alt"></i>' +
+                    '</a>' +
+                    '<button onclick="editResource(' + resource.id + ')" class="text-gray-600 hover:text-blue-600">' +
+                      '<i class="fas fa-edit"></i>' +
+                    '</button>' +
+                    '<button onclick="deleteResource(' + resource.id + ')" class="text-gray-600 hover:text-red-600">' +
+                      '<i class="fas fa-trash"></i>' +
+                    '</button>' +
+                  '</div>' +
+                '</div>' +
+              '</div>';
+            }).join('') + '</div>';
+          }
+          
+          document.getElementById('resource-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('resource-title').value;
+            const description = document.getElementById('resource-description').value;
+            const file_url = document.getElementById('resource-file-url').value;
+            const file_name = document.getElementById('resource-file-name').value;
+            const file_size = document.getElementById('resource-file-size').value;
+            const file_type = document.getElementById('resource-file-type').value;
+            
+            try {
+              const url = editingId ? '/admin/api/resources/' + editingId : '/admin/api/resources';
+              const method = editingId ? 'PUT' : 'POST';
+              
+              const response = await fetch(url, {
+                method: method,
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({
+                  title: title,
+                  description: description,
+                  file_url: file_url,
+                  file_name: file_name,
+                  file_size: file_size ? parseInt(file_size) : null,
+                  file_type: file_type || null
+                })
+              });
+              
+              if (!response.ok) throw new Error('Save failed');
+              
+              alert(editingId ? '자료가 수정되었습니다' : '자료가 등록되었습니다');
+              hideAddForm();
+              loadResources();
+            } catch (error) {
+              console.error('Save error:', error);
+              alert('저장 중 오류가 발생했습니다');
+            }
+          });
+          
+          function editResource(id) {
+            const resource = resources.find(function(r) { return r.id === id; });
+            if (!resource) return;
+            
+            editingId = id;
+            document.getElementById('resource-title').value = resource.title;
+            document.getElementById('resource-description').value = resource.description || '';
+            document.getElementById('resource-file-url').value = resource.file_url;
+            document.getElementById('resource-file-name').value = resource.file_name;
+            document.getElementById('resource-file-size').value = resource.file_size || '';
+            document.getElementById('resource-file-type').value = resource.file_type || '';
+            document.getElementById('add-form').classList.remove('hidden');
+          }
+          
+          async function deleteResource(id) {
+            if (!confirm('정말 삭제하시겠습니까?')) return;
+            
+            try {
+              const response = await fetch('/admin/api/resources/' + id, {
+                method: 'DELETE',
+                headers: { 'Authorization': 'Bearer ' + token }
+              });
+              
+              if (!response.ok) throw new Error('Delete failed');
+              
+              alert('자료가 삭제되었습니다');
+              loadResources();
+            } catch (error) {
+              console.error('Delete error:', error);
+              alert('삭제 중 오류가 발생했습니다');
+            }
+          }
+        `}} />
+      </body>
+    </html>
+  )
+})
+
+// 자료실 관리 API
+// 자료실 목록 조회
+app.get('/admin/api/resources', adminAuth, async (c) => {
+  try {
+    const db = c.env.DB
+    const result = await db.prepare(
+      'SELECT id, title, description, file_url, file_name, file_size, file_type, downloads, created_at FROM resources ORDER BY created_at DESC'
+    ).all()
+    
+    return c.json({ success: true, data: result.results || [] })
+  } catch (error) {
+    console.error('Resources list error:', error)
+    return c.json({ error: '자료 목록 조회 실패' }, 500)
+  }
+})
+
+// 자료 추가
+app.post('/admin/api/resources', adminAuth, async (c) => {
+  try {
+    const db = c.env.DB
+    const { title, description, file_url, file_name, file_size, file_type } = await c.req.json()
+    
+    if (!title || !file_url || !file_name) {
+      return c.json({ error: '제목, 파일 URL, 파일명을 입력해주세요' }, 400)
+    }
+    
+    const admin = c.get('adminUser')
+    const created_at = new Date().toISOString().slice(0, 19).replace('T', ' ')
+    
+    await db.prepare(
+      'INSERT INTO resources (title, description, file_url, file_name, file_size, file_type, downloads, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?)'
+    ).bind(title, description || null, file_url, file_name, file_size || null, file_type || null, created_at, admin.id).run()
+    
+    return c.json({ success: true, message: '자료가 등록되었습니다' })
+  } catch (error) {
+    console.error('Resource create error:', error)
+    return c.json({ error: '자료 등록 실패' }, 500)
+  }
+})
+
+// 자료 수정
+app.put('/admin/api/resources/:id', adminAuth, async (c) => {
+  try {
+    const db = c.env.DB
+    const id = c.req.param('id')
+    const { title, description, file_url, file_name, file_size, file_type } = await c.req.json()
+    
+    if (!title || !file_url || !file_name) {
+      return c.json({ error: '제목, 파일 URL, 파일명을 입력해주세요' }, 400)
+    }
+    
+    await db.prepare(
+      'UPDATE resources SET title = ?, description = ?, file_url = ?, file_name = ?, file_size = ?, file_type = ? WHERE id = ?'
+    ).bind(title, description || null, file_url, file_name, file_size || null, file_type || null, id).run()
+    
+    return c.json({ success: true, message: '자료가 수정되었습니다' })
+  } catch (error) {
+    console.error('Resource update error:', error)
+    return c.json({ error: '자료 수정 실패' }, 500)
+  }
+})
+
+// 자료 삭제
+app.delete('/admin/api/resources/:id', adminAuth, async (c) => {
+  try {
+    const db = c.env.DB
+    const id = c.req.param('id')
+    
+    await db.prepare('DELETE FROM resources WHERE id = ?').bind(id).run()
+    
+    return c.json({ success: true, message: '자료가 삭제되었습니다' })
+  } catch (error) {
+    console.error('Resource delete error:', error)
+    return c.json({ error: '자료 삭제 실패' }, 500)
+  }
+})
+
+// ==================== 설정 페이지 ====================
+app.get('/admin/settings', (c) => {
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>설정 - 한국미래인재교육협회</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+      </head>
+      <body class="bg-gray-100 min-h-screen">
+        {/* 관리자 네비게이션 */}
+        <nav class="bg-white shadow-lg">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+              <div class="flex items-center">
+                <i class="fas fa-shield-alt text-2xl text-blue-600 mr-3"></i>
+                <span class="text-xl font-bold text-gray-900">관리자 페이지</span>
+              </div>
+              <div class="flex items-center space-x-4">
+                <a href="/" target="_blank" class="text-gray-600 hover:text-blue-600">
+                  <i class="fas fa-external-link-alt mr-1"></i>사이트 보기
+                </a>
+                <button onclick="logout()" class="text-gray-600 hover:text-red-600">
+                  <i class="fas fa-sign-out-alt mr-1"></i>로그아웃
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="flex">
+          {/* 사이드바 */}
+          <aside class="w-64 bg-white shadow-lg min-h-screen">
+            <div class="p-6">
+              <nav class="space-y-2">
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-home w-5"></i>
+                  <span class="ml-3">대시보드</span>
+                </a>
+                <a href="/admin/activities" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-newspaper w-5"></i>
+                  <span class="ml-3">활동소식 관리</span>
+                </a>
+                <a href="/admin/notices" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-bullhorn w-5"></i>
+                  <span class="ml-3">공지사항 관리</span>
+                </a>
+                <a href="/admin/resources" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                  <i class="fas fa-folder-open w-5"></i>
+                  <span class="ml-3">자료실 관리</span>
+                </a>
+                <a href="/admin/settings" class="flex items-center px-4 py-3 text-gray-700 bg-blue-50 rounded-lg font-medium">
+                  <i class="fas fa-cog w-5"></i>
+                  <span class="ml-3">설정</span>
+                </a>
+              </nav>
+            </div>
+          </aside>
+
+          {/* 메인 컨텐츠 */}
+          <main class="flex-1 p-8">
+            <div class="max-w-4xl mx-auto">
+              <h1 class="text-3xl font-bold text-gray-900 mb-8">설정</h1>
+
+              {/* 관리자 정보 */}
+              <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                  <i class="fas fa-user-shield text-blue-600 mr-2"></i>
+                  관리자 정보
+                </h2>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">아이디</label>
+                    <p id="admin-username" class="text-gray-900 font-medium">-</p>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">이름</label>
+                    <p id="admin-name" class="text-gray-900 font-medium">-</p>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">이메일</label>
+                    <p id="admin-email" class="text-gray-900 font-medium">-</p>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">권한</label>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                      <i class="fas fa-crown mr-1"></i>관리자
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 사이트 정보 */}
+              <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                  <i class="fas fa-globe text-green-600 mr-2"></i>
+                  사이트 정보
+                </h2>
+                <div class="space-y-3 text-sm">
+                  <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">사이트명</span>
+                    <span class="text-gray-900 font-medium">한국미래인재교육협회</span>
+                  </div>
+                  <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">도메인</span>
+                    <span class="text-gray-900 font-medium">kfea.ai.kr</span>
+                  </div>
+                  <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">연락처</span>
+                    <span class="text-gray-900 font-medium">010-3450-1117</span>
+                  </div>
+                  <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">이메일</span>
+                    <span class="text-gray-900 font-medium">info@kfea.ai.kr</span>
+                  </div>
+                  <div class="flex justify-between py-2">
+                    <span class="text-gray-600">운영 시간</span>
+                    <span class="text-gray-900 font-medium">평일 09:00 - 18:00</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 통계 정보 */}
+              <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                  <i class="fas fa-chart-bar text-purple-600 mr-2"></i>
+                  통계 정보
+                </h2>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="text-sm text-blue-600 mb-1">활동소식</div>
+                    <div class="text-2xl font-bold text-blue-900" id="stat-articles">-</div>
+                  </div>
+                  <div class="bg-green-50 rounded-lg p-4">
+                    <div class="text-sm text-green-600 mb-1">공지사항</div>
+                    <div class="text-2xl font-bold text-green-900" id="stat-notices">-</div>
+                  </div>
+                  <div class="bg-yellow-50 rounded-lg p-4">
+                    <div class="text-sm text-yellow-600 mb-1">자료실</div>
+                    <div class="text-2xl font-bold text-yellow-900" id="stat-resources">-</div>
+                  </div>
+                  <div class="bg-purple-50 rounded-lg p-4">
+                    <div class="text-sm text-purple-600 mb-1">총 조회수</div>
+                    <div class="text-2xl font-bold text-purple-900" id="stat-views">-</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+
+        <script dangerouslySetInnerHTML={{__html: `
+          const token = localStorage.getItem('admin_token');
+          if (!token) window.location.href = '/admin/login';
+          
+          const adminUser = JSON.parse(localStorage.getItem('admin_user') || '{}');
+          
+          document.getElementById('admin-username').textContent = adminUser.username || '-';
+          document.getElementById('admin-name').textContent = adminUser.name || '-';
+          document.getElementById('admin-email').textContent = adminUser.email || '-';
+          
+          loadStats();
+          
+          function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+              localStorage.removeItem('admin_token');
+              localStorage.removeItem('admin_user');
+              window.location.href = '/admin/login';
+            }
+          }
+          
+          async function loadStats() {
+            try {
+              const [articlesRes, noticesRes, resourcesRes] = await Promise.all([
+                fetch('/admin/api/activities', { headers: { 'Authorization': 'Bearer ' + token } }),
+                fetch('/admin/api/notices', { headers: { 'Authorization': 'Bearer ' + token } }),
+                fetch('/admin/api/resources', { headers: { 'Authorization': 'Bearer ' + token } })
+              ]);
+              
+              const articles = await articlesRes.json();
+              const notices = await noticesRes.json();
+              const resources = await resourcesRes.json();
+              
+              document.getElementById('stat-articles').textContent = (articles.data || []).length + '건';
+              document.getElementById('stat-notices').textContent = (notices.data || []).length + '건';
+              document.getElementById('stat-resources').textContent = (resources.data || []).length + '건';
+              
+              const totalViews = (notices.data || []).reduce(function(sum, n) { return sum + (n.views || 0); }, 0);
+              document.getElementById('stat-views').textContent = totalViews.toLocaleString() + '회';
+            } catch (error) {
+              console.error('Stats load error:', error);
+            }
+          }
+        `}} />
+      </body>
+    </html>
+  )
+})
+
 
 // ============================================
 // Popup API Route
