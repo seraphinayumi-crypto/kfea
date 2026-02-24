@@ -161,13 +161,13 @@ const Layout = (props: { children: any; title?: string }) => {
             href="https://open.kakao.com/me/kfea" 
             target="_blank" 
             rel="noopener noreferrer"
-            class="fixed bottom-6 right-6 z-50 bg-yellow-400 hover:bg-yellow-500 text-gray-900 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            class="fixed bottom-6 right-6 z-50 bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 transition-all duration-300 hover:scale-105 group"
             aria-label="카카오톡 문의하기"
           >
-            <i class="fas fa-comment text-2xl group-hover:scale-110 transition-transform"></i>
-            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold animate-pulse">
-              1:1
-            </span>
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.442 1.479 4.605 3.735 6.015l-.948 3.485c-.068.25.166.474.416.398l4.263-1.277c1.413.508 2.961.793 4.534.793 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/>
+            </svg>
+            <span class="font-bold text-sm whitespace-nowrap">카톡 문의</span>
           </a>
 
           {/* Header with improved navigation spacing */}
