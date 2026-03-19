@@ -1465,7 +1465,7 @@ app.get('/organization', (c) => {
                   <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <i class="fas fa-user-tie text-blue-600"></i>
                   </div>
-                  <p class="font-bold text-gray-900 mb-1">김대원</p>
+                  <p class="font-bold text-gray-900 mb-1"></p>
                   <p class="text-sm text-gray-600">진로상담<br/>취업컨설팅</p>
                 </div>
                 
@@ -1499,7 +1499,7 @@ app.get('/organization', (c) => {
               <div class="space-y-3">
                 <div class="border-l-4 border-green-500 pl-4">
                   <p class="text-sm text-gray-500 mb-1">대표</p>
-                  <p class="font-bold text-gray-900">김대원</p>
+                  <p class="font-bold text-gray-900"></p>
                 </div>
 
                 <div class="pt-4 border-t border-gray-200">
@@ -2036,7 +2036,7 @@ app.get('/seoul-branch', (c) => {
                     <i class="fas fa-user-graduate text-white"></i>
                   </div>
                   <div>
-                    <p class="font-bold text-gray-900">김대원</p>
+                    <p class="font-bold text-gray-900"></p>
                     <p class="text-xs text-blue-700">전문위원</p>
                   </div>
                 </div>
@@ -2083,7 +2083,7 @@ app.get('/daegu-branch', (c) => {
                     <i class="fas fa-user-tie text-green-600 text-xl mt-1"></i>
                     <div>
                       <p class="font-semibold text-gray-900">대표</p>
-                      <p class="text-gray-600">김대원</p>
+                      <p class="text-gray-600"></p>
                     </div>
                   </div>
                   <div class="flex items-start space-x-3">
